@@ -1,0 +1,225 @@
+#####################################################
+#  Spatially variable Sex-Specific Selection and the
+#  maintenance of SA polymorphism in simultaneous
+#  hermaphrodites
+#
+#  Necessary functions for simulations and analyses
+#
+#  Author: Colin Olito
+#
+#  NOTES:  
+#          
+
+###############
+# Dependencies
+
+
+
+##########################################
+##########################################
+# 2-Patch Levene Model for Hermaphrodites
+
+#' General lambda for q = 0
+#'
+#' @title General lambda for q = 0
+#' @param C      Population selfing rate
+#' @param delta  Inbreeding depression
+#' @param hf     Dominance coefficient for female sex function.
+#' @param hm     Dominance coefficient for male sex function
+#' @param sf     Selection coefficient for female sex function
+#' @param sm     Selection coefficient for male sex function
+#' @export
+l0Pr  <-  function(C=0, delta=0, hf=1/2, hm=1/2, sf=0.01, sm=0.01) {
+	(4 + 2*hf*sf*(sm - 1) - 2*(1 + hm)*sm + C*(-2 - sf - sm + 4*hm*sm + sf*sm - 
+    4*(-1 + hf*sf)*(-1 + sm)*delta) + (C^2)*(sm - 2*hm*sm + 2*delta - 
+    2*sm*delta + (-1 + 2*hf)*sf*(-1 + sm)*(-1 + 2*delta))) / (2*(-2 + C)*(-1 + sm))
+}
+#' General lambda for q = 1
+#'
+#' @title General lambda for q = 0
+#' @param C      Population selfing rate
+#' @param delta  Inbreeding depression
+#' @param hf     Dominance coefficient for female sex function.
+#' @param hm     Dominance coefficient for male sex function
+#' @param sf     Selection coefficient for female sex function
+#' @param sm     Selection coefficient for male sex function
+#' @export
+l1Pr  <-  function(C=0, delta=0, hf=1/2, hm=1/2, sf=0.01, sm=0.01) {
+	((-1 + C)*(-1 + sf)*(2 - 2*hm*sm + C*(-1 + (-1 + 2*hm)*sm)) - (2 - 
+    C + 2*(-1 + C)*hf*sf)*(-1 + C*(-1 + 2*delta))) / (2*(-2 + C)*(-1 + sf))
+}
+
+#' General invasion condition for q = 0
+#'
+#' @title General lambda for q = 0
+#' @param C      Population selfing rate
+#' @param delta  Inbreeding depression
+#' @param hf1     Dominance coefficient for female sex function in patch 1
+#' @param hf2     Dominance coefficient for female sex function in patch 2
+#' @param hm1     Dominance coefficient for male sex function in patch 1
+#' @param hm2     Dominance coefficient for male sex function in patch 2
+#' @param sf1     Selection coefficient for female sex function in patch 1
+#' @param sf2     Selection coefficient for female sex function in patch 2
+#' @param sm1     Selection coefficient for male sex function in patch 1
+#' @export
+Inv0  <-  function(C, delta, hf1, hf2, hm1, hm2, sf1, sm1, sf2) {
+	sm2  <-  -((-(1 + C)*(sf1 + sf2) + (1 + sf1 + sf2 + C*(-1 + sf1 + sf2))*sm1) / 
+		(1 + sf1 + sf2 - (2 + sf1 + sf2)*sm1 + C*(-1 + sf1 + sf2 - (-2 + sf1 + sf2)*sm1)))
+	sm2
+}
+
+#' General invasion condition for q = 1
+#'
+#' @title General lambda for q = 1
+#' @param C      Population selfing rate
+#' @param delta  Inbreeding depression
+#' @param hf1     Dominance coefficient for female sex function in patch 1
+#' @param hf2     Dominance coefficient for female sex function in patch 2
+#' @param hm1     Dominance coefficient for male sex function in patch 1
+#' @param hm2     Dominance coefficient for male sex function in patch 2
+#' @param sf1     Selection coefficient for female sex function in patch 1
+#' @param sf2     Selection coefficient for female sex function in patch 2
+#' @param sm1     Selection coefficient for male sex function in patch 1
+#' @export
+Inv1  <-  function(C, delta, hf1, hf2, hm1, hm2, sf1, sm1, sf2) {
+	sm2 <- ((1 + C)*(-sf2 + sf1*(-1 + 2*sf2))) / ((-1 + C)*(-1 + sf1)*(-1 + sf2)) - sm1
+	sm2
+}
+
+
+#' 1-Patch Invasion conditions for q = 0
+#'
+#' @title General lambda for q = 0
+#' @param C      Population selfing rate
+#' @param delta  Inbreeding depression
+#' @param hf     Dominance coefficient for female sex function.
+#' @param hm     Dominance coefficient for male sex function
+#' @param sf     Selection coefficient for female sex function
+#' @param sm     Selection coefficient for male sex function
+#' @export
+Inv0SinglePatch  <-  function(C, delta, hf, hm, sm) {
+	(sm*(C - 1)*(2*hm*(C - 1) - C)) / (sm*(C - 1)*(2*hm*(C - 1) - C) + (C + 1)*(2 - C + 2*hf*(C - 1)))
+}
+
+#' 1-Patch Invasion conditions for q = 1
+#'
+#' @title General lambda for q = 1
+#' @param C      Population selfing rate
+#' @param delta  Inbreeding depression
+#' @param hf     Dominance coefficient for female sex function.
+#' @param hm     Dominance coefficient for male sex function
+#' @param sf     Selection coefficient for female sex function
+#' @param sm     Selection coefficient for male sex function
+#' @export
+Inv1SinglePatch  <-  function(C, delta, hf, hm, sm) {
+	(sm*(1 - C)*(2 - C + 2*hm*(C - 1))) / ((C + 1)*(2*hf*(C - 1) - C)*(sm - 1))
+}
+
+
+#' Simulation to compare proportion of parameter space where
+#' polymorphism is maintained in the 2-patch model compared
+#' with the 1-patch expectation 
+#'
+#' @title 2-Patch SA in hermaphrodites Simulation
+#' @param n      Sample size (number of selection coefficients 
+#' 				 randomly drawn from uniform distribution)
+#' @param C      Population selfing rate
+#' @param delta  Inbreeding depression
+#' @param hf1     Dominance coefficient for female sex function in patch 1
+#' @param hf2     Dominance coefficient for female sex function in patch 2
+#' @param hm1     Dominance coefficient for male sex function in patch 1
+#' @param hm2     Dominance coefficient for male sex function in patch 2
+#' @param sMax   Maximum selection coefficient in Patch 1 (determines range
+#' 				  of selection coefficient parameter space to be explored)
+#' 				  (we assume that we always explore a square parameter space 
+#' 				  (i.e., sMax is the same for males and females, and equal 
+#' 				  across patches))
+#' @export
+sim2Patch  <-  function(n, C, delta, hf1, hf2, hm1, hm2, sMax) {
+
+	# Draw random seleciton coefficients
+	sf1  <-  runif(n, max = sMax)
+	sf2  <-  runif(n, max = sMax)
+	sm1  <-  runif(n, max = sMax)
+	sm2  <-  runif(n, max = sMax)
+
+	# 2-Patch invasion criteria for boundaries of q = 0 and q = 1
+	lowerBound  <-  (1/2)*(l0Pr(C = C, delta = 0, hf = hf1, hm = hm1, sf = sf1, sm = sm1) + 
+						   l0Pr(C = C, delta = 0, hf = hf2, hm = hm2, sf = sf2, sm = sm2))
+	upperBound  <-  (1/2)*(l1Pr(C = C, delta = 0, hf = hf1, hm = hm1, sf = sf1, sm = sm1) + 
+						   l1Pr(C = C, delta = 0, hf = hf2, hm = hm2, sf = sf2, sm = sm2))
+	
+	# 1-Patch invasion criteria for boundaries of q = 0 and q = 1
+	onePatchLB  <-  Inv0SinglePatch(C = C, delta = delta, hf = hf1, hm = hm1, sm = sm1)
+	onePatchUB  <-  Inv1SinglePatch(C = C, delta = delta, hf = hf1, hm = hm1, sm = sm1)
+
+	# Calculate proportion of parameter space 
+	# where polymorphism is predicted to be 
+	# maintained by balancing selection
+	poly2Patch  <-  sum(1 < lowerBound & 1 < upperBound)/n
+	poly1Patch  <-  sum(onePatchLB < sf1 & onePatchUB > sf1)/n
+
+	# Save and return results
+	res  <-  list(
+				  "poly1"  =  poly1Patch,
+				  "poly2"  =  poly2Patch
+				  )
+	return(res)
+}
+
+
+
+
+#' Simulation to icompare proportion of parameter space where
+#' polymorphism is maintained in the 2-patch model compared
+#' with the 1-patch expectation across a gradient of selection
+#' coefficients (wrapper function for sim2Patch())
+#'
+#' @title 2-Patch SA in hermaphrodites Simulation
+#' @param n      Sample size (number of selection coefficients 
+#' 				 randomly drawn from uniform distribution)
+#' @param C      Population selfing rate
+#' @param delta  Inbreeding depression
+#' @param hf1     Dominance coefficient for female sex function in patch 1
+#' @param hf2     Dominance coefficient for female sex function in patch 2
+#' @param hm1     Dominance coefficient for male sex function in patch 1
+#' @param hm2     Dominance coefficient for male sex function in patch 2
+#' @param sMax   Maximum selection coefficient in Patch 1 (determines range
+#' 				  of selection coefficient parameter space to be explored)
+#' 				  (we assume that we always explore a square parameter space 
+#' 				  (i.e., sMax is the same for males and females, and equal 
+#' 				  across patches))
+#' @param resolution resolution for selection coefficient gradient
+#' @export
+sim2PatchSgrad  <-  function(n, C, delta, hf1, hf2, hm1, hm2, sMax = 1, resolution = 0.01) {
+
+	# Initialize storage structures
+	Poly1  <-  c()
+	Poly2  <-  c()
+
+	# Create vector of sMaxes (we assume that we always explore a 
+	# square parameter space (i.e., sMax is the same for males and females))
+	sMaxes  <- seq(from = resolution, to = sMax, by = resolution)
+	
+	# loop over sMaxes
+	for (i in 1:length(sMaxes)) {
+		res  <-  sim2Patch(n = n, C = C, delta = delta, hf1 = hf1, hf2 = hf2, hm1 = hm1, hm2 = hm2, sMax = sMaxes[i]) 
+		Poly1[i]  <-  res$poly1
+		Poly2[i]  <-  res$poly2
+	}
+
+	# Save results as data frame
+	data  <-  data.frame(
+						 "sMax"      =  sMaxes,
+						 "poly1"     =  Poly1,
+						 "poly2"     =  Poly2,
+						 "diffPoly"  =  Poly2 - Poly1)
+	
+	# Export data
+	filename  <-  paste("./output/data/sim2PatchSgrad", "_C", C, "_delta", delta, "_h", hf1, "_sMax", sMax, ".csv", sep="")
+	write.csv(data, file=filename, row.names = FALSE)
+}
+
+
+
+
