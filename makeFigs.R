@@ -62,16 +62,19 @@ source('R/functions-figures.R')
 ######################
 
 # Compare SA polymorphism between 1 and 2 patch models
-toPdf(proportionPoly2Patch(h = 1/2, delta = 0), figPath(name='propPoly2Patch_Additive_delta0.pdf'), width=7, height=7)
-embed_fonts(figPath(name='propPoly2Patch_Additive_delta0.pdf'))
+toPdf(proportionPolyMultiPatch(h = 1/2, delta = 0), figPath(name='propPolyMultiPatch_Additive_delta0.pdf'), width=7, height=7)
+embed_fonts(figPath(name='propPolyMultiPatch_Additive_delta0.pdf'))
 
-toPdf(proportionPoly2Patch(h = 1/4, delta = 0), figPath(name='propPoly2Patch_DomRev_delta0.pdf'), width=7, height=7)
-embed_fonts(figPath(name='propPoly2Patch_DomRev_delta0.pdf'))
+toPdf(proportionPolyMultiPatch(h = 1/2, delta = 0.4), figPath(name='propPolyMultiPatch_Additive_delta0.4.pdf'), width=7, height=7)
+embed_fonts(figPath(name='propPolyMultiPatch_Additive_delta0.4.pdf'))
+
+toPdf(proportionPolyMultiPatch(h = 1/4, delta = 0), figPath(name='propPolyMultiPatch_DomRev_delta0.pdf'), width=7, height=7)
+embed_fonts(figPath(name='propPolyMultiPatch_DomRev_delta0.pdf'))
 
 
 # Difference in SA polymorphism between 1 and 2 patch models
-toPdf(diffPoly2Patch(h = 1/2, delta = 0), figPath(name='diffPoly2Patch_Additive_delta0.pdf'), width=7, height=7)
-embed_fonts(figPath(name='diffPoly2Patch_Additive_delta0.pdf'))
+toPdf(diffPolyMultiPatch(h = 1/2, delta = 0), figPath(name='diffPolyMultiPatch_Additive_delta0.pdf'), width=7, height=7)
+embed_fonts(figPath(name='diffPolyMultiPatch_Additive_delta0.pdf'))
 
-toPdf(diffPoly2Patch(h = 1/4, delta = 0), figPath(name='diffPoly2Patch_DomRev_delta0.pdf'), width=7, height=7)
-embed_fonts(figPath(name='diffPoly2Patch_DomRev_delta0.pdf'))
+toPdf(diffPolyMultiPatch(h = 1/4, delta = 0), figPath(name='diffPolyMultiPatch_DomRev_delta0.pdf'), width=7, height=7)
+embed_fonts(figPath(name='diffPolyMultiPatch_DomRev_delta0.pdf'))

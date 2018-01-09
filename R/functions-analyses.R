@@ -125,44 +125,85 @@ Inv1SinglePatch  <-  function(C, delta, hf, hm, sm) {
 #' 				 randomly drawn from uniform distribution)
 #' @param C      Population selfing rate
 #' @param delta  Inbreeding depression
-#' @param hf1     Dominance coefficient for female sex function in patch 1
-#' @param hf2     Dominance coefficient for female sex function in patch 2
-#' @param hm1     Dominance coefficient for male sex function in patch 1
-#' @param hm2     Dominance coefficient for male sex function in patch 2
+#' @param hf     Dominance coefficient for female sex function. Assume equal across patches.
+#' @param hm     Dominance coefficient for male sex function. Assume equal across patches.
 #' @param sMax   Maximum selection coefficient in Patch 1 (determines range
 #' 				  of selection coefficient parameter space to be explored)
 #' 				  (we assume that we always explore a square parameter space 
 #' 				  (i.e., sMax is the same for males and females, and equal 
 #' 				  across patches))
 #' @export
-sim2Patch  <-  function(n, C, delta, hf1, hf2, hm1, hm2, sMax) {
+simMultiPatch  <-  function(n, C, delta, hf, hm, sMax) {
 
-	# Draw random seleciton coefficients
+	# Draw random seleciton coefficients for up to 5 patches
 	sf1  <-  runif(n, max = sMax)
-	sf2  <-  runif(n, max = sMax)
 	sm1  <-  runif(n, max = sMax)
+	sf2  <-  runif(n, max = sMax)
 	sm2  <-  runif(n, max = sMax)
+	sf3  <-  runif(n, max = sMax)
+	sm3  <-  runif(n, max = sMax)
+	sf4  <-  runif(n, max = sMax)
+	sm4  <-  runif(n, max = sMax)
+	sf5  <-  runif(n, max = sMax)
+	sm5  <-  runif(n, max = sMax)
+
+	# 1-Patch invasion criteria for boundaries of q = 0 and q = 1
+	onePatchLB  <-  Inv0SinglePatch(C = C, delta = delta, hf = hf, hm = hm, sm = sm1)
+	onePatchUB  <-  Inv1SinglePatch(C = C, delta = delta, hf = hf, hm = hm, sm = sm1)
 
 	# 2-Patch invasion criteria for boundaries of q = 0 and q = 1
-	lowerBound  <-  (1/2)*(l0Pr(C = C, delta = 0, hf = hf1, hm = hm1, sf = sf1, sm = sm1) + 
-						   l0Pr(C = C, delta = 0, hf = hf2, hm = hm2, sf = sf2, sm = sm2))
-	upperBound  <-  (1/2)*(l1Pr(C = C, delta = 0, hf = hf1, hm = hm1, sf = sf1, sm = sm1) + 
-						   l1Pr(C = C, delta = 0, hf = hf2, hm = hm2, sf = sf2, sm = sm2))
-	
-	# 1-Patch invasion criteria for boundaries of q = 0 and q = 1
-	onePatchLB  <-  Inv0SinglePatch(C = C, delta = delta, hf = hf1, hm = hm1, sm = sm1)
-	onePatchUB  <-  Inv1SinglePatch(C = C, delta = delta, hf = hf1, hm = hm1, sm = sm1)
+	lowerBound2  <-  (1/2)*(l0Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf1, sm = sm1) + 
+						   l0Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf2, sm = sm2))
+	upperBound2  <-  (1/2)*(l1Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf1, sm = sm1) + 
+						   l1Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf2, sm = sm2))
+
+	# 3-Patch invasion criteria for boundaries of q = 0 and q = 1
+	lowerBound3  <-  (1/3)*(l0Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf1, sm = sm1) + 
+							l0Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf2, sm = sm2) + 
+							l0Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf3, sm = sm3))
+	upperBound3  <-  (1/3)*(l1Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf1, sm = sm1) + 
+							l1Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf2, sm = sm2) + 
+							l1Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf3, sm = sm3))
+
+	# 4-Patch invasion criteria for boundaries of q = 0 and q = 1
+	lowerBound4  <-  (1/4)*(l0Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf1, sm = sm1) + 
+							l0Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf2, sm = sm2) + 
+							l0Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf3, sm = sm3) + 
+							l0Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf4, sm = sm4))
+	upperBound4  <-  (1/4)*(l1Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf1, sm = sm1) + 
+							l1Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf2, sm = sm2) + 
+							l1Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf3, sm = sm3) + 
+							l1Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf4, sm = sm4))
+
+	# 4-Patch invasion criteria for boundaries of q = 0 and q = 1
+	lowerBound5  <-  (1/5)*(l0Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf1, sm = sm1) + 
+							l0Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf2, sm = sm2) + 
+							l0Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf3, sm = sm3) + 
+							l0Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf4, sm = sm4) + 
+							l0Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf5, sm = sm5))
+	upperBound5  <-  (1/5)*(l1Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf1, sm = sm1) + 
+							l1Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf2, sm = sm2) + 
+							l1Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf3, sm = sm3) + 
+							l1Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf4, sm = sm4) + 
+							l1Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf5, sm = sm5))
+
 
 	# Calculate proportion of parameter space 
 	# where polymorphism is predicted to be 
 	# maintained by balancing selection
-	poly2Patch  <-  sum(1 < lowerBound & 1 < upperBound)/n
 	poly1Patch  <-  sum(onePatchLB < sf1 & onePatchUB > sf1)/n
+	poly2Patch  <-  sum(1 < lowerBound2 & 1 < upperBound2)/n
+	poly3Patch  <-  sum(1 < lowerBound3 & 1 < upperBound3)/n
+	poly4Patch  <-  sum(1 < lowerBound4 & 1 < upperBound4)/n
+	poly5Patch  <-  sum(1 < lowerBound5 & 1 < upperBound5)/n
 
 	# Save and return results
 	res  <-  list(
 				  "poly1"  =  poly1Patch,
-				  "poly2"  =  poly2Patch
+				  "poly2"  =  poly2Patch,
+				  "poly3"  =  poly3Patch,
+				  "poly4"  =  poly4Patch,
+				  "poly5"  =  poly5Patch
 				  )
 	return(res)
 }
@@ -180,10 +221,8 @@ sim2Patch  <-  function(n, C, delta, hf1, hf2, hm1, hm2, sMax) {
 #' 				 randomly drawn from uniform distribution)
 #' @param C      Population selfing rate
 #' @param delta  Inbreeding depression
-#' @param hf1     Dominance coefficient for female sex function in patch 1
-#' @param hf2     Dominance coefficient for female sex function in patch 2
-#' @param hm1     Dominance coefficient for male sex function in patch 1
-#' @param hm2     Dominance coefficient for male sex function in patch 2
+#' @param hf     Dominance coefficient for female sex function. Assume equal across patches.
+#' @param hm     Dominance coefficient for male sex function. Assume equal across patches.
 #' @param sMax   Maximum selection coefficient in Patch 1 (determines range
 #' 				  of selection coefficient parameter space to be explored)
 #' 				  (we assume that we always explore a square parameter space 
@@ -191,11 +230,14 @@ sim2Patch  <-  function(n, C, delta, hf1, hf2, hm1, hm2, sMax) {
 #' 				  across patches))
 #' @param resolution resolution for selection coefficient gradient
 #' @export
-sim2PatchSgrad  <-  function(n, C, delta, hf1, hf2, hm1, hm2, sMax = 1, resolution = 0.01) {
+simMultiPatchSgrad  <-  function(n, C, delta, hf, hm, sMax = 1, resolution = 0.01) {
 
 	# Initialize storage structures
 	Poly1  <-  c()
 	Poly2  <-  c()
+	Poly3  <-  c()
+	Poly4  <-  c()
+	Poly5  <-  c()
 
 	# Create vector of sMaxes (we assume that we always explore a 
 	# square parameter space (i.e., sMax is the same for males and females))
@@ -203,9 +245,12 @@ sim2PatchSgrad  <-  function(n, C, delta, hf1, hf2, hm1, hm2, sMax = 1, resoluti
 	
 	# loop over sMaxes
 	for (i in 1:length(sMaxes)) {
-		res  <-  sim2Patch(n = n, C = C, delta = delta, hf1 = hf1, hf2 = hf2, hm1 = hm1, hm2 = hm2, sMax = sMaxes[i]) 
+		res  <-  simMultiPatch(n = n, C = C, delta = delta, hf = hf, hm = hm, sMax = sMaxes[i]) 
 		Poly1[i]  <-  res$poly1
 		Poly2[i]  <-  res$poly2
+		Poly3[i]  <-  res$poly3
+		Poly4[i]  <-  res$poly4
+		Poly5[i]  <-  res$poly5
 	}
 
 	# Save results as data frame
@@ -213,10 +258,17 @@ sim2PatchSgrad  <-  function(n, C, delta, hf1, hf2, hm1, hm2, sMax = 1, resoluti
 						 "sMax"      =  sMaxes,
 						 "poly1"     =  Poly1,
 						 "poly2"     =  Poly2,
-						 "diffPoly"  =  Poly2 - Poly1)
+						 "poly3"     =  Poly3,
+						 "poly4"     =  Poly4,
+						 "poly5"     =  Poly5,
+						 "diffPoly12"  =  Poly2 - Poly1,
+						 "diffPoly13"  =  Poly3 - Poly1,
+						 "diffPoly14"  =  Poly4 - Poly1,
+						 "diffPoly15"  =  Poly5 - Poly1
+						 )
 	
 	# Export data
-	filename  <-  paste("./output/data/sim2PatchSgrad", "_C", C, "_delta", delta, "_h", hf1, "_sMax", sMax, ".csv", sep="")
+	filename  <-  paste("./output/data/simMultiPatchSgrad", "_C", C, "_delta", delta, "_hf", hf, "_hm", hm, "_sMax", sMax, ".csv", sep="")
 	write.csv(data, file=filename, row.names = FALSE)
 }
 

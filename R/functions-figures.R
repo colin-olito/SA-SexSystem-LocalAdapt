@@ -131,17 +131,20 @@ transparentColor <- function(col, opacity=0.5) {
 
 
 # Simple figs for 2-patch Levene model for simultaneous hermaphrodites
-proportionPoly2Patch  <-  function(h = 1/2, delta = 0, sMax=1) {
+proportionPolyMultiPatch  <-  function(h = 1/2, delta = 0, sMax=1) {
     
     # import data
-    filename1  <-  paste("./output/data/sim2PatchSgrad", "_C", 0, "_delta", delta, "_h", h, "_sMax", sMax, ".csv", sep="")
-    filename2  <-  paste("./output/data/sim2PatchSgrad", "_C", 0.25, "_delta", delta, "_h", h, "_sMax", sMax, ".csv", sep="")
-    filename3  <-  paste("./output/data/sim2PatchSgrad", "_C", 0.5, "_delta", delta, "_h", h, "_sMax", sMax, ".csv", sep="")
-    filename4  <-  paste("./output/data/sim2PatchSgrad", "_C", 0.75, "_delta", delta, "_h", h, "_sMax", sMax, ".csv", sep="")
+    filename1  <-  paste("./output/data/simMultiPatchSgrad", "_C", 0,    "_delta", delta, "_hf", h, "_hm", h, "_sMax", sMax, ".csv", sep="")
+    filename2  <-  paste("./output/data/simMultiPatchSgrad", "_C", 0.25, "_delta", delta, "_hf", h, "_hm", h, "_sMax", sMax, ".csv", sep="")
+    filename3  <-  paste("./output/data/simMultiPatchSgrad", "_C", 0.5,  "_delta", delta, "_hf", h, "_hm", h, "_sMax", sMax, ".csv", sep="")
+    filename4  <-  paste("./output/data/simMultiPatchSgrad", "_C", 0.75, "_delta", delta, "_hf", h, "_hm", h, "_sMax", sMax, ".csv", sep="")
     data1  <-  read.csv(filename1, header=TRUE)
     data2  <-  read.csv(filename2, header=TRUE)
     data3  <-  read.csv(filename3, header=TRUE)
     data4  <-  read.csv(filename4, header=TRUE)
+
+    # Color Scheme
+    COLS  <-  c("dodgerblue", "dodgerblue2", "dodgerblue3", "dodgerblue4", "black")
 
     # Set plot layout
     layout.mat <- matrix(c(1:4), nrow=2, ncol=2, byrow=TRUE)
@@ -155,8 +158,11 @@ proportionPoly2Patch  <-  function(h = 1/2, delta = 0, sMax=1) {
         plotGrid(lineCol='grey80')
         box()
         # Plot proportion of parameter space for 1 and 2 patches
-        lines(poly2 ~ sMax, data=data1, lwd=3, col='dodgerblue')
-        lines(poly1 ~ sMax, data=data1, lwd=3, col=1)
+        lines(poly5 ~ sMax, data=data1, lwd=3, col=COLS[1])
+        lines(poly4 ~ sMax, data=data1, lwd=3, col=COLS[2])
+        lines(poly3 ~ sMax, data=data1, lwd=3, col=COLS[3])
+        lines(poly2 ~ sMax, data=data1, lwd=3, col=COLS[4])
+        lines(poly1 ~ sMax, data=data1, lwd=3, col=COLS[5])
         # axes
         axis(1, las=1, labels=NA)
         axis(2, las=1)
@@ -167,15 +173,18 @@ proportionPoly2Patch  <-  function(h = 1/2, delta = 0, sMax=1) {
         # Legend
         if(h == 1/2) {
                 legend(
-                    x       =  usr[2]*0.5,
+                    x       =  usr[2]*0.425,
                     y       =  usr[4],
                     legend  =  c(
-                                expression(paste("2 Patches")),
+                                expression(paste("5 Patch")),
+                                expression(paste("4 Patch")),
+                                expression(paste("3 Patch")),
+                                expression(paste("2 Patch")),
                                 expression(paste("1 Patch"))),
-                    col     =  c('dodgerblue',1),
+                    col     =  COLS,
                     lty     =  c(1,1),
                     lwd     =  c(3,3),
-                    cex     =  1,
+                    cex     =  0.9,
                     xjust   =  1,
                     yjust   =  1,
                     bty     =  'n',
@@ -185,11 +194,14 @@ proportionPoly2Patch  <-  function(h = 1/2, delta = 0, sMax=1) {
         if(h == 1/4) {
                 legend(
                     x       =  usr[2]*1,
-                    y       =  usr[4]*0.2,
+                    y       =  usr[4]*0.4,
                     legend  =  c(
-                                expression(paste("2 Patches")),
+                                expression(paste("5 Patch")),
+                                expression(paste("4 Patch")),
+                                expression(paste("3 Patch")),
+                                expression(paste("2 Patch")),
                                 expression(paste("1 Patch"))),
-                    col     =  c('dodgerblue',1),
+                    col     =  COLS,
                     lty     =  c(1,1),
                     lwd     =  c(3,3),
                     cex     =  1,
@@ -207,8 +219,11 @@ proportionPoly2Patch  <-  function(h = 1/2, delta = 0, sMax=1) {
         plotGrid(lineCol='grey80')
         box()
         # Plot proportion of parameter space for 1 and 2 patches
-        lines(poly2 ~ sMax, lwd=3, col='dodgerblue', data=data2)
-        lines(poly1 ~ sMax, lwd=3, col=1, data=data2)
+        lines(poly5 ~ sMax, data=data2, lwd=3, col=COLS[1])
+        lines(poly4 ~ sMax, data=data2, lwd=3, col=COLS[2])
+        lines(poly3 ~ sMax, data=data2, lwd=3, col=COLS[3])
+        lines(poly2 ~ sMax, data=data2, lwd=3, col=COLS[4])
+        lines(poly1 ~ sMax, data=data2, lwd=3, col=COLS[5])
         # axes
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
@@ -223,13 +238,16 @@ proportionPoly2Patch  <-  function(h = 1/2, delta = 0, sMax=1) {
         plotGrid(lineCol='grey80')
         box()
         # Plot proportion of parameter space for 1 and 2 patches
-        lines(poly2 ~ sMax, lwd=3, col='dodgerblue', data=data3)
-        lines(poly1 ~ sMax, lwd=3, col=1, data=data3)
+        lines(poly5 ~ sMax, data=data3, lwd=3, col=COLS[1])
+        lines(poly4 ~ sMax, data=data3, lwd=3, col=COLS[2])
+        lines(poly3 ~ sMax, data=data3, lwd=3, col=COLS[3])
+        lines(poly2 ~ sMax, data=data3, lwd=3, col=COLS[4])
+        lines(poly1 ~ sMax, data=data3, lwd=3, col=COLS[5])
         # axes
         axis(1, las=1)
         axis(2, las=1)
         # Plot labels etc.
-        proportionalLabel( 0.05,  1.075, expression(paste(bold(B))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel( 0.05,  1.075, expression(paste(bold(C))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel( 0.5,  1.1,   expression(paste(italic(C)," = 0.5")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(-0.3,  0.5,   expression(paste("Proportion parameter space")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)        
         proportionalLabel(0.5,  -0.3,   expression(paste(italic(s[max]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)        
@@ -241,13 +259,16 @@ proportionPoly2Patch  <-  function(h = 1/2, delta = 0, sMax=1) {
         plotGrid(lineCol='grey80')
         box()
         # Plot proportion of parameter space for 1 and 2 patches
-        lines(poly2 ~ sMax, lwd=3, col='dodgerblue', data=data4)
-        lines(poly1 ~ sMax, lwd=3, col=1, data=data4)
+        lines(poly5 ~ sMax, data=data4, lwd=3, col=COLS[1])
+        lines(poly4 ~ sMax, data=data4, lwd=3, col=COLS[2])
+        lines(poly3 ~ sMax, data=data4, lwd=3, col=COLS[3])
+        lines(poly2 ~ sMax, data=data4, lwd=3, col=COLS[4])
+        lines(poly1 ~ sMax, data=data4, lwd=3, col=COLS[5])
         # axes
         axis(1, las=1)
         axis(2, las=1, labels=NA)
         # Plot labels etc.
-        proportionalLabel( 0.05,  1.075, expression(paste(bold(B))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel( 0.05,  1.075, expression(paste(bold(D))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel( 0.5,  1.1,   expression(paste(italic(C)," = 0.75")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
 #        proportionalLabel(-0.3,  0.5,   expression(paste("Proportion parameter space")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)        
         proportionalLabel(0.5,  -0.3,   expression(paste(italic(s[max]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)        
@@ -257,21 +278,21 @@ proportionPoly2Patch  <-  function(h = 1/2, delta = 0, sMax=1) {
 
 
 # Simple figs for 2-patch Levene model for simultaneous hermaphrodites
-diffPoly2Patch  <-  function(h = 1/2, delta = 0, sMax = 1) {
+diffPolyMultiPatch  <-  function(h = 1/2, delta = 0, sMax = 1) {
 
     # import data
-    filename1  <-  paste("./output/data/sim2PatchSgrad", "_C", 0, "_delta", delta, "_h", h, "_sMax", sMax, ".csv", sep="")
-    filename2  <-  paste("./output/data/sim2PatchSgrad", "_C", 0.25, "_delta", delta, "_h", h, "_sMax", sMax, ".csv", sep="")
-    filename3  <-  paste("./output/data/sim2PatchSgrad", "_C", 0.5, "_delta", delta, "_h", h, "_sMax", sMax, ".csv", sep="")
-    filename4  <-  paste("./output/data/sim2PatchSgrad", "_C", 0.75, "_delta", delta, "_h", h, "_sMax", sMax, ".csv", sep="")
+    filename1  <-  paste("./output/data/simMultiPatchSgrad", "_C", 0,    "_delta", delta, "_hf", h, "_hm", h, "_sMax", sMax, ".csv", sep="")
+    filename2  <-  paste("./output/data/simMultiPatchSgrad", "_C", 0.25, "_delta", delta, "_hf", h, "_hm", h, "_sMax", sMax, ".csv", sep="")
+    filename3  <-  paste("./output/data/simMultiPatchSgrad", "_C", 0.5,  "_delta", delta, "_hf", h, "_hm", h, "_sMax", sMax, ".csv", sep="")
+    filename4  <-  paste("./output/data/simMultiPatchSgrad", "_C", 0.75, "_delta", delta, "_hf", h, "_hm", h, "_sMax", sMax, ".csv", sep="")
     data1  <-  read.csv(filename1, header=TRUE)
     data2  <-  read.csv(filename2, header=TRUE)
     data3  <-  read.csv(filename3, header=TRUE)
     data4  <-  read.csv(filename4, header=TRUE)
 
     # set ylims
-    ymin  <-  min(c(data1$diffPoly, data2$diffPoly, data3$diffPoly, data4$diffPoly))
-    ymax  <-  max(c(data1$diffPoly, data2$diffPoly, data3$diffPoly, data4$diffPoly), 0.275)
+    ymin  <-  min(c(data1$diffPoly12, data2$diffPoly12, data3$diffPoly12, data4$diffPoly12))
+    ymax  <-  max(c(data1$diffPoly12, data2$diffPoly12, data3$diffPoly12, data4$diffPoly12), 0.275)
 
 ## Panel A: C = 0
     par(omi=c(0.5, 0.5, 0.5, 0.5), mar = c(4,4,0.5,0.5), bty='o', xaxt='s', yaxt='s')    
@@ -281,10 +302,10 @@ diffPoly2Patch  <-  function(h = 1/2, delta = 0, sMax = 1) {
         plotGrid(lineCol='grey80')
         box()
         # Plot proportion of parameter space for 1 and 2 patches
-        lines(diffPoly ~ sMax, lwd=3, col='grey70', data=data1)
-        lines(diffPoly ~ sMax, lwd=3, col='grey60', data=data2)
-        lines(diffPoly ~ sMax, lwd=3, col='grey50', data=data3)
-        lines(diffPoly ~ sMax, lwd=3, col='grey40', data=data4)
+        lines(diffPoly12 ~ sMax, lwd=3, col='grey70', data=data1)
+        lines(diffPoly12 ~ sMax, lwd=3, col='grey60', data=data2)
+        lines(diffPoly12 ~ sMax, lwd=3, col='grey50', data=data3)
+        lines(diffPoly12 ~ sMax, lwd=3, col='grey40', data=data4)
         abline(h=0, lwd=2, lty=2)
         # axes
         axis(1, las=1)
