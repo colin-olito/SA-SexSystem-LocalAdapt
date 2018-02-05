@@ -131,7 +131,7 @@ transparentColor <- function(col, opacity=0.5) {
 
 
 # Simple figs for 2-patch Levene model for simultaneous hermaphrodites
-proportionPolyMultiPatch  <-  function(h = 1/2, delta = 0, sMax=1) {
+proportionPolyMultiPatch  <-  function(h, delta, sMax=1) {
     
     # import data
     filename1  <-  paste("./output/data/simMultiPatchSgrad", "_C", 0,    "_delta", delta, "_hf", h, "_hm", h, "_sMax", sMax, ".csv", sep="")
@@ -169,7 +169,6 @@ proportionPolyMultiPatch  <-  function(h = 1/2, delta = 0, sMax=1) {
         # Plot labels etc.
         proportionalLabel( 0.05,  1.075, expression(paste(bold(A))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel( 0.5,  1.1,   expression(paste(italic(C)," = 0")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(-0.3,  0.5,   expression(paste("Proportion parameter space")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)        
         # Legend
         if(h == 1/2) {
                 legend(
@@ -249,8 +248,8 @@ proportionPolyMultiPatch  <-  function(h = 1/2, delta = 0, sMax=1) {
         # Plot labels etc.
         proportionalLabel( 0.05,  1.075, expression(paste(bold(C))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel( 0.5,  1.1,   expression(paste(italic(C)," = 0.5")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(-0.3,  0.5,   expression(paste("Proportion parameter space")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)        
-        proportionalLabel(0.5,  -0.3,   expression(paste(italic(s[max]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)        
+        proportionalLabel(-0.3,  1.2,   expression(paste("Proportion parameter space")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)        
+        proportionalLabel(1.2,  -0.3,   expression(paste("Maximum strength of selection: max(",italic(s[f]),", ", italic(s[m]),")")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)        
 
 ## Panel D: C = 3/4
      plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
@@ -271,8 +270,7 @@ proportionPolyMultiPatch  <-  function(h = 1/2, delta = 0, sMax=1) {
         proportionalLabel( 0.05,  1.075, expression(paste(bold(D))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel( 0.5,  1.1,   expression(paste(italic(C)," = 0.75")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
 #        proportionalLabel(-0.3,  0.5,   expression(paste("Proportion parameter space")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)        
-        proportionalLabel(0.5,  -0.3,   expression(paste(italic(s[max]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)        
-
+        
 }
 
 
@@ -315,7 +313,6 @@ diffPolyMultiPatch  <-  function(h = 1/2, delta = 0, sMax = 1) {
         proportionalLabel( 0.46, 1.05,  substitute(d,list(d=delta)), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel( 0.56,  1.05,   expression(paste(", ", italic(h["m,f"])," =")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel( 0.69, 1.05,  substitute(dom,list(dom=h)), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(-0.2,  0.5,   expression(paste(Delta, " Proportion parameter space")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)        
         proportionalLabel(0.5,  -0.2,   expression(paste(italic(s[max]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)        
         # Legend
         legend(
@@ -341,3 +338,265 @@ diffPolyMultiPatch  <-  function(h = 1/2, delta = 0, sMax = 1) {
 
 
 
+invConditionsSA  <-  function() {
+    # constants
+    sm  <-  seq(0,1,by=0.0001)
+
+    # Color Scheme
+    COLS  <-  c("dodgerblue", "black")
+
+    # Set plot layout
+    layout.mat <- matrix(c(1:8), nrow=2, ncol=4, byrow=TRUE)
+    layout     <- layout(layout.mat,respect=TRUE)
+
+### Panels A -- D: Additive fitness effects
+    h  <-  1/2
+## Panel A: C = 0
+    # Calculate invasion conditions
+    UB   <-  InvB(C = 0, delta = 0, hf = h, hm = h, sm = sm)
+    UB[UB > 1]  <-  1.00000001
+    LB   <-  InvA(C = 0, delta = 0, hf = h, hm = h, sm = sm)
+    UBd  <-  InvB(C = 0, delta = 0.5, hf = h, hm = h, sm = sm)
+    UBd[UBd > 1]  <-  1.00000001
+    LBd  <-  InvA(C = 0, delta = 0.5, hf = h, hm = h, sm = sm)
+
+    par(omi=c(0.5, 0.5, 0.5, 0.5), mar = c(4,4,0.5,0.5), bty='o', xaxt='s', yaxt='s')    
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, 1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        polygon(c(rev(sm),sm), c(rev(LB), UB), col=transparentColor('grey80', 0.6), border='grey70')
+        polygon(c(rev(sm),sm), c(rev(LBd), UBd), col=transparentColor('dodgerblue', 0.15), border='grey70')
+        lines(UB[UB<=1] ~ sm[UB<= 1], lwd=3, col=COLS[2])
+        lines(LB ~ sm, lwd=3, col=COLS[2])
+        lines(UBd[UBd<=1] ~ sm[UBd<=1], lwd=3, col=COLS[1])
+        lines(LBd ~ sm, lwd=3, col=COLS[1])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.075, expression(paste(bold(A))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel( 0.5,  1.1,   expression(paste(italic(C)," = 0")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(-0.3,  0.5,   expression(paste(italic(s[f]))), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)        
+
+## Panel B: C = 1/4
+    # Calculate invasion conditions
+    UB   <-  InvB(C = 1/4, delta = 0, hf = h, hm = h, sm = sm)
+    UB[UB > 1]  <-  1.00000001
+    LB   <-  InvA(C = 1/4, delta = 0, hf = h, hm = h, sm = sm)
+    UBd  <-  InvB(C = 1/4, delta = 0.5, hf = h, hm = h, sm = sm)
+    UBd[UBd > 1]  <-  1.00000001
+    LBd  <-  InvA(C = 1/4, delta = 0.5, hf = h, hm = h, sm = sm)
+
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, 1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        polygon(c(rev(sm),sm), c(rev(LB), UB), col=transparentColor('grey80', 0.3), border='grey70')
+        polygon(c(rev(sm),sm), c(rev(LBd), UBd), col=transparentColor('dodgerblue', 0.15), border='grey70')
+        lines(UB[UB<=1] ~ sm[UB<= 1], lwd=3, col=COLS[2])
+        lines(LB ~ sm, lwd=3, col=COLS[2])
+        lines(UBd[UBd<=1] ~ sm[UBd<=1], lwd=3, col=COLS[1])
+        lines(LBd ~ sm, lwd=3, col=COLS[1])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 1.2,  1.2,   expression(paste(italic(h[f]),", ",italic(h[m]), " = 1/2")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel( 0.05,  1.075, expression(paste(bold(B))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel( 0.5,  1.1,   expression(paste(italic(C)," = 0.25")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+
+## Panel C: C = 1/2
+    # Calculate invasion conditions
+    UB   <-  InvB(C = 1/2, delta = 0, hf = h, hm = h, sm = sm)
+    UB[UB > 1]  <-  1.00000001
+    LB   <-  InvA(C = 1/2, delta = 0, hf = h, hm = h, sm = sm)
+    UBd  <-  InvB(C = 1/2, delta = 0.5, hf = h, hm = h, sm = sm)
+    UBd[UBd > 1]  <-  1.00000001
+    LBd  <-  InvA(C = 1/2, delta = 0.5, hf = h, hm = h, sm = sm)
+
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, 1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        polygon(c(rev(sm),sm), c(rev(LB), UB), col=transparentColor('grey80', 0.6), border='grey70')
+        polygon(c(rev(sm),sm), c(rev(LBd), UBd), col=transparentColor('dodgerblue', 0.15), border='grey70')
+        lines(UB[UB<=1] ~ sm[UB<= 1], lwd=3, col=COLS[2])
+        lines(LB ~ sm, lwd=3, col=COLS[2])
+        lines(UBd[UBd<=1] ~ sm[UBd<=1], lwd=3, col=COLS[1])
+        lines(LBd ~ sm, lwd=3, col=COLS[1])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.075, expression(paste(bold(C))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel( 0.5,  1.1,   expression(paste(italic(C)," = 0.5")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+
+## Panel D: C = 3/4
+    # Calculate invasion conditions
+    UB   <-  InvB(C = 3/4, delta = 0, hf = h, hm = h, sm = sm)
+    UB[UB > 1]  <-  1.00000001
+    LB   <-  InvA(C = 3/4, delta = 0, hf = h, hm = h, sm = sm)
+    UBd  <-  InvB(C = 3/4, delta = 0.5, hf = h, hm = h, sm = sm)
+    UBd[UBd > 1]  <-  1.00000001
+    LBd  <-  InvA(C = 3/4, delta = 0.5, hf = h, hm = h, sm = sm)
+
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, 1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        polygon(c(rev(sm),sm), c(rev(LBd), UBd), col=transparentColor('dodgerblue', 0.15), border='grey70')
+        polygon(c(rev(sm),sm), c(rev(LB), UB), col=transparentColor('grey80', 0.6), border='grey70')
+        lines(UBd[UBd<=1] ~ sm[UBd<=1], lwd=3, col=COLS[1])
+        lines(LBd ~ sm, lwd=3, col=COLS[1])
+        lines(UB[UB<=1] ~ sm[UB<= 1], lwd=3, col=COLS[2])
+        lines(LB ~ sm, lwd=3, col=COLS[2])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.075, expression(paste(bold(D))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel( 0.5,  1.1,   expression(paste(italic(C)," = 0.75")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        # Legend
+            legend(
+                x       =  usr[2]*0.5,
+                y       =  usr[4],
+                legend  =  c(
+                            expression(paste(delta, " = 1/2")),
+                            expression(paste(delta, " = 0"))),
+                col     =  COLS,
+                lty     =  c(1,1),
+                lwd     =  c(3,3),
+                cex     =  0.9,
+                xjust   =  1,
+                yjust   =  1,
+                bty     =  'n',
+                border  =  NA
+                    )
+
+### Dominance reversal        
+    h  <-  1/4
+## Panel E: C = 0
+    # Calculate invasion conditions
+    UB   <-  InvB(C = 0, delta = 0, hf = h, hm = h, sm = sm)
+    UB[UB > 1]  <-  1.00000001
+    LB   <-  InvA(C = 0, delta = 0, hf = h, hm = h, sm = sm)
+    UBd  <-  InvB(C = 0, delta = 0.5, hf = h, hm = h, sm = sm)
+    UBd[UBd > 1]  <-  1.00000001
+    LBd  <-  InvA(C = 0, delta = 0.5, hf = h, hm = h, sm = sm)
+
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, 1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        polygon(c(rev(sm),sm), c(rev(LB), UB), col=transparentColor('grey80', 0.6), border='grey70')
+        polygon(c(rev(sm),sm), c(rev(LBd), UBd), col=transparentColor('dodgerblue', 0.15), border='grey70')
+        lines(UB[UB<=1] ~ sm[UB<= 1], lwd=3, col=COLS[2])
+        lines(LB ~ sm, lwd=3, col=COLS[2])
+        lines(UBd[UBd<=1] ~ sm[UBd<=1], lwd=3, col=COLS[1])
+        lines(LBd ~ sm, lwd=3, col=COLS[1])
+        # axes
+        axis(1, las=1)
+        axis(2, las=1)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.075, expression(paste(bold(E))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(-0.3,  0.5,   expression(paste(italic(s[f]))), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)        
+        proportionalLabel(0.5,  -0.3,   expression(paste(italic(s[m]))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)        
+
+## Panel F: C = 1/4
+    # Calculate invasion conditions
+    UB   <-  InvB(C = 1/4, delta = 0, hf = h, hm = h, sm = sm)
+    UB[UB > 1]  <-  1.00000001
+    LB   <-  InvA(C = 1/4, delta = 0, hf = h, hm = h, sm = sm)
+    UBd  <-  InvB(C = 1/4, delta = 0.5, hf = h, hm = h, sm = sm)
+    UBd[UBd > 1]  <-  1.00000001
+    LBd  <-  InvA(C = 1/4, delta = 0.5, hf = h, hm = h, sm = sm)
+
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, 1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        polygon(c(rev(sm),sm), c(rev(LB), UB), col=transparentColor('grey80', 0.3), border='grey70')
+        polygon(c(rev(sm),sm), c(rev(LBd), UBd), col=transparentColor('dodgerblue', 0.15), border='grey70')
+        lines(UB[UB<=1] ~ sm[UB<= 1], lwd=3, col=COLS[2])
+        lines(LB ~ sm, lwd=3, col=COLS[2])
+        lines(UBd[UBd<=1] ~ sm[UBd<=1], lwd=3, col=COLS[1])
+        lines(LBd ~ sm, lwd=3, col=COLS[1])
+        # axes
+        axis(1, las=1)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.075, expression(paste(bold(F))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel( 1.2,  1.2,   expression(paste(italic(h[f]),", ",italic(h[m]), " = 1/4")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5,  -0.3,   expression(paste(italic(s[m]))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)        
+
+## Panel G: C = 1/2
+    # Calculate invasion conditions
+    UB   <-  InvB(C = 1/2, delta = 0, hf = h, hm = h, sm = sm)
+    UB[UB > 1]  <-  1.00000001
+    LB   <-  InvA(C = 1/2, delta = 0, hf = h, hm = h, sm = sm)
+    UBd  <-  InvB(C = 1/2, delta = 0.5, hf = h, hm = h, sm = sm)
+    UBd[UBd > 1]  <-  1.00000001
+    LBd  <-  InvA(C = 1/2, delta = 0.5, hf = h, hm = h, sm = sm)
+
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, 1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        polygon(c(rev(sm),sm), c(rev(LB), UB), col=transparentColor('grey80', 0.6), border='grey70')
+        polygon(c(rev(sm),sm), c(rev(LBd), UBd), col=transparentColor('dodgerblue', 0.15), border='grey70')
+        lines(UB[UB<=1] ~ sm[UB<= 1], lwd=3, col=COLS[2])
+        lines(LB ~ sm, lwd=3, col=COLS[2])
+        lines(UBd[UBd<=1] ~ sm[UBd<=1], lwd=3, col=COLS[1])
+        lines(LBd ~ sm, lwd=3, col=COLS[1])
+        # axes
+        axis(1, las=1)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.075, expression(paste(bold(G))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5,  -0.3,   expression(paste(italic(s[m]))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)        
+
+## Panel H: C = 3/4
+    # Calculate invasion conditions
+    UB   <-  InvB(C = 3/4, delta = 0, hf = h, hm = h, sm = sm)
+    UB[UB > 1]  <-  1.00000001
+    LB   <-  InvA(C = 3/4, delta = 0, hf = h, hm = h, sm = sm)
+    UBd  <-  InvB(C = 3/4, delta = 0.5, hf = h, hm = h, sm = sm)
+    UBd[UBd > 1]  <-  1.00000001
+    LBd  <-  InvA(C = 3/4, delta = 0.5, hf = h, hm = h, sm = sm)
+
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, 1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        polygon(c(rev(sm),sm), c(rev(LBd), UBd), col=transparentColor('dodgerblue', 0.15), border='grey70')
+        polygon(c(rev(sm),sm), c(rev(LB), UB), col=transparentColor('grey80', 0.6), border='grey70')
+        lines(UBd[UBd<=1] ~ sm[UBd<=1], lwd=3, col=COLS[1])
+        lines(LBd ~ sm, lwd=3, col=COLS[1])
+        lines(UB[UB<=1] ~ sm[UB<= 1], lwd=3, col=COLS[2])
+        lines(LB ~ sm, lwd=3, col=COLS[2])
+        # axes
+        axis(1, las=1)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.075, expression(paste(bold(H))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5,  -0.3,   expression(paste(italic(s[m]))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)        
+        
+
+}

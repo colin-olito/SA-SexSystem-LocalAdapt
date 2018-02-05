@@ -36,8 +36,8 @@ source('R/functions-figures.R')
 # Figures for the paper
 ########################
 
-# toPdf(Fig.1(), figPath(name='Fig1.pdf'), width=5, height=7.75)
-# embed_fonts(figPath(name='Fig1.pdf'))
+toPdf(proportionPolyMultiPatch(h = 1/2, delta = 0), figPath(name='Fig1.pdf'), width=7, height=7)
+embed_fonts(figPath(name='Fig1.pdf'))
 
 # toPdf(Fig.2(), figPath(name='Fig2.pdf'), width=7, height=7)
 # embed_fonts(figPath(name='Fig2.pdf'))
@@ -54,22 +54,22 @@ source('R/functions-figures.R')
 
 
 
-
-
-
 ######################
 # Exploratory Figures
 ######################
-
+source('R/functions-figures.R')
 # Compare SA polymorphism between 1 and 2 patch models
 toPdf(proportionPolyMultiPatch(h = 1/2, delta = 0), figPath(name='propPolyMultiPatch_Additive_delta0.pdf'), width=7, height=7)
 embed_fonts(figPath(name='propPolyMultiPatch_Additive_delta0.pdf'))
 
-toPdf(proportionPolyMultiPatch(h = 1/2, delta = 0.4), figPath(name='propPolyMultiPatch_Additive_delta0.4.pdf'), width=7, height=7)
-embed_fonts(figPath(name='propPolyMultiPatch_Additive_delta0.4.pdf'))
+toPdf(proportionPolyMultiPatch(h = 1/2, delta = 0.5), figPath(name='propPolyMultiPatch_Additive_delta0.5.pdf'), width=7, height=7)
+embed_fonts(figPath(name='propPolyMultiPatch_Additive_delta0.5.pdf'))
 
 toPdf(proportionPolyMultiPatch(h = 1/4, delta = 0), figPath(name='propPolyMultiPatch_DomRev_delta0.pdf'), width=7, height=7)
 embed_fonts(figPath(name='propPolyMultiPatch_DomRev_delta0.pdf'))
+
+toPdf(proportionPolyMultiPatch(h = 1/4, delta = 1/2), figPath(name='propPolyMultiPatch_DomRev_delta0.5.pdf'), width=7, height=7)
+embed_fonts(figPath(name='propPolyMultiPatch_DomRev_delta0.5.pdf'))
 
 
 # Difference in SA polymorphism between 1 and 2 patch models
@@ -78,3 +78,8 @@ embed_fonts(figPath(name='diffPolyMultiPatch_Additive_delta0.pdf'))
 
 toPdf(diffPolyMultiPatch(h = 1/4, delta = 0), figPath(name='diffPolyMultiPatch_DomRev_delta0.pdf'), width=7, height=7)
 embed_fonts(figPath(name='diffPolyMultiPatch_DomRev_delta0.pdf'))
+
+
+# Effect of inbreeding depression on invasion conditions for SA alleles
+toPdf(invConditionsSA(), figPath(name='deltaEffect.pdf'), width=10, height=5)
+embed_fonts(figPath(name='deltaEffect.pdf'))

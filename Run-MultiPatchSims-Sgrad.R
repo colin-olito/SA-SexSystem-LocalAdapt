@@ -42,8 +42,8 @@ resolution  <-  0.01
 		# C = 3/4
 		simMultiPatchSgrad(n = n, C = 3/4, delta = delta, hf = h, hm = h, sMax=1, resolution = 0.01)
 
-	# Moderate inbreeding depression (delta = 0.4)
-		delta  <-  0.4
+	# Moderate inbreeding depression (delta = 0.5)
+		delta  <-  0.5
 		
 		# C = 0
 		simMultiPatchSgrad(n = n, C = 0,   delta = delta, hf = h, hm = h, sMax=1, resolution = 0.01)
@@ -68,3 +68,14 @@ resolution  <-  0.01
 		# C = 3/4
 		simMultiPatchSgrad(n = n, C = 3/4, delta = delta, hf = h, hm = h, sMax=1, resolution = 0.01)
 
+	# Moderate inbreeding depression (delta = 0.5)
+		delta  <-  0.5
+		
+		# C = 0
+		simMultiPatchSgrad(n = n, C = 0,   delta = delta, hf = h, hm = h, sMax=1, resolution = 0.01)
+		# C = 1/4
+		simMultiPatchSgrad(n = n, C = 1/4, delta = delta, hf = h, hm = h, sMax=1, resolution = 0.01)
+		# C = 1/2
+		simMultiPatchSgrad(n = n, C = 1/2, delta = delta, hf = h, hm = h, sMax=1, resolution = 0.01)
+		# C = 3/4
+		simMultiPatchSgrad(n = n, C = 3/4, delta = delta, hf = h, hm = h, sMax=1, resolution = 0.01)

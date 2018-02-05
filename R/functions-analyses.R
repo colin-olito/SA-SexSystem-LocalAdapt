@@ -29,10 +29,16 @@
 #' @param sf     Selection coefficient for female sex function
 #' @param sm     Selection coefficient for male sex function
 #' @export
-l0Pr  <-  function(C=0, delta=0, hf=1/2, hm=1/2, sf=0.01, sm=0.01) {
-	(4 + 2*hf*sf*(sm - 1) - 2*(1 + hm)*sm + C*(-2 - sf - sm + 4*hm*sm + sf*sm - 
-    4*(-1 + hf*sf)*(-1 + sm)*delta) + (C^2)*(sm - 2*hm*sm + 2*delta - 
-    2*sm*delta + (-1 + 2*hf)*sf*(-1 + sm)*(-1 + 2*delta))) / (2*(-2 + C)*(-1 + sm))
+#lambda0  <-  function(C=0, delta=0, hf=1/2, hm=1/2, sf=0.01, sm=0.01) {
+#	(4 + 2*hf*sf*(sm - 1) - 2*(1 + hm)*sm + C*(-2 - sf - sm + 4*hm*sm + sf*sm - 
+#    4*(-1 + hf*sf)*(-1 + sm)*delta) + (C^2)*(sm - 2*hm*sm + 2*delta - 
+#    2*sm*delta + (-1 + 2*hf)*sf*(-1 + sm)*(-1 + 2*delta))) / (2*(-2 + C)*(-1 + sm))
+#}
+lambda0  <-  function(C, delta, hf, hm, sf, sm) {
+	(2*(-2 + sm + hm*sm + hf*(sf - sf*sm)) + C*(2 + sf + sm - 4*hm*sm - sf*sm + 
+    	4*(-1 + hf*sf)*(-1 + sm)*delta) + (C^2)*((-1 + 2*hm)*sm + 
+    		2*(-1 + sm)*delta - (-1 + 2*hf)*sf*(-1 + sm)*(-1 + 2*delta))) / 
+				(2*(-2 + C)*(-1 + sm)*(-1 + C*delta))
 }
 #' General lambda for q = 1
 #'
@@ -44,48 +50,15 @@ l0Pr  <-  function(C=0, delta=0, hf=1/2, hm=1/2, sf=0.01, sm=0.01) {
 #' @param sf     Selection coefficient for female sex function
 #' @param sm     Selection coefficient for male sex function
 #' @export
-l1Pr  <-  function(C=0, delta=0, hf=1/2, hm=1/2, sf=0.01, sm=0.01) {
-	((-1 + C)*(-1 + sf)*(2 - 2*hm*sm + C*(-1 + (-1 + 2*hm)*sm)) - (2 - 
-    C + 2*(-1 + C)*hf*sf)*(-1 + C*(-1 + 2*delta))) / (2*(-2 + C)*(-1 + sf))
+#lambda1  <-  function(C=0, delta=0, hf=1/2, hm=1/2, sf=0.01, sm=0.01) {
+#	((-1 + C)*(-1 + sf)*(2 - 2*hm*sm + C*(-1 + (-1 + 2*hm)*sm)) - (2 - 
+#    C + 2*(-1 + C)*hf*sf)*(-1 + C*(-1 + 2*delta))) / (2*(-2 + C)*(-1 + sf))
+#}
+lambda1  <-  function(C, delta, hf, hm, sf, sm) {
+	((-1 + C)*(-1 + sf)*(2 - 2*hm*sm + C*(-1 + (-1 + 2*hm)*sm)) - 
+		(2 - C + 2*(-1 + C)*hf*sf)*(-1 + C*(-1 + 2*delta))) / 
+			(2*(2 - C)*(-1 + sf)*(-1 + C*delta))
 }
-
-#' General invasion condition for q = 0
-#'
-#' @title General lambda for q = 0
-#' @param C      Population selfing rate
-#' @param delta  Inbreeding depression
-#' @param hf1     Dominance coefficient for female sex function in patch 1
-#' @param hf2     Dominance coefficient for female sex function in patch 2
-#' @param hm1     Dominance coefficient for male sex function in patch 1
-#' @param hm2     Dominance coefficient for male sex function in patch 2
-#' @param sf1     Selection coefficient for female sex function in patch 1
-#' @param sf2     Selection coefficient for female sex function in patch 2
-#' @param sm1     Selection coefficient for male sex function in patch 1
-#' @export
-Inv0  <-  function(C, delta, hf1, hf2, hm1, hm2, sf1, sm1, sf2) {
-	sm2  <-  -((-(1 + C)*(sf1 + sf2) + (1 + sf1 + sf2 + C*(-1 + sf1 + sf2))*sm1) / 
-		(1 + sf1 + sf2 - (2 + sf1 + sf2)*sm1 + C*(-1 + sf1 + sf2 - (-2 + sf1 + sf2)*sm1)))
-	sm2
-}
-
-#' General invasion condition for q = 1
-#'
-#' @title General lambda for q = 1
-#' @param C      Population selfing rate
-#' @param delta  Inbreeding depression
-#' @param hf1     Dominance coefficient for female sex function in patch 1
-#' @param hf2     Dominance coefficient for female sex function in patch 2
-#' @param hm1     Dominance coefficient for male sex function in patch 1
-#' @param hm2     Dominance coefficient for male sex function in patch 2
-#' @param sf1     Selection coefficient for female sex function in patch 1
-#' @param sf2     Selection coefficient for female sex function in patch 2
-#' @param sm1     Selection coefficient for male sex function in patch 1
-#' @export
-Inv1  <-  function(C, delta, hf1, hf2, hm1, hm2, sf1, sm1, sf2) {
-	sm2 <- ((1 + C)*(-sf2 + sf1*(-1 + 2*sf2))) / ((-1 + C)*(-1 + sf1)*(-1 + sf2)) - sm1
-	sm2
-}
-
 
 #' 1-Patch Invasion conditions for q = 0
 #'
@@ -97,8 +70,9 @@ Inv1  <-  function(C, delta, hf1, hf2, hm1, hm2, sf1, sm1, sf2) {
 #' @param sf     Selection coefficient for female sex function
 #' @param sm     Selection coefficient for male sex function
 #' @export
-Inv0SinglePatch  <-  function(C, delta, hf, hm, sm) {
-	(sm*(C - 1)*(2*hm*(C - 1) - C)) / (sm*(C - 1)*(2*hm*(C - 1) - C) + (C + 1)*(2 - C + 2*hf*(C - 1)))
+InvB  <-  function(C, delta, hf, hm, sm) {
+	((C - 1)*(2 - C + 2*(C - 1)*hm)*sm) / 
+		((2*(C - 1)*hf - C)*(sm - 1)*(-1 + C*(2*delta - 1)))
 }
 
 #' 1-Patch Invasion conditions for q = 1
@@ -111,8 +85,10 @@ Inv0SinglePatch  <-  function(C, delta, hf, hm, sm) {
 #' @param sf     Selection coefficient for female sex function
 #' @param sm     Selection coefficient for male sex function
 #' @export
-Inv1SinglePatch  <-  function(C, delta, hf, hm, sm) {
-	(sm*(1 - C)*(2 - C + 2*hm*(C - 1))) / ((C + 1)*(2*hf*(C - 1) - C)*(sm - 1))
+InvA  <-  function(C, delta, hf, hm, sm) {
+	((C - 1)*(2*(C - 1)*hm - C)*sm) / 
+		(2 - 2*hf + 2*hm*sm + (C^2)*(-1 - sm + 2*hm*sm + hf*(2 - 4*delta) + 
+			2*delta) +  C*(1 + sm - 4*hm*sm + 4*(hf - 1)*delta))
 }
 
 
@@ -148,54 +124,56 @@ simMultiPatch  <-  function(n, C, delta, hf, hm, sMax) {
 	sm5  <-  runif(n, max = sMax)
 
 	# 1-Patch invasion criteria for boundaries of q = 0 and q = 1
-	onePatchLB  <-  Inv0SinglePatch(C = C, delta = delta, hf = hf, hm = hm, sm = sm1)
-	onePatchUB  <-  Inv1SinglePatch(C = C, delta = delta, hf = hf, hm = hm, sm = sm1)
+#	onePatchLB  <-  Inv0SinglePatch(C = C, delta = delta, hf = hf, hm = hm, sm = sm1)
+#	onePatchUB  <-  Inv1SinglePatch(C = C, delta = delta, hf = hf, hm = hm, sm = sm1)
+	lambda0_1patch  <-  lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = sf1, sm = sm1)
+	lambda1_1patch  <-  lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = sf1, sm = sm1)
 
 	# 2-Patch invasion criteria for boundaries of q = 0 and q = 1
-	lowerBound2  <-  (1/2)*(l0Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf1, sm = sm1) + 
-						   l0Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf2, sm = sm2))
-	upperBound2  <-  (1/2)*(l1Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf1, sm = sm1) + 
-						   l1Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf2, sm = sm2))
+	lambda0_2patch  <-  (1/2)*(lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = sf1, sm = sm1) + 
+							   lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = sf2, sm = sm2))
+	lambda1_2patch  <-  (1/2)*(lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = sf1, sm = sm1) + 
+							   lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = sf2, sm = sm2))
 
 	# 3-Patch invasion criteria for boundaries of q = 0 and q = 1
-	lowerBound3  <-  (1/3)*(l0Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf1, sm = sm1) + 
-							l0Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf2, sm = sm2) + 
-							l0Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf3, sm = sm3))
-	upperBound3  <-  (1/3)*(l1Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf1, sm = sm1) + 
-							l1Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf2, sm = sm2) + 
-							l1Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf3, sm = sm3))
+	lambda0_3patch  <-  (1/3)*(lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = sf1, sm = sm1) + 
+							   lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = sf2, sm = sm2) + 
+							   lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = sf3, sm = sm3))
+	lambda1_3patch  <-  (1/3)*(lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = sf1, sm = sm1) + 
+							   lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = sf2, sm = sm2) + 
+							   lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = sf3, sm = sm3))
 
 	# 4-Patch invasion criteria for boundaries of q = 0 and q = 1
-	lowerBound4  <-  (1/4)*(l0Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf1, sm = sm1) + 
-							l0Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf2, sm = sm2) + 
-							l0Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf3, sm = sm3) + 
-							l0Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf4, sm = sm4))
-	upperBound4  <-  (1/4)*(l1Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf1, sm = sm1) + 
-							l1Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf2, sm = sm2) + 
-							l1Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf3, sm = sm3) + 
-							l1Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf4, sm = sm4))
+	lambda0_4patch  <-  (1/4)*(lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = sf1, sm = sm1) + 
+							   lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = sf2, sm = sm2) + 
+							   lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = sf3, sm = sm3) + 
+							   lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = sf4, sm = sm4))
+	lambda1_4patch  <-  (1/4)*(lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = sf1, sm = sm1) + 
+							   lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = sf2, sm = sm2) + 
+							   lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = sf3, sm = sm3) + 
+							   lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = sf4, sm = sm4))
 
 	# 4-Patch invasion criteria for boundaries of q = 0 and q = 1
-	lowerBound5  <-  (1/5)*(l0Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf1, sm = sm1) + 
-							l0Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf2, sm = sm2) + 
-							l0Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf3, sm = sm3) + 
-							l0Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf4, sm = sm4) + 
-							l0Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf5, sm = sm5))
-	upperBound5  <-  (1/5)*(l1Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf1, sm = sm1) + 
-							l1Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf2, sm = sm2) + 
-							l1Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf3, sm = sm3) + 
-							l1Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf4, sm = sm4) + 
-							l1Pr(C = C, delta = 0, hf = hf, hm = hm, sf = sf5, sm = sm5))
+	lambda0_5patch  <-  (1/5)*(lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = sf1, sm = sm1) + 
+							   lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = sf2, sm = sm2) + 
+							   lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = sf3, sm = sm3) + 
+							   lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = sf4, sm = sm4) + 
+							   lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = sf5, sm = sm5))
+	lambda1_5patch  <-  (1/5)*(lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = sf1, sm = sm1) + 
+							   lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = sf2, sm = sm2) + 
+							   lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = sf3, sm = sm3) + 
+							   lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = sf4, sm = sm4) + 
+							   lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = sf5, sm = sm5))
 
 
 	# Calculate proportion of parameter space 
 	# where polymorphism is predicted to be 
 	# maintained by balancing selection
-	poly1Patch  <-  sum(onePatchLB < sf1 & onePatchUB > sf1)/n
-	poly2Patch  <-  sum(1 < lowerBound2 & 1 < upperBound2)/n
-	poly3Patch  <-  sum(1 < lowerBound3 & 1 < upperBound3)/n
-	poly4Patch  <-  sum(1 < lowerBound4 & 1 < upperBound4)/n
-	poly5Patch  <-  sum(1 < lowerBound5 & 1 < upperBound5)/n
+	poly1Patch  <-  sum(1 < lambda0_1patch & 1 < lambda1_1patch)/n
+	poly2Patch  <-  sum(1 < lambda0_2patch & 1 < lambda1_2patch)/n
+	poly3Patch  <-  sum(1 < lambda0_3patch & 1 < lambda1_3patch)/n
+	poly4Patch  <-  sum(1 < lambda0_4patch & 1 < lambda1_4patch)/n
+	poly5Patch  <-  sum(1 < lambda0_5patch & 1 < lambda1_5patch)/n
 
 	# Save and return results
 	res  <-  list(
