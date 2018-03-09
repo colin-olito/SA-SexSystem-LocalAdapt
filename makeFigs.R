@@ -39,6 +39,9 @@ source('R/functions-figures.R')
 toPdf(proportionPolyMultiPatch(h = 1/2, delta = 0), figPath(name='Fig1.pdf'), width=7, height=7)
 embed_fonts(figPath(name='Fig1.pdf'))
 
+toPdf(proportionPolyMultiPatchHDelta(h = c(0.5,0.25), delta=c(0,0)), figPath(name='Fig1Alt.pdf'), width=7, height=7)
+embed_fonts(figPath(name='Fig1Alt.pdf'))
+
 # toPdf(Fig.2(), figPath(name='Fig2.pdf'), width=7, height=7)
 # embed_fonts(figPath(name='Fig2.pdf'))
 
@@ -46,11 +49,12 @@ embed_fonts(figPath(name='Fig1.pdf'))
 #             figPath(name='Fig3Alt.pdf'), width=7, height=7)
 # embed_fonts(figPath(name='Fig3Alt.pdf'))
 
-
-
 ########################
 # Supplementary Figures
 ########################
+
+toPdf(proportionPolyMultiPatchHDelta(h = c(0.5,0.25), delta=c(0.5,0.5)), figPath(name='FigA1-alt.pdf'), width=7, height=7)
+embed_fonts(figPath(name='FigA1-alt.pdf'))
 
 
 
