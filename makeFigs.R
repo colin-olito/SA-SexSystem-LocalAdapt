@@ -39,7 +39,7 @@ source('R/functions-figures.R')
 toPdf(proportionPolyMultiPatch(h = 1/2, delta = 0), figPath(name='Fig1.pdf'), width=7, height=7)
 embed_fonts(figPath(name='Fig1.pdf'))
 
-toPdf(proportionPolyMultiPatchHDelta(h = c(0.5,0.25), delta=c(0,0)), figPath(name='Fig1Alt.pdf'), width=7, height=7)
+toPdf(proportionPolyMultiPatchHDelta(h = c(0.5,0.25), delta=c(0,0)), figPath(name='Fig1Alt.pdf'), width=10, height=5)
 embed_fonts(figPath(name='Fig1Alt.pdf'))
 
 # toPdf(Fig.2(), figPath(name='Fig2.pdf'), width=7, height=7)
@@ -53,9 +53,11 @@ embed_fonts(figPath(name='Fig1Alt.pdf'))
 # Supplementary Figures
 ########################
 
-toPdf(proportionPolyMultiPatchHDelta(h = c(0.5,0.25), delta=c(0.5,0.5)), figPath(name='FigA1-alt.pdf'), width=7, height=7)
+toPdf(proportionPolyMultiPatchHDelta(h = c(0.5,0.25), delta=c(0.5,0.5)), figPath(name='FigA1-alt.pdf'), width=10, height=5)
 embed_fonts(figPath(name='FigA1-alt.pdf'))
 
+toPdf(invConditionsSA(), figPath(name='deltaEffect.pdf'), width=10, height=5)
+embed_fonts(figPath(name='deltaEffect.pdf'))
 
 
 ######################
@@ -85,5 +87,3 @@ embed_fonts(figPath(name='diffPolyMultiPatch_DomRev_delta0.pdf'))
 
 
 # Effect of inbreeding depression on invasion conditions for SA alleles
-toPdf(invConditionsSA(), figPath(name='deltaEffect.pdf'), width=10, height=5)
-embed_fonts(figPath(name='deltaEffect.pdf'))

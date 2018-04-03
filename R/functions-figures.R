@@ -327,7 +327,7 @@ proportionPolyMultiPatchHDelta  <-  function(h, delta, sMax=1) {
         # Plot labels etc.
         proportionalLabel( 0.05,  1.1, expression(paste(bold(A))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel( 0.5,  1.3,   expression(paste(italic(C)," = 0")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel( -0.9,  0.5,   expression(paste(italic(h[f])," = ",italic(h[m]), " = 1/2")), cex=1.5, adj=c(0.5, 0.5), xpd=NA,srt=90)
+        proportionalLabel( -0.7,  0.5,   expression(paste(italic(h[f])," = ",italic(h[m]), " = 1/2")), cex=1.5, adj=c(0.5, 0.5), xpd=NA,srt=90)
 
 
 ## Panel B: C = 1/4
@@ -426,8 +426,8 @@ proportionPolyMultiPatchHDelta  <-  function(h, delta, sMax=1) {
         axis(2, las=1)
         # Plot labels etc.
         proportionalLabel( 0.05,  1.1, expression(paste(bold(E))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(-0.5,  1.2,   expression(paste("Proportion parameter space")), cex=1.3, adj=c(0.5, 0.5), xpd=NA, srt=90)        
-        proportionalLabel( -0.9,  0.5,   expression(paste(italic(h[f])," = ",italic(h[m]), " = 1/4")), cex=1.5, adj=c(0.5, 0.5), xpd=NA,srt=90)
+        proportionalLabel(-0.4,  1.2,   expression(paste("Proportion parameter space")), cex=1.3, adj=c(0.5, 0.5), xpd=NA, srt=90)        
+        proportionalLabel( -0.7,  0.5,   expression(paste(italic(h[f])," = ",italic(h[m]), " = 1/4")), cex=1.5, adj=c(0.5, 0.5), xpd=NA,srt=90)
 
 ## Panel F: C = 1/4
      plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
@@ -447,7 +447,7 @@ proportionPolyMultiPatchHDelta  <-  function(h, delta, sMax=1) {
         # Plot labels etc.
 #        proportionalLabel( 1.3,  1.3,   expression(paste(italic(h[f])," = ",italic(h[m]), " = 1/2")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel( 0.05,  1.1, expression(paste(bold(F))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(1.25,  -0.5,   expression(paste("Maximum strength of selection: max(",italic(s[f]),", ", italic(s[m]),")")), cex=1.3, adj=c(0.5, 0.5), xpd=NA)        
+        proportionalLabel(1.25,  -0.4,   expression(paste("Maximum strength of selection: max(",italic(s[f]),", ", italic(s[m]),")")), cex=1.3, adj=c(0.5, 0.5), xpd=NA)        
 
 ## Panel G: C = 1/2
      plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
@@ -594,6 +594,7 @@ invConditionsSA  <-  function() {
         proportionalLabel( 0.05,  1.075, expression(paste(bold(A))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel( 0.5,  1.1,   expression(paste(italic(C)," = 0")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(-0.3,  0.5,   expression(paste(italic(s[f]))), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)        
+        proportionalLabel( -0.7,  0.5,   expression(paste(italic(h[f])," = ",italic(h[m]), " = 1/2")), cex=1.5, adj=c(0.5, 0.5), xpd=NA,srt=90)
 
 ## Panel B: C = 1/4
     # Calculate invasion conditions
@@ -620,7 +621,6 @@ invConditionsSA  <-  function() {
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
         # Plot labels etc.
-        proportionalLabel( 1.2,  1.2,   expression(paste(italic(h[f]),", ",italic(h[m]), " = 1/2")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel( 0.05,  1.075, expression(paste(bold(B))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel( 0.5,  1.1,   expression(paste(italic(C)," = 0.25")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
 
@@ -726,6 +726,7 @@ invConditionsSA  <-  function() {
         proportionalLabel( 0.05,  1.075, expression(paste(bold(E))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(-0.3,  0.5,   expression(paste(italic(s[f]))), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)        
         proportionalLabel(0.5,  -0.3,   expression(paste(italic(s[m]))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)        
+        proportionalLabel( -0.7,  0.5,   expression(paste(italic(h[f])," = ",italic(h[m]), " = 1/4")), cex=1.5, adj=c(0.5, 0.5), xpd=NA,srt=90)
 
 ## Panel F: C = 1/4
     # Calculate invasion conditions
@@ -753,7 +754,6 @@ invConditionsSA  <-  function() {
         axis(2, las=1, labels=NA)
         # Plot labels etc.
         proportionalLabel( 0.05,  1.075, expression(paste(bold(F))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel( 1.2,  1.2,   expression(paste(italic(h[f]),", ",italic(h[m]), " = 1/4")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.5,  -0.3,   expression(paste(italic(s[m]))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)        
 
 ## Panel G: C = 1/2
