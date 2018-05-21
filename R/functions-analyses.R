@@ -92,6 +92,40 @@ InvA  <-  function(C, delta, hf, hm, sm) {
 }
 
 
+#' Single-locus SA equilibrium allele frequencies (Additive SA fitness effects)
+#'
+#' @title Single-locus SA equilibrium allele frequencies
+#' @param C      Population selfing rate
+#' @param delta  Inbreeding depression
+#' @param sf     Selection coefficient for female sex function
+#' @param sm     Selection coefficient for male sex function
+#' @export
+qHatAdd  <-  function(C, delta, sf, sm) {
+	qHat  <-  (sf - sm + sf*sm + C*(sf + sm - sf*sm - 2*sf*delta)) /(2*(sf*sm - C*sf*sm*delta))
+	if(qHat < 0 | is.nan(qHat) | is.na(qHat))
+		qHat  <-  0
+	if(qHat > 1)
+		qHat  <-  1
+	qHat
+}
+
+#' Single-locus SA equilibrium allele frequencies (partially recessive SA fitness effects; dominance reversals)
+#'
+#' @title Single-locus SA equilibrium allele frequencies
+#' @param C      Population selfing rate
+#' @param delta  Inbreeding depression
+#' @param sf     Selection coefficient for female sex function
+#' @param sm     Selection coefficient for male sex function
+#' @export
+qHatDomRev  <-  function(C, delta, sf, sm, h) {
+	qHat  <-  ((-1 + C)*sm*(-2*h + C*(-1 + 2*h + delta)) + sf*(2 - 2*h + C*(-1 + 2*h - delta))*(-1 + C*(-1 + 2*delta))) / (2*(-1 + C)*(-1 + 2*h)*((-1 + C)*sm + sf*(-1 + C*(-1 + 2*delta))))
+	if(qHat < 0 | is.nan(qHat) | is.na(qHat))
+		qHat  <-  0
+	if(qHat > 1)
+		qHat  <-  1
+	qHat
+}
+
 #' Simulation to compare proportion of parameter space where
 #' polymorphism is maintained in the 2-patch model compared
 #' with the 1-patch expectation 
@@ -124,8 +158,6 @@ simMultiPatch  <-  function(n, C, delta, hf, hm, sMax) {
 	sm5  <-  runif(n, max = sMax)
 
 	# 1-Patch invasion criteria for boundaries of q = 0 and q = 1
-#	onePatchLB  <-  Inv0SinglePatch(C = C, delta = delta, hf = hf, hm = hm, sm = sm1)
-#	onePatchUB  <-  Inv1SinglePatch(C = C, delta = delta, hf = hf, hm = hm, sm = sm1)
 	lambda0_1patch  <-  lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = sf1, sm = sm1)
 	lambda1_1patch  <-  lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = sf1, sm = sm1)
 
@@ -252,4 +284,502 @@ simMultiPatchSgrad  <-  function(n, C, delta, hf, hm, sMax = 1, resolution = 0.0
 
 
 
+##################################################################
+##################################################################
+#  Functions for genotypic recursions & deterministic simulations
 
+#############################################
+## Average fitness through each sex function
+
+Wf.av  <-  function(Fij, Wf, ...){
+   (Fij[1]*Wf[1]) + (Fij[2]*Wf[2]) + (Fij[3]*Wf[3])
+}
+Wm.av  <-  function(Fij, Wm, ...){
+   (Fij[1]*Wm[1]) + (Fij[2]*Wm[2]) + (Fij[3]*Wm[3])
+}
+W.tot  <-  function(Fij, Wf, C, delta, ...){
+   1 - (C * delta *(((Fij[1]*Wf[1])/Wf.av(Fij,Wf)) + ((Fij[2]*Wf[2])/Wf.av(Fij,Wf)) + ((Fij[3]*Wf[3])/Wf.av(Fij,Wf))))
+}
+
+
+#########################################
+## Genotypic frequency recursions
+
+FAA.pr  <-  function(Fij, Wf = Wf, Wm = Wm, C = C, delta = delta, hf = hf, hm = hm, ...) {
+	((1 - C)*(((Fij[1]*Wf[1]/Wf.av(Fij,Wf)) * (Fij[1]*Wm[1]/Wm.av(Fij,Wm)))   +
+	 			 ((Fij[1]*Wf[1]/Wf.av(Fij,Wf)) * (Fij[2]*Wm[2]/Wm.av(Fij,Wm)))/2 +
+	 			 ((Fij[2]*Wf[2]/Wf.av(Fij,Wf)) * (Fij[1]*Wm[1]/Wm.av(Fij,Wm)))/2 +
+	 			 ((Fij[2]*Wf[2]/Wf.av(Fij,Wf)) * (Fij[2]*Wm[2]/Wm.av(Fij,Wm)))/4) +
+	 	C*(1 - delta)*(((Fij[1]*Wf[1])/Wf.av(Fij,Wf)) + 
+	 		 			((Fij[2]*Wf[2]))/(4*Wf.av(Fij,Wf)))) / W.tot(Fij = Fij, Wf = Wf, C = C, delta = delta)
+}
+FAa.pr  <-  function(Fij, Wf = Wf, Wm = Wm, C = C, delta = delta, hf = hf, hm = hm, ...) {
+	((1 - C)*(((Fij[1]*Wf[1]/Wf.av(Fij,Wf)) * (Fij[2]*Wm[2]/Wm.av(Fij,Wm)))/2 +
+	 			 ((Fij[1]*Wf[1]/Wf.av(Fij,Wf)) * (Fij[3]*Wm[3]/Wm.av(Fij,Wm)))   +
+	 			 ((Fij[2]*Wf[2]/Wf.av(Fij,Wf)) * (Fij[1]*Wm[1]/Wm.av(Fij,Wm)))/2 +
+	 			 ((Fij[2]*Wf[2]/Wf.av(Fij,Wf)) * (Fij[2]*Wm[2]/Wm.av(Fij,Wm)))/2 + 
+	 			 ((Fij[2]*Wf[2]/Wf.av(Fij,Wf)) * (Fij[3]*Wm[3]/Wm.av(Fij,Wm)))/2 + 
+	  			 ((Fij[3]*Wf[3]/Wf.av(Fij,Wf)) * (Fij[1]*Wm[1]/Wm.av(Fij,Wm)))   +
+	 			 ((Fij[3]*Wf[3]/Wf.av(Fij,Wf)) * (Fij[2]*Wm[2]/Wm.av(Fij,Wm)))/2) +
+	 	C*(1 - delta)*(((Fij[2]*Wf[2]))/(2*Wf.av(Fij,Wf)))) / W.tot(Fij = Fij, Wf = Wf, C = C, delta = delta)
+}
+Faa.pr  <-  function(Fij, Wf = Wf, Wm = Wm, C = C, delta = delta, hf = hf, hm = hm, ...) {
+	((1 - C)*(((Fij[2]*Wf[2]/Wf.av(Fij,Wf)) * (Fij[2]*Wm[2]/Wm.av(Fij,Wm)))/4 + 
+	 			 ((Fij[2]*Wf[2]/Wf.av(Fij,Wf)) * (Fij[3]*Wm[3]/Wm.av(Fij,Wm)))/2 + 
+	  			 ((Fij[3]*Wf[3]/Wf.av(Fij,Wf)) * (Fij[2]*Wm[2]/Wm.av(Fij,Wm)))/2 +
+	 			 ((Fij[3]*Wf[3]/Wf.av(Fij,Wf)) * (Fij[3]*Wm[3]/Wm.av(Fij,Wm)))) +
+	 	C*(1 - delta)*(((Fij[2]*Wf[2])/(4*Wf.av(Fij,Wf))) + 
+	 				   ((Fij[3]*Wf[3]))/Wf.av(Fij,Wf))) / W.tot(Fij = Fij, Wf = Wf, C = C, delta = delta)
+}
+
+
+########################
+##  Simulation function
+########################
+
+#' Forward deterministic simulation of genotypic recursions for
+#' 1-locus spatially variable sex-specific selection in 
+#' hermaphrodites
+#'
+#' @title Forward deterministic simulation of genotypic recursions
+#' @param par.list A list with desired parameter values for the simulation with structure:
+#' par.list  <-  list(
+#'				   gen   =  5000,
+#'				   C     =  0,
+#'				   delta =  0,
+#'				   sm    =  0.1,
+#'				   sf    =  0.1,
+#'				   hm    =  0.5,
+#'				   hf    =  0.5
+#'				   )
+#' @param Fij.init A vector of initial genotypic frequencies (must have length = 3).
+#' 				   c(0.99,0.01) for invasion of aabb into population 'fixed' for AABB.
+#' 				   c(0.01,0,0.99) for invasion of AABB into population 'fixed' for aabb.
+#' @return Returns a list with timeseries for each genotype, equilibrium frequencies, and a numeric (0,1) for whether the 
+#' equilibrium was polymorphic (with tolerance 1E-6).
+#' @seealso 
+#' @export
+#' @author Colin Olito.
+#' @examples
+#' recursionFwdSim(par.list, Fij.init, threshold = 1e-6) 
+recursionFwdSim  <-  function(gen = 5000, C = 0, delta =  0, sm = 0.1, sf = 0.1, hm = 0.5, hf = 0.5, threshold = 1e-6, ...) {
+
+	##  Warnings
+	if(any(c(C, delta, sm, sf, hm, hf) < 0) | any(c(C, delta, sm, sf, hm, hf) > 1))
+		stop('The chosen parameter values fall outside of the reasonable bounds')
+
+	if(hf  !=  hm)
+		stop('please set male and female dominance values to be equal, and either 0.5 or 0.25')
+
+	if(hf != 0.5 & hf != 0.25)
+		stop('please set male and female dominance values to be equal, and either 0.5 or 0.25')
+
+	##  Fitness vectors
+	Wf  <-  c(1       , (1 - hf*sf), (1 - sf))
+	Wm  <-  c((1 - sm), (1 - hm*sm),        1)
+
+	##  Initilize data storage structures
+	Fij.gen  <-  matrix(0, ncol=3, nrow=gen)
+
+	##  Initial frequencies
+	if(hf == hm & hf == 0.5) {
+		qHat  <-  qHatAdd(C = C, delta = delta, sf = sf, sm = sm)
+		if(qHat <= 0.5)
+			Fij.init    <-  c(0.99,0,0.01)
+		if(qHat >= 0.5)
+			Fij.init    <-  c(0.01,0,0.99)
+	}
+	if(hf == hm & hf == 0.25) {
+		qHat  <-  qHatDomRev(C = C, delta = delta, sf = sf, sm = sm, h = hf)
+		if(qHat <= 0.5)
+			Fij.init    <-  c(0.99,0,0.01)
+		if(qHat >= 0.5)
+			Fij.init    <-  c(0.01,0,0.99)
+	}
+
+	##  Generation Loop
+		# initialize
+		Fij.gen[1,1]   <-  round(FAA.pr(Fij = Fij.init, Wf = Wf, Wm = Wm, C = C, delta = delta, hf = hf, hm = hm), digits=8)
+		Fij.gen[1,2]   <-  round(FAa.pr(Fij = Fij.init, Wf = Wf, Wm = Wm, C = C, delta = delta, hf = hf, hm = hm), digits=8)
+		Fij.gen[1,3]   <-  round(Faa.pr(Fij = Fij.init, Wf = Wf, Wm = Wm, C = C, delta = delta, hf = hf, hm = hm), digits=8)
+
+
+	# Start simulation
+	i      <-  2
+	diffs  <-  rep(1,3)
+
+	while (i < gen & any(diffs[diffs != 0] > threshold)) {
+		Fij.gen[i,1]   <-  round(FAA.pr(Fij = Fij.gen[i-1,], Wf = Wf, Wm = Wm, C = C, delta = delta, hf = hf, hm = hm), digits=8)
+		Fij.gen[i,2]   <-  round(FAa.pr(Fij = Fij.gen[i-1,], Wf = Wf, Wm = Wm, C = C, delta = delta, hf = hf, hm = hm), digits=8)
+		Fij.gen[i,3]   <-  round(Faa.pr(Fij = Fij.gen[i-1,], Wf = Wf, Wm = Wm, C = C, delta = delta, hf = hf, hm = hm), digits=8)
+		
+		diffs  <-  Fij.gen[i,] - Fij.gen[i-1,]
+		i      <-  i+1
+	}
+
+	##  Is equilibrium polymorphic?
+	if (any(Fij.gen[i-1,] > 0.9999)) 
+		 simPoly  <-  0
+	else simPoly  <-  1
+
+	##  Calculate Eigenvalues from analytic solutions 
+	##  using quasi-equibirium genotypic frequencies
+	lambda0_1patch  <-  lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = sf, sm = sm)
+	lambda1_1patch  <-  lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = sf, sm = sm)
+
+	if (lambda0_1patch > 1 & lambda1_1patch > 1 )
+		 eigPoly  <-  1
+	else eigPoly  <-  0
+
+	##  Does simulation result agree with Eigenvalues?
+	if (simPoly == eigPoly)
+		 agree  <-  1
+	else agree  <-  0
+
+	##  Output list
+	par.list  <-  list(
+				   	   gen   =  gen,
+					   C     =  C,
+					   delta =  delta,
+					   sm    =  sm,
+					   sf    =  sf,
+					   hm    =  hm,
+					   hf    =  hf
+					   )
+	res  <-  list(
+				  "par.list" =  par.list,
+				  "Fij.gen"  =  Fij.gen[1:i-1,],
+				  "EQ.freq"  =  Fij.gen[i-1,],
+				  "l.A"      =  lambda0_1patch,
+				  "l.a"      =  lambda1_1patch,
+				  "simPoly"  =  simPoly,
+				  "eigPoly"  =  eigPoly,
+				  "agree"    =  agree
+ 				 )
+	return(res)
+}
+
+
+
+
+##  Functions for fitness vectors used in kPatchRecursionFwdSim
+Wf.fit  <-  function(hf, sf){
+	c(1, (1 - hf*sf), (1 - sf))
+}
+Wm.fit  <-  function(hm, sm){
+	c((1 - sm), (1 - hm*sm), 1)
+}
+
+
+#' Forward deterministic simulation of genotypic recursions for
+#' 1-locus spatially variable sex-specific selection in 
+#' hermaphrodites
+#'
+#' @title Forward deterministic simulation of genotypic recursions
+#' @param par.list 	A list with desired parameter values for the simulation with structure:
+#' @param gen      	Maximum simulation runtime
+#' @param k 		Number of patches
+#' @param C 		Population selfing rate
+#' @param delta 	Population inbreeding depression level
+#' @param s.vals	A k x 2 matrix with selection coefficients for each patch
+#' @param hm 		Dominance for male-function SA trait
+#' @param hf 		Dominance for female-funciton SA trait
+#' @param threshold Maximum difference in genotypic frequencies determining when equilibrium is reached
+#' @return Returns a list with timeseries for each genotype, equilibrium frequencies, and a numeric (0,1) for whether the 
+#' equilibrium was polymorphic (with tolerance 1E-6).
+#' @seealso 
+#' @export
+#' @author Colin Olito.
+#' @examples
+#' recursionFwdSim(par.list, Fij.init, threshold = 1e-6)
+kPatchRecursionFwdSim  <-  function(gen = 5000, k = 5, C = 0, delta =  0, s.vals, hm = 0.5, hf = 0.5, threshold = 1e-6, ...) {
+
+	##  Warnings
+	if(any(c(C, delta, s.vals, hm, hf) < 0) | any(c(C, delta, s.vals, hm, hf) > 1))
+		stop('The chosen parameter values fall outside of the reasonable bounds')
+
+	if(hf  !=  hm)
+		stop('please set male and female dominance values to be equal, and either 0.5 or 0.25')
+
+	if(hf != 0.5 & hf != 0.25)
+		stop('please set male and female dominance values to be equal, and either 0.5 or 0.25')
+
+	if(nrow(s.vals)  !=  k | nrow(s.vals)  !=  k)
+		stop('s.vals must have k rows')
+
+
+	##  Initilize data storage structures
+	Fijk.init   <-  array(0, dim=c(1, 3, k))
+	Fijk.gen    <-  array(0, dim=c(gen, 3, k))
+	Fij.gen     <-  matrix(0, nrow=gen, ncol=3)
+	qHats       <-  c(0, length=k)
+	Wf.patches  <-  matrix(0,nrow=k, ncol=3)
+	Wm.patches  <-  matrix(0,nrow=k, ncol=3)
+
+	##  Calculate initial frequencies for each patch
+	for(p in 1:k) {
+		if(hf == hm & hf == 0.5) {
+			qHat  <-  qHatAdd(C = C, delta = delta, sf = s.vals[p,1], sm = s.vals[p,2])
+			if(qHat <= 0.5)
+				Fijk.init[,,p]    <-  c(0.99,0,0.01)
+			if(qHat >= 0.5)
+				Fijk.init[,,p]    <-  c(0.01,0,0.99)
+		}
+		if(hf == hm & hf == 0.25) {
+			qHat  <-  qHatDomRev(C = C, delta = delta, sf = s.vals[p,1], sm = s.vals[p,2], h = hf)
+			if(qHat <= 0.5)
+				Fij.init    <-  c(0.99,0,0.01)
+			if(qHat >= 0.5)
+				Fij.init    <-  c(0.01,0,0.99)
+		}
+	
+		# Calculate fitness expressions for each patch
+		Wf.patches[p,]  <-  Wf.fit(hf = hf, sf = s.vals[p,1])
+		Wm.patches[p,]  <-  Wm.fit(hm = hm, sm = s.vals[p,2])
+
+		# initialize Fijk.gen with  
+		Fijk.gen[1,1,p]   <-  round(FAA.pr(Fij = Fijk.init[,,p], Wf = Wf.patches[p,], Wm = Wm.patches[p,], C = C, delta = delta, hf = hf, hm = hm), digits=8)
+		Fijk.gen[1,2,p]   <-  round(FAa.pr(Fij = Fijk.init[,,p], Wf = Wf.patches[p,], Wm = Wm.patches[p,], C = C, delta = delta, hf = hf, hm = hm), digits=8)
+		Fijk.gen[1,3,p]   <-  round(Faa.pr(Fij = Fijk.init[,,p], Wf = Wf.patches[p,], Wm = Wm.patches[p,], C = C, delta = delta, hf = hf, hm = hm), digits=8)
+	}
+
+	# Overall genotypic frequencies after migration in generation 1
+	Fij.gen[1,]  <-  apply(Fijk.gen[1,,], MARGIN=1, mean)
+
+	##  Generation Loop
+	# Start simulation
+	i      <-  2
+	diffs  <-  matrix(1, nrow=3, ncol=k)
+
+	while (i <= gen & any(diffs[diffs != 0] > threshold)) {
+
+		for(p in 1:k) {
+			Fijk.gen[i,1,p]   <-  round(FAA.pr(Fij = Fij.gen[i-1,], Wf = Wf.patches[p,], Wm = Wm.patches[p,], C = C, delta = delta, hf = hf, hm = hm), digits=8)
+			Fijk.gen[i,2,p]   <-  round(FAa.pr(Fij = Fij.gen[i-1,], Wf = Wf.patches[p,], Wm = Wm.patches[p,], C = C, delta = delta, hf = hf, hm = hm), digits=8)
+			Fijk.gen[i,3,p]   <-  round(Faa.pr(Fij = Fij.gen[i-1,], Wf = Wf.patches[p,], Wm = Wm.patches[p,], C = C, delta = delta, hf = hf, hm = hm), digits=8)
+		}
+		
+		Fij.gen[i,]  <-  apply(Fijk.gen[i,,], MARGIN=1, mean)
+		diffs  <-  Fij.gen[i,] - Fij.gen[i-1,]
+		i      <-  i+1
+	}
+
+	##  Is equilibrium polymorphic?
+	if (any(Fij.gen[i-1,] > 0.9999)) 
+		 simPoly  <-  0
+	else simPoly  <-  1
+
+	if (i > gen)
+		MaxGen  <-  TRUE
+	else MaxGen  <-  FALSE
+
+	##  Output list
+	par.list  <-  list(
+				   	   k     =  k,
+				   	   gen   =  gen,
+					   C     =  C,
+					   delta =  delta,
+					   s.vals =  s.vals,
+					   hm    =  hm,
+					   hf    =  hf
+					   )
+	res  <-  list(
+				  "par.list" =  par.list,
+				  "MaxGen"   =  MaxGen,
+				  "Fij.gen"  =  Fij.gen[1:i-1,],
+				  "EQ.freq"  =  Fij.gen[i-1,],
+				  "simPoly"  =  simPoly
+ 				 )
+	return(res)
+}
+
+#' Simulation loop wrapping forward deterministic simulations 
+#' of genotypic recursions 
+#' #'
+#' @title Forward deterministic simulation of genotypic recursions.
+#' @param n number of randomly generated values for sf & sm. 
+#' Determines resolution with which parameter space is explored.
+#' @param gen Maximum number of generations for each simulation (as in par.list).
+#' @param C The fixed selfing rate (as in par.list).
+#' @param hf Dominance through female expression (as in par.list).
+#' @param hm Dominance through male expression (as in par.list).
+#' @param r.vals Values of recombination rate to explore(as in par.list).
+#' @param threshold Threshold difference between genotypic frequencies before simulation cuts off.
+#' @return Returns a data frame with parameter values, a variable describing whether 
+#' the final state of the simulation was polymorphic polymorphism, whether evaluating the eigenvalues
+#' predicts polymorphism, and whether these two methods agree with one another.
+#' @seealso `recursionFwdSim`
+#' @export
+#' @author Colin Olito.
+#' @examples
+#' recursionFwdSimLoop(n = 10000, gen = 5000, C = 0, hf = 0.5, hm = 0.5, r.vals = c(0.5, 0.2, 0.1, 0), threshold = 1e-7)
+recursionFwdSimLoop  <-  function(n = 10000, gen = 10000, sRange = c(0,1), C = 0, delta = 0, hf = 0.5, hm = 0.5, threshold = 1e-7) {
+
+	## Warnings
+	if(any(c(C,hf,hm) < 0) | any(c(C,hf,hm) > 1))
+		stop('At least one of the chosen parameter values fall outside of the reasonable bounds')
+
+	if(threshold > 1e-7)
+		stop('Carefully consider whether you want to change this threshold, 
+			  as it will effect whether the simulations agree with the analytic results')
+
+	#  initialize selection coeficients and storage structures
+	s.vals   <-  matrix(runif(2*n, min=sRange[1], max=sRange[2]), ncol=2)
+	simPoly  <-  c()
+	eigPoly  <-  c()
+	agree    <-  c()
+
+
+	print('Running Deterministic Recursion Simulations')
+	pb   <-  txtProgressBar(min=0, max=nrow(s.vals), style=3)
+	setTxtProgressBar(pb, 0)
+
+	##  Simulation Loop over values of r, sm, sf for fixed selfing rate (C)
+		for (i in 1:nrow(s.vals)) {
+				
+			res         <-  recursionFwdSim(gen = gen, C = C, delta =  delta, sf = s.vals[i,1], sm = s.vals[i,2], hm = hm, hf = hf, threshold = threshold)
+			simPoly[i]  <-  res$simPoly
+			eigPoly[i]  <-  res$eigPoly
+			agree[i]    <-  res$agree
+		setTxtProgressBar(pb,i)
+	}
+
+	#  Compile results as data.frame
+	results.df  <-  data.frame("hf"      = rep(hf, length(s.vals)),
+							   "hm"      = rep(hm, length(s.vals)),
+							   "C"       = rep(C,  length(s.vals)),
+							   "delta"   = rep(delta,  length(s.vals)),
+							   "sf"      = s.vals[,1],
+							   "sm"      = s.vals[,2],
+							   "simPoly" = simPoly,
+							   "eigPoly" = eigPoly,
+							   "agree"   = agree
+							   )
+
+	#  Write results.df to .txt file
+	filename  <-  paste("./output/data/determFwdSimLoop", "_C", C, "_delta", delta, "_h", hf, "_sMax",sRange[2],"_n", n, ".txt", sep="")
+	write.table(results.df, file=filename, col.names = TRUE, row.names = FALSE)
+
+	#  Return results.df in case user wants it
+	return(results.df)
+}
+
+
+
+#' Multi-patch deterministic simulation
+#'
+#' @title 2-Patch SA in hermaphrodites Simulation
+#' @param n      Sample size (number of selection coefficients 
+#' 				 randomly drawn from uniform distribution)
+#' @param C      Population selfing rate
+#' @param delta  Inbreeding depression
+#' @param hf     Dominance coefficient for female sex function. Assume equal across patches.
+#' @param hm     Dominance coefficient for male sex function. Assume equal across patches.
+#' @param sMax   Maximum selection coefficient in Patch 1 (determines range
+#' 				  of selection coefficient parameter space to be explored)
+#' 				  (we assume that we always explore a square parameter space 
+#' 				  (i.e., sMax is the same for males and females, and equal 
+#' 				  across patches))
+#' @param resolution resolution for selection coefficient gradient
+#' @export
+detSimMultiPatchSgrad  <-  function(n = 10000, gen = 5000, C=0, delta=0, hf=0.5, hm=0.5, threshold = 1e-7, sMax = 1, resolution = 0.1) {
+
+	# Create vector of sMaxes (we assume that we always explore a 
+	# square parameter space (i.e., sMax is the same for males and females))
+	sMaxes  <- seq(from = resolution, to = sMax, by = resolution)
+	
+	# Initialize storage structures
+	pSimPoly1  <-  rep(0, length = length(sMaxes))
+	pSimPoly2  <-  rep(0, length = length(sMaxes))
+	pSimPoly3  <-  rep(0, length = length(sMaxes))
+	pSimPoly4  <-  rep(0, length = length(sMaxes))
+	pSimPoly5  <-  rep(0, length = length(sMaxes))
+	pEigPoly1  <-  rep(0, length = length(sMaxes))
+	pEigPoly2  <-  rep(0, length = length(sMaxes))
+	pEigPoly3  <-  rep(0, length = length(sMaxes))
+	pEigPoly4  <-  rep(0, length = length(sMaxes))
+	pEigPoly5  <-  rep(0, length = length(sMaxes))
+
+	# loop over sMaxes
+	for (i in 1:length(sMaxes)) {
+
+		# Draw random selection coefficients for up to 5 patches
+		s1  <-  matrix(runif(2*n, max = sMaxes[i]), nrow=n, ncol=2)
+		s2  <-  matrix(runif(2*n, max = sMaxes[i]), nrow=n, ncol=2)
+		s3  <-  matrix(runif(2*n, max = sMaxes[i]), nrow=n, ncol=2)
+		s4  <-  matrix(runif(2*n, max = sMaxes[i]), nrow=n, ncol=2)
+		s5  <-  matrix(runif(2*n, max = sMaxes[i]), nrow=n, ncol=2)
+
+		simPoly1  <-  rep(0, times=n)
+		simPoly2  <-  rep(0, times=n)
+		simPoly3  <-  rep(0, times=n)
+		simPoly4  <-  rep(0, times=n)
+		simPoly5  <-  rep(0, times=n)
+		eigPoly1  <-  rep(0, times=n)
+		eigPoly2  <-  rep(0, times=n)
+		eigPoly3  <-  rep(0, times=n)
+		eigPoly4  <-  rep(0, times=n)
+		eigPoly5  <-  rep(0, times=n)
+		
+		# Loop over randomly drawn pairs of selection coefficients for female & male function
+		for(j in 1:n) {
+
+			s.vals.n  <-  rbind(s1[j,],s2[j,],s3[j,],s4[j,],s5[j,])
+
+			res1  <-  recursionFwdSim(gen = gen, C = C, delta =  delta, sf = s.vals.n[1,1], sm = s.vals.n[1,2], hm = hm, hf = hf, threshold = threshold)
+			res2  <-  kPatchRecursionFwdSim(gen = gen, k = 2, C = C, delta = delta, s.vals = s.vals.n[1:2,], hm = hm, hf = hf, threshold = threshold)
+			res3  <-  kPatchRecursionFwdSim(gen = gen, k = 3, C = C, delta = delta, s.vals = s.vals.n[1:3,], hm = hm, hf = hf, threshold = threshold)
+			res4  <-  kPatchRecursionFwdSim(gen = gen, k = 4, C = C, delta = delta, s.vals = s.vals.n[1:4,], hm = hm, hf = hf, threshold = threshold)
+			res5  <-  kPatchRecursionFwdSim(gen = gen, k = 5, C = C, delta = delta, s.vals = s.vals.n, hm = hm, hf = hf, threshold = threshold)
+
+			simPoly1[j]     =  res1$Poly
+			simPoly2[j]     =  sum(any(c(res1$Poly, res2$Poly) == 1))
+			simPoly3[j]     =  sum(any(c(res1$Poly, res2$Poly, res3$Poly) == 1))
+			simPoly4[j]     =  sum(any(c(res1$Poly, res2$Poly, res3$Poly, res4$Poly) == 1))
+			simPoly5[j]     =  sum(any(c(res1$Poly, res2$Poly, res3$Poly, res4$Poly, res5$Poly) == 1))
+
+#  Edit from here. Decide whether to include eigPoly for the k-patch model. 
+#                  Don't think so, since we already have this information
+#                  from the original simulation funciton. Maybe nice to have
+#                  simulation + eigenvalue results for the same s.vals.
+			eigPoly1[j]     =  res1$eigPoly
+			eigPoly2[j]     =  sum(any(c(res1$eigPoly, res2$eigPoly) == 1))
+			eigPoly3[j]     =  sum(any(c(res1$eigPoly, res2$eigPoly, res3$eigPoly) == 1))
+			eigPoly4[j]     =  sum(any(c(res1$eigPoly, res2$eigPoly, res3$eigPoly, res4$eigPoly) == 1))
+			eigPoly5[j]     =  sum(any(c(res1$eigPoly, res2$eigPoly, res3$eigPoly, res4$eigPoly, res5$eigPoly) == 1))
+		}
+
+		# record multipatch polymorphism
+		pSimPoly1[i]  <-  sum(simPoly1) / n
+		pSimPoly2[i]  <-  sum(simPoly2) / n
+		pSimPoly3[i]  <-  sum(simPoly3) / n
+		pSimPoly4[i]  <-  sum(simPoly4) / n
+		pSimPoly5[i]  <-  sum(simPoly5) / n
+		pEigPoly1[i]  <-  sum(eigPoly1) / n
+		pEigPoly2[i]  <-  sum(eigPoly2) / n
+		pEigPoly3[i]  <-  sum(eigPoly3) / n
+		pEigPoly4[i]  <-  sum(eigPoly4) / n
+		pEigPoly5[i]  <-  sum(eigPoly5) / n
+
+print(sMaxes[i])
+	}
+
+
+	# Save results as data frame
+	data  <-  data.frame(
+						 "sMax"      =  sMaxes,
+						 "pSimPoly1"  =  Poly1,
+						 "pSimPoly2"  =  Poly2,
+						 "pSimPoly3"  =  Poly3,
+						 "pSimPoly4"  =  Poly4,
+						 "pSimPoly5"  =  Poly5,
+						 "diffPoly12"  =  Poly2 - Poly1,
+						 "diffPoly13"  =  Poly3 - Poly1,
+						 "diffPoly14"  =  Poly4 - Poly1,
+						 "diffPoly15"  =  Poly5 - Poly1
+						 )
+	
+	# Export data
+	filename  <-  paste("./output/data/simMultiPatchSgrad", "_C", C, "_delta", delta, "_hf", hf, "_hm", hm, "_sMax", sMax, ".csv", sep="")
+	write.csv(data, file=filename, row.names = FALSE)
+}
