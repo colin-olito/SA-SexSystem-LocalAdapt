@@ -1,11 +1,10 @@
 #########################################################################
-#	2-patch spatially variable selection for simultaneous hermaphrodites
+#	Multi-patch spatially variable selection for simultaneous hermaphrodites
 #	Run simulations to estimate proportion of parameter space shwere SA
 #	polymorphism is maintained by balancing selection across a gradient
 #	of selection coefficients ranging from 0 to sMax
 #
-#  R code for W-F forward simulations. Generates output data
-#  as .csv files saved to ./output/data/simResults.
+#	Generates output data as .csv files saved to ./output/data/.
 #
 #
 #  Author: Colin Olito
