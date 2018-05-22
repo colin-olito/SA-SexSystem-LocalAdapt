@@ -185,7 +185,7 @@ simMultiPatch  <-  function(n, C, delta, hf, hm, sMax) {
 							   lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = sf3, sm = sm3) + 
 							   lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = sf4, sm = sm4))
 
-	# 4-Patch invasion criteria for boundaries of q = 0 and q = 1
+	# 5-Patch invasion criteria for boundaries of q = 0 and q = 1
 	lambda0_5patch  <-  (1/5)*(lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = sf1, sm = sm1) + 
 							   lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = sf2, sm = sm2) + 
 							   lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = sf3, sm = sm3) + 
@@ -686,7 +686,7 @@ detSimMultiPatchSgrad  <-  function(n = 10000, gen = 5000, C=0, delta=0, hf=0.5,
 
 	# Create vector of sMaxes (we assume that we always explore a 
 	# square parameter space (i.e., sMax is the same for males and females))
-	sMaxes  <- seq(from = resolution, to = sMax, by = resolution)
+	sMaxes  <- c(0.05,seq(from = resolution, to = sMax, by = resolution))
 	
 	# Initialize storage structures
 	pSimPoly1  <-  rep(0, length = length(sMaxes))
@@ -726,27 +726,65 @@ detSimMultiPatchSgrad  <-  function(n = 10000, gen = 5000, C=0, delta=0, hf=0.5,
 
 			s.vals.n  <-  rbind(s1[j,],s2[j,],s3[j,],s4[j,],s5[j,])
 
+			# Determine if polymorphic usng deterministic fwd simulations of k-patch recursions 
 			res1  <-  recursionFwdSim(gen = gen, C = C, delta =  delta, sf = s.vals.n[1,1], sm = s.vals.n[1,2], hm = hm, hf = hf, threshold = threshold)
 			res2  <-  kPatchRecursionFwdSim(gen = gen, k = 2, C = C, delta = delta, s.vals = s.vals.n[1:2,], hm = hm, hf = hf, threshold = threshold)
 			res3  <-  kPatchRecursionFwdSim(gen = gen, k = 3, C = C, delta = delta, s.vals = s.vals.n[1:3,], hm = hm, hf = hf, threshold = threshold)
 			res4  <-  kPatchRecursionFwdSim(gen = gen, k = 4, C = C, delta = delta, s.vals = s.vals.n[1:4,], hm = hm, hf = hf, threshold = threshold)
 			res5  <-  kPatchRecursionFwdSim(gen = gen, k = 5, C = C, delta = delta, s.vals = s.vals.n, hm = hm, hf = hf, threshold = threshold)
 
-			simPoly1[j]     =  res1$Poly
-			simPoly2[j]     =  sum(any(c(res1$Poly, res2$Poly) == 1))
-			simPoly3[j]     =  sum(any(c(res1$Poly, res2$Poly, res3$Poly) == 1))
-			simPoly4[j]     =  sum(any(c(res1$Poly, res2$Poly, res3$Poly, res4$Poly) == 1))
-			simPoly5[j]     =  sum(any(c(res1$Poly, res2$Poly, res3$Poly, res4$Poly, res5$Poly) == 1))
+			simPoly1[j]  <-  res1$simPoly
+			simPoly2[j]  <-  res2$simPoly
+			simPoly3[j]  <-  res3$simPoly
+			simPoly4[j]  <-  res4$simPoly
+			simPoly5[j]  <-  res5$simPoly
 
-#  Edit from here. Decide whether to include eigPoly for the k-patch model. 
-#                  Don't think so, since we already have this information
-#                  from the original simulation funciton. Maybe nice to have
-#                  simulation + eigenvalue results for the same s.vals.
-			eigPoly1[j]     =  res1$eigPoly
-			eigPoly2[j]     =  sum(any(c(res1$eigPoly, res2$eigPoly) == 1))
-			eigPoly3[j]     =  sum(any(c(res1$eigPoly, res2$eigPoly, res3$eigPoly) == 1))
-			eigPoly4[j]     =  sum(any(c(res1$eigPoly, res2$eigPoly, res3$eigPoly, res4$eigPoly) == 1))
-			eigPoly5[j]     =  sum(any(c(res1$eigPoly, res2$eigPoly, res3$eigPoly, res4$eigPoly, res5$eigPoly) == 1))
+			# Determine if polymorphic from eigenvaluse evaluated at boundary equilibria
+			# 1-Patch invasion criteria for boundaries of q = 0 and q = 1
+			lambda0_1patch  <-  lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[1,1], sm = s.vals.n[1,2])
+			lambda1_1patch  <-  lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[1,1], sm = s.vals.n[1,2])
+	
+			# 2-Patch invasion criteria for boundaries of q = 0 and q = 1
+			lambda0_2patch  <-  (1/2)*(lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[1,1], sm = s.vals.n[1,2]) + 
+									   lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[2,1], sm = s.vals.n[2,2]))
+			lambda1_2patch  <-  (1/2)*(lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[1,1], sm = s.vals.n[1,2]) + 
+									   lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[2,1], sm = s.vals.n[2,2]))
+	
+			# 3-Patch invasion criteria for boundaries of q = 0 and q = 1
+			lambda0_3patch  <-  (1/3)*(lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[1,1], sm = s.vals.n[1,2]) + 
+									   lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[2,1], sm = s.vals.n[2,2]) + 
+									   lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[3,1], sm = s.vals.n[3,2]))
+			lambda1_3patch  <-  (1/3)*(lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[1,1], sm = s.vals.n[1,2]) + 
+									   lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[2,1], sm = s.vals.n[2,2]) + 
+									   lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[3,1], sm = s.vals.n[3,2]))
+	
+			# 4-Patch invasion criteria for boundaries of q = 0 and q = 1
+			lambda0_4patch  <-  (1/4)*(lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[1,1], sm = s.vals.n[1,2]) + 
+									   lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[2,1], sm = s.vals.n[2,2]) + 
+									   lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[3,1], sm = s.vals.n[3,2]) + 
+									   lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[4,1], sm = s.vals.n[4,2]))
+			lambda1_4patch  <-  (1/4)*(lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[1,1], sm = s.vals.n[1,2]) + 
+									   lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[2,1], sm = s.vals.n[2,2]) + 
+									   lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[3,1], sm = s.vals.n[3,2]) + 
+									   lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[4,1], sm = s.vals.n[4,2]))
+	
+			# 5-Patch invasion criteria for boundaries of q = 0 and q = 1
+			lambda0_5patch  <-  (1/5)*(lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[1,1], sm = s.vals.n[1,2]) + 
+									   lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[2,1], sm = s.vals.n[2,2]) + 
+									   lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[3,1], sm = s.vals.n[3,2]) + 
+									   lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[4,1], sm = s.vals.n[4,2]) + 
+									   lambda0(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[5,1], sm = s.vals.n[5,2]))
+			lambda1_5patch  <-  (1/5)*(lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[1,1], sm = s.vals.n[1,2]) + 
+									   lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[2,1], sm = s.vals.n[2,2]) + 
+									   lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[3,1], sm = s.vals.n[3,2]) + 
+									   lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[4,1], sm = s.vals.n[4,2]) + 
+									   lambda1(C = C, delta = delta, hf = hf, hm = hm, sf = s.vals.n[5,1], sm = s.vals.n[5,2]))
+
+			eigPoly1[j]  <-  sum(1 < lambda0_1patch & 1 < lambda1_1patch)
+			eigPoly2[j]  <-  sum(1 < lambda0_2patch & 1 < lambda1_2patch)
+			eigPoly3[j]  <-  sum(1 < lambda0_3patch & 1 < lambda1_3patch)
+			eigPoly4[j]  <-  sum(1 < lambda0_4patch & 1 < lambda1_4patch)
+			eigPoly5[j]  <-  sum(1 < lambda0_5patch & 1 < lambda1_5patch)
 		}
 
 		# record multipatch polymorphism
@@ -767,19 +805,20 @@ print(sMaxes[i])
 
 	# Save results as data frame
 	data  <-  data.frame(
-						 "sMax"      =  sMaxes,
-						 "pSimPoly1"  =  Poly1,
-						 "pSimPoly2"  =  Poly2,
-						 "pSimPoly3"  =  Poly3,
-						 "pSimPoly4"  =  Poly4,
-						 "pSimPoly5"  =  Poly5,
-						 "diffPoly12"  =  Poly2 - Poly1,
-						 "diffPoly13"  =  Poly3 - Poly1,
-						 "diffPoly14"  =  Poly4 - Poly1,
-						 "diffPoly15"  =  Poly5 - Poly1
+						 "sMax"       =  sMaxes,
+						 "pSimPoly1"  =  pSimPoly1,
+						 "pSimPoly2"  =  pSimPoly2,
+						 "pSimPoly3"  =  pSimPoly3,
+						 "pSimPoly4"  =  pSimPoly4,
+						 "pSimPoly5"  =  pSimPoly5,
+						 "pEigPoly1"  =  pEigPoly1,
+						 "pEigPoly2"  =  pEigPoly2,
+						 "pEigPoly3"  =  pEigPoly3,
+						 "pEigPoly4"  =  pEigPoly4,
+						 "pEigPoly5"  =  pEigPoly5
 						 )
 	
 	# Export data
-	filename  <-  paste("./output/data/simMultiPatchSgrad", "_C", C, "_delta", delta, "_hf", hf, "_hm", hm, "_sMax", sMax, ".csv", sep="")
+	filename  <-  paste("./output/data/determSimMultiPatchSgrad", "_C", C, "_delta", delta, "_hf", hf, "_hm", hm, "_sMax", sMax, ".csv", sep="")
 	write.csv(data, file=filename, row.names = FALSE)
 }
