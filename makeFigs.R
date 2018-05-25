@@ -68,6 +68,8 @@ embed_fonts(figPath(name='compareSimEig1PatchDelta.pdf'))
 toPdf(compareEigSimPolyMultiPatchHDelta(h = c(0.5,0.25), delta=c(0,0)), figPath(name='compareEigSimMultiPatch.pdf'), width=10, height=5)
 embed_fonts(figPath(name='compareEigSimMultiPatch.pdf'))
 
+toPdf(compareEigLinesSimPolyMultiPatchHDelta(h = c(0.5,0.25), delta=c(0,0)), figPath(name='compareEigSimMultiPatch.pdf'), width=10, height=5)
+embed_fonts(figPath(name='compareEigSimMultiPatch.pdf'))
 
 ######################
 # Exploratory Figures
