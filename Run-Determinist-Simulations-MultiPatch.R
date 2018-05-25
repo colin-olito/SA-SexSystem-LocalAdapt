@@ -20,9 +20,9 @@ source('R/functions-analyses.R')
 
 
 # Set constant parameters for simulations
-n           <-  100000
+n           <-  10000
 sMax        <-  1
-resolution  <-  0.01
+resolution  <-  0.2
 
 ######################
 ##  Run Simulations
@@ -59,7 +59,7 @@ resolution  <-  0.01
 		delta  <-  0
 		
 		# C = 0
-		detSimMultiPatchSgrad(n = n, gen = 10000, C = 0,   delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-7)
+		detSimMultiPatchSgrad(n = n, gen = 100000, C = 0,   delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-7)
 		# C = 1/4
 		detSimMultiPatchSgrad(n = n, gen = 10000, C = 1/4, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-7)
 		# C = 1/2

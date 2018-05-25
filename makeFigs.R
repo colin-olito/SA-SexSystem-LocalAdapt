@@ -59,6 +59,15 @@ embed_fonts(figPath(name='FigA1-alt.pdf'))
 toPdf(invConditionsSA(), figPath(name='deltaEffect.pdf'), width=10, height=5)
 embed_fonts(figPath(name='deltaEffect.pdf'))
 
+toPdf(compareSimEig1PatchFig(h = c(0.5,0.25), delta=0), figPath(name='compareEigSim1Patch.pdf'), width=10, height=5)
+embed_fonts(figPath(name='compareSimEig1Patch.pdf'))
+
+toPdf(compareSimEig1PatchFig(h = c(0.5,0.25), delta=0.5), figPath(name='compareEigSim1PatchDelta.pdf'), width=10, height=5)
+embed_fonts(figPath(name='compareSimEig1PatchDelta.pdf'))
+
+toPdf(compareEigSimPolyMultiPatchHDelta(h = c(0.5,0.25), delta=c(0,0)), figPath(name='compareEigSimMultiPatch.pdf'), width=10, height=5)
+embed_fonts(figPath(name='compareEigSimMultiPatch.pdf'))
+
 
 ######################
 # Exploratory Figures

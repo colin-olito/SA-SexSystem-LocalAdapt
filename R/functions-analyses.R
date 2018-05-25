@@ -408,11 +408,10 @@ recursionFwdSim  <-  function(gen = 5000, C = 0, delta =  0, sm = 0.1, sf = 0.1,
 	i      <-  2
 	diffs  <-  rep(1,3)
 
-	while (i < gen & any(diffs[diffs != 0] > threshold)) {
+	while (i < gen & any(abs(diffs) >= threshold)) {
 		Fij.gen[i,1]   <-  round(FAA.pr(Fij = Fij.gen[i-1,], Wf = Wf, Wm = Wm, C = C, delta = delta, hf = hf, hm = hm), digits=8)
 		Fij.gen[i,2]   <-  round(FAa.pr(Fij = Fij.gen[i-1,], Wf = Wf, Wm = Wm, C = C, delta = delta, hf = hf, hm = hm), digits=8)
 		Fij.gen[i,3]   <-  round(Faa.pr(Fij = Fij.gen[i-1,], Wf = Wf, Wm = Wm, C = C, delta = delta, hf = hf, hm = hm), digits=8)
-		
 		diffs  <-  Fij.gen[i,] - Fij.gen[i-1,]
 		i      <-  i+1
 	}
@@ -528,9 +527,9 @@ kPatchRecursionFwdSim  <-  function(gen = 5000, k = 5, C = 0, delta =  0, s.vals
 		if(hf == hm & hf == 0.25) {
 			qHat  <-  qHatDomRev(C = C, delta = delta, sf = s.vals[p,1], sm = s.vals[p,2], h = hf)
 			if(qHat <= 0.5)
-				Fij.init    <-  c(0.99,0,0.01)
+				Fijk.init[,,p]    <-  c(0.99,0,0.01)
 			if(qHat >= 0.5)
-				Fij.init    <-  c(0.01,0,0.99)
+				Fijk.init[,,p]    <-  c(0.01,0,0.99)
 		}
 	
 		# Calculate fitness expressions for each patch
@@ -551,14 +550,13 @@ kPatchRecursionFwdSim  <-  function(gen = 5000, k = 5, C = 0, delta =  0, s.vals
 	i      <-  2
 	diffs  <-  matrix(1, nrow=3, ncol=k)
 
-	while (i <= gen & any(diffs[diffs != 0] > threshold)) {
+	while (i <= gen & any(abs(diffs) >= threshold)) {
 
 		for(p in 1:k) {
 			Fijk.gen[i,1,p]   <-  round(FAA.pr(Fij = Fij.gen[i-1,], Wf = Wf.patches[p,], Wm = Wm.patches[p,], C = C, delta = delta, hf = hf, hm = hm), digits=8)
 			Fijk.gen[i,2,p]   <-  round(FAa.pr(Fij = Fij.gen[i-1,], Wf = Wf.patches[p,], Wm = Wm.patches[p,], C = C, delta = delta, hf = hf, hm = hm), digits=8)
 			Fijk.gen[i,3,p]   <-  round(Faa.pr(Fij = Fij.gen[i-1,], Wf = Wf.patches[p,], Wm = Wm.patches[p,], C = C, delta = delta, hf = hf, hm = hm), digits=8)
 		}
-		
 		Fij.gen[i,]  <-  apply(Fijk.gen[i,,], MARGIN=1, mean)
 		diffs  <-  Fij.gen[i,] - Fij.gen[i-1,]
 		i      <-  i+1
