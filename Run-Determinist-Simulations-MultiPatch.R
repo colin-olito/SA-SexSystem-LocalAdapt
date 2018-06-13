@@ -17,6 +17,7 @@ rm(list=ls())
 ##  Dependencies
 
 source('R/functions-analyses.R')
+source('R/functions-figures.R')
 
 
 # Set constant parameters for simulations
@@ -33,25 +34,25 @@ resolution  <-  0.2
 		delta  <-  0
 		
 		# C = 0
-		detSimMultiPatchSgrad(n = n, gen = 10000, C = 0,   delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-7)
+		detSimMultiPatchSgrad(n = n, gen = 200000, C = 0,   delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-10)
 		# C = 1/4
-		detSimMultiPatchSgrad(n = n, gen = 10000, C = 1/4, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-7)
+		detSimMultiPatchSgrad(n = n, gen = 200000, C = 1/4, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-10)
 		# C = 1/2
-		detSimMultiPatchSgrad(n = n, gen = 10000, C = 1/2, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-7)
+		detSimMultiPatchSgrad(n = n, gen = 200000, C = 1/2, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-10)
 		# C = 3/4
-		detSimMultiPatchSgrad(n = n, gen = 10000, C = 3/4, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-7)
+		detSimMultiPatchSgrad(n = n, gen = 200000, C = 3/4, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-10)
 
 	# Moderate inbreeding depression (delta = 0.5)
 		delta  <-  1/2
 		
 		# C = 0
-		detSimMultiPatchSgrad(n = n, gen = 10000, C = 0,   delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-7)
+		detSimMultiPatchSgrad(n = n, gen = 200000, C = 0,   delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-10)
 		# C = 1/4
-		detSimMultiPatchSgrad(n = n, gen = 10000, C = 1/4, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-7)
+		detSimMultiPatchSgrad(n = n, gen = 200000, C = 1/4, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-10)
 		# C = 1/2
-		detSimMultiPatchSgrad(n = n, gen = 10000, C = 1/2, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-7)
+		detSimMultiPatchSgrad(n = n, gen = 200000, C = 1/2, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-10)
 		# C = 3/4
-		detSimMultiPatchSgrad(n = n, gen = 10000, C = 3/4, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-7)
+		detSimMultiPatchSgrad(n = n, gen = 200000, C = 3/4, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-10)
 
 # Dominance Reversal
 	h      <-  1/4
@@ -59,22 +60,22 @@ resolution  <-  0.2
 		delta  <-  0
 		
 		# C = 0
-		detSimMultiPatchSgrad(n = n, gen = 100000, C = 0,   delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-7)
+		detSimMultiPatchSgrad(n = n, gen = 200000, C = 0,   delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-10)
 		# C = 1/4
-		detSimMultiPatchSgrad(n = n, gen = 10000, C = 1/4, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-7)
+		detSimMultiPatchSgrad(n = n, gen = 200000, C = 1/4, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-10)
 		# C = 1/2
-		detSimMultiPatchSgrad(n = n, gen = 10000, C = 1/2, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-7)
+		detSimMultiPatchSgrad(n = n, gen = 200000, C = 1/2, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-10)
 		# C = 3/4
-		detSimMultiPatchSgrad(n = n, gen = 10000, C = 3/4, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-7)
+		detSimMultiPatchSgrad(n = n, gen = 200000, C = 3/4, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-10)
 
 	# Moderate inbreeding depression (delta = 0.5)
 		delta  <-  0.5
 		
 		# C = 0
-		detSimMultiPatchSgrad(n = n, gen = 10000, C = 0,   delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-7)
+		detSimMultiPatchSgrad(n = n, gen = 200000, C = 0,   delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-10)
 		# C = 1/4
-		detSimMultiPatchSgrad(n = n, gen = 10000, C = 1/4, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-7)
+		detSimMultiPatchSgrad(n = n, gen = 200000, C = 1/4, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-10)
 		# C = 1/2
-		detSimMultiPatchSgrad(n = n, gen = 10000, C = 1/2, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-7)
+		detSimMultiPatchSgrad(n = n, gen = 200000, C = 1/2, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-10)
 		# C = 3/4
-		detSimMultiPatchSgrad(n = n, gen = 10000, C = 3/4, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-7)
+		detSimMultiPatchSgrad(n = n, gen = 200000, C = 3/4, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution, threshold = 1e-10)

@@ -29,11 +29,6 @@
 #' @param sf     Selection coefficient for female sex function
 #' @param sm     Selection coefficient for male sex function
 #' @export
-#lambda0  <-  function(C=0, delta=0, hf=1/2, hm=1/2, sf=0.01, sm=0.01) {
-#	(4 + 2*hf*sf*(sm - 1) - 2*(1 + hm)*sm + C*(-2 - sf - sm + 4*hm*sm + sf*sm - 
-#    4*(-1 + hf*sf)*(-1 + sm)*delta) + (C^2)*(sm - 2*hm*sm + 2*delta - 
-#    2*sm*delta + (-1 + 2*hf)*sf*(-1 + sm)*(-1 + 2*delta))) / (2*(-2 + C)*(-1 + sm))
-#}
 lambda0  <-  function(C, delta, hf, hm, sf, sm) {
 	(2*(-2 + sm + hm*sm + hf*(sf - sf*sm)) + C*(2 + sf + sm - 4*hm*sm - sf*sm + 
     	4*(-1 + hf*sf)*(-1 + sm)*delta) + (C^2)*((-1 + 2*hm)*sm + 
@@ -50,10 +45,6 @@ lambda0  <-  function(C, delta, hf, hm, sf, sm) {
 #' @param sf     Selection coefficient for female sex function
 #' @param sm     Selection coefficient for male sex function
 #' @export
-#lambda1  <-  function(C=0, delta=0, hf=1/2, hm=1/2, sf=0.01, sm=0.01) {
-#	((-1 + C)*(-1 + sf)*(2 - 2*hm*sm + C*(-1 + (-1 + 2*hm)*sm)) - (2 - 
-#    C + 2*(-1 + C)*hf*sf)*(-1 + C*(-1 + 2*delta))) / (2*(-2 + C)*(-1 + sf))
-#}
 lambda1  <-  function(C, delta, hf, hm, sf, sm) {
 	((-1 + C)*(-1 + sf)*(2 - 2*hm*sm + C*(-1 + (-1 + 2*hm)*sm)) - 
 		(2 - C + 2*(-1 + C)*hf*sf)*(-1 + C*(-1 + 2*delta))) / 
@@ -297,8 +288,8 @@ Wf.av  <-  function(Fij, Wf, ...){
 Wm.av  <-  function(Fij, Wm, ...){
    (Fij[1]*Wm[1]) + (Fij[2]*Wm[2]) + (Fij[3]*Wm[3])
 }
-W.tot  <-  function(Fij, Wf, C, delta, ...){
-   1 - (C * delta *(((Fij[1]*Wf[1])/Wf.av(Fij,Wf)) + ((Fij[2]*Wf[2])/Wf.av(Fij,Wf)) + ((Fij[3]*Wf[3])/Wf.av(Fij,Wf))))
+W.tot  <-  function(C, delta, ...){
+   1 - (C *delta)
 }
 
 
@@ -307,29 +298,29 @@ W.tot  <-  function(Fij, Wf, C, delta, ...){
 
 FAA.pr  <-  function(Fij, Wf = Wf, Wm = Wm, C = C, delta = delta, hf = hf, hm = hm, ...) {
 	((1 - C)*(((Fij[1]*Wf[1]/Wf.av(Fij,Wf)) * (Fij[1]*Wm[1]/Wm.av(Fij,Wm)))   +
-	 			 ((Fij[1]*Wf[1]/Wf.av(Fij,Wf)) * (Fij[2]*Wm[2]/Wm.av(Fij,Wm)))/2 +
-	 			 ((Fij[2]*Wf[2]/Wf.av(Fij,Wf)) * (Fij[1]*Wm[1]/Wm.av(Fij,Wm)))/2 +
-	 			 ((Fij[2]*Wf[2]/Wf.av(Fij,Wf)) * (Fij[2]*Wm[2]/Wm.av(Fij,Wm)))/4) +
+			  ((Fij[1]*Wf[1]/Wf.av(Fij,Wf)) * (Fij[2]*Wm[2]/Wm.av(Fij,Wm)))/2 +
+			  ((Fij[2]*Wf[2]/Wf.av(Fij,Wf)) * (Fij[1]*Wm[1]/Wm.av(Fij,Wm)))/2 +
+			  ((Fij[2]*Wf[2]/Wf.av(Fij,Wf)) * (Fij[2]*Wm[2]/Wm.av(Fij,Wm)))/4) +
 	 	C*(1 - delta)*(((Fij[1]*Wf[1])/Wf.av(Fij,Wf)) + 
-	 		 			((Fij[2]*Wf[2]))/(4*Wf.av(Fij,Wf)))) / W.tot(Fij = Fij, Wf = Wf, C = C, delta = delta)
+	 		 		   ((Fij[2]*Wf[2])/(4*Wf.av(Fij,Wf))))) / W.tot(C = C, delta = delta)
 }
 FAa.pr  <-  function(Fij, Wf = Wf, Wm = Wm, C = C, delta = delta, hf = hf, hm = hm, ...) {
 	((1 - C)*(((Fij[1]*Wf[1]/Wf.av(Fij,Wf)) * (Fij[2]*Wm[2]/Wm.av(Fij,Wm)))/2 +
-	 			 ((Fij[1]*Wf[1]/Wf.av(Fij,Wf)) * (Fij[3]*Wm[3]/Wm.av(Fij,Wm)))   +
-	 			 ((Fij[2]*Wf[2]/Wf.av(Fij,Wf)) * (Fij[1]*Wm[1]/Wm.av(Fij,Wm)))/2 +
-	 			 ((Fij[2]*Wf[2]/Wf.av(Fij,Wf)) * (Fij[2]*Wm[2]/Wm.av(Fij,Wm)))/2 + 
-	 			 ((Fij[2]*Wf[2]/Wf.av(Fij,Wf)) * (Fij[3]*Wm[3]/Wm.av(Fij,Wm)))/2 + 
-	  			 ((Fij[3]*Wf[3]/Wf.av(Fij,Wf)) * (Fij[1]*Wm[1]/Wm.av(Fij,Wm)))   +
-	 			 ((Fij[3]*Wf[3]/Wf.av(Fij,Wf)) * (Fij[2]*Wm[2]/Wm.av(Fij,Wm)))/2) +
-	 	C*(1 - delta)*(((Fij[2]*Wf[2]))/(2*Wf.av(Fij,Wf)))) / W.tot(Fij = Fij, Wf = Wf, C = C, delta = delta)
+			  ((Fij[1]*Wf[1]/Wf.av(Fij,Wf)) * (Fij[3]*Wm[3]/Wm.av(Fij,Wm)))   +
+			  ((Fij[2]*Wf[2]/Wf.av(Fij,Wf)) * (Fij[1]*Wm[1]/Wm.av(Fij,Wm)))/2 +
+			  ((Fij[2]*Wf[2]/Wf.av(Fij,Wf)) * (Fij[2]*Wm[2]/Wm.av(Fij,Wm)))/2 + 
+			  ((Fij[2]*Wf[2]/Wf.av(Fij,Wf)) * (Fij[3]*Wm[3]/Wm.av(Fij,Wm)))/2 + 
+			  ((Fij[3]*Wf[3]/Wf.av(Fij,Wf)) * (Fij[1]*Wm[1]/Wm.av(Fij,Wm)))   +
+			  ((Fij[3]*Wf[3]/Wf.av(Fij,Wf)) * (Fij[2]*Wm[2]/Wm.av(Fij,Wm)))/2) +
+	 	C*(1 - delta)*(((Fij[2]*Wf[2]))/(2*Wf.av(Fij,Wf)))) / W.tot(C = C, delta = delta)
 }
 Faa.pr  <-  function(Fij, Wf = Wf, Wm = Wm, C = C, delta = delta, hf = hf, hm = hm, ...) {
 	((1 - C)*(((Fij[2]*Wf[2]/Wf.av(Fij,Wf)) * (Fij[2]*Wm[2]/Wm.av(Fij,Wm)))/4 + 
-	 			 ((Fij[2]*Wf[2]/Wf.av(Fij,Wf)) * (Fij[3]*Wm[3]/Wm.av(Fij,Wm)))/2 + 
-	  			 ((Fij[3]*Wf[3]/Wf.av(Fij,Wf)) * (Fij[2]*Wm[2]/Wm.av(Fij,Wm)))/2 +
-	 			 ((Fij[3]*Wf[3]/Wf.av(Fij,Wf)) * (Fij[3]*Wm[3]/Wm.av(Fij,Wm)))) +
+			  ((Fij[2]*Wf[2]/Wf.av(Fij,Wf)) * (Fij[3]*Wm[3]/Wm.av(Fij,Wm)))/2 + 
+			  ((Fij[3]*Wf[3]/Wf.av(Fij,Wf)) * (Fij[2]*Wm[2]/Wm.av(Fij,Wm)))/2 +
+			  ((Fij[3]*Wf[3]/Wf.av(Fij,Wf)) * (Fij[3]*Wm[3]/Wm.av(Fij,Wm)))) +
 	 	C*(1 - delta)*(((Fij[2]*Wf[2])/(4*Wf.av(Fij,Wf))) + 
-	 				   ((Fij[3]*Wf[3]))/Wf.av(Fij,Wf))) / W.tot(Fij = Fij, Wf = Wf, C = C, delta = delta)
+	 				   ((Fij[3]*Wf[3]))/Wf.av(Fij,Wf))) / W.tot(C = C, delta = delta)
 }
 
 
@@ -362,7 +353,7 @@ Faa.pr  <-  function(Fij, Wf = Wf, Wm = Wm, C = C, delta = delta, hf = hf, hm = 
 #' @author Colin Olito.
 #' @examples
 #' recursionFwdSim(par.list, Fij.init, threshold = 1e-6) 
-recursionFwdSim  <-  function(gen = 5000, C = 0, delta =  0, sm = 0.1, sf = 0.1, hm = 0.5, hf = 0.5, threshold = 1e-6, ...) {
+recursionFwdSim  <-  function(gen = 5000, C = 0, delta =  0, sm = 0.1, sf = 0.1, hm = 0.5, hf = 0.5, threshold = 1e-7, ...) {
 
 	##  Warnings
 	if(any(c(C, delta, sm, sf, hm, hf) < 0) | any(c(C, delta, sm, sf, hm, hf) > 1))
@@ -385,36 +376,42 @@ recursionFwdSim  <-  function(gen = 5000, C = 0, delta =  0, sm = 0.1, sf = 0.1,
 	if(hf == hm & hf == 0.5) {
 		qHat  <-  qHatAdd(C = C, delta = delta, sf = sf, sm = sm)
 		if(qHat <= 0.5)
-			Fij.init    <-  c(0.99,0,0.01)
+			Fij.init    <-  c(0.999,0,0.001)
 		if(qHat >= 0.5)
-			Fij.init    <-  c(0.01,0,0.99)
+			Fij.init    <-  c(0.001,0,0.999)
 	}
 	if(hf == hm & hf == 0.25) {
 		qHat  <-  qHatDomRev(C = C, delta = delta, sf = sf, sm = sm, h = hf)
 		if(qHat <= 0.5)
-			Fij.init    <-  c(0.99,0,0.01)
+			Fij.init    <-  c(0.999,0,0.001)
 		if(qHat >= 0.5)
-			Fij.init    <-  c(0.01,0,0.99)
+			Fij.init    <-  c(0.001,0,0.999)
 	}
 
 	##  Generation Loop
 		# initialize
-		Fij.gen[1,1]   <-  round(FAA.pr(Fij = Fij.init, Wf = Wf, Wm = Wm, C = C, delta = delta, hf = hf, hm = hm), digits=8)
-		Fij.gen[1,2]   <-  round(FAa.pr(Fij = Fij.init, Wf = Wf, Wm = Wm, C = C, delta = delta, hf = hf, hm = hm), digits=8)
-		Fij.gen[1,3]   <-  round(Faa.pr(Fij = Fij.init, Wf = Wf, Wm = Wm, C = C, delta = delta, hf = hf, hm = hm), digits=8)
+		Fij.gen[1,1]   <-  as.numeric(rounded(FAA.pr(Fij = Fij.init, Wf = Wf, Wm = Wm, C = C, delta = delta, hf = hf, hm = hm), precision=12))
+		Fij.gen[1,2]   <-  as.numeric(rounded(FAa.pr(Fij = Fij.init, Wf = Wf, Wm = Wm, C = C, delta = delta, hf = hf, hm = hm), precision=12))
+		Fij.gen[1,3]   <-  as.numeric(rounded(Faa.pr(Fij = Fij.init, Wf = Wf, Wm = Wm, C = C, delta = delta, hf = hf, hm = hm), precision=12))
 
 
 	# Start simulation
-	i      <-  2
-	diffs  <-  rep(1,3)
+	i       <-  2
+	diffs   <-  rep(1,3)
 
 	while (i < gen & any(abs(diffs) >= threshold)) {
-		Fij.gen[i,1]   <-  round(FAA.pr(Fij = Fij.gen[i-1,], Wf = Wf, Wm = Wm, C = C, delta = delta, hf = hf, hm = hm), digits=8)
-		Fij.gen[i,2]   <-  round(FAa.pr(Fij = Fij.gen[i-1,], Wf = Wf, Wm = Wm, C = C, delta = delta, hf = hf, hm = hm), digits=8)
-		Fij.gen[i,3]   <-  round(Faa.pr(Fij = Fij.gen[i-1,], Wf = Wf, Wm = Wm, C = C, delta = delta, hf = hf, hm = hm), digits=8)
+		Fij.gen[i,1]   <-  as.numeric(rounded(FAA.pr(Fij = Fij.gen[i-1,], Wf = Wf, Wm = Wm, C = C, delta = delta, hf = hf, hm = hm), precision=12))
+		Fij.gen[i,2]   <-  as.numeric(rounded(FAa.pr(Fij = Fij.gen[i-1,], Wf = Wf, Wm = Wm, C = C, delta = delta, hf = hf, hm = hm), precision=12))
+		Fij.gen[i,3]   <-  as.numeric(rounded(Faa.pr(Fij = Fij.gen[i-1,], Wf = Wf, Wm = Wm, C = C, delta = delta, hf = hf, hm = hm), precision=12))
 		diffs  <-  Fij.gen[i,] - Fij.gen[i-1,]
 		i      <-  i+1
 	}
+
+	if (i > gen) {
+		MaxGen  <-  1
+#		print('Warning: maximum runtime reached. Results may not represent equilibrium frequencies')
+	}
+	else MaxGen  <-  0
 
 	##  Is equilibrium polymorphic?
 	if (any(Fij.gen[i-1,] > 0.9999)) 
@@ -449,6 +446,7 @@ recursionFwdSim  <-  function(gen = 5000, C = 0, delta =  0, sm = 0.1, sf = 0.1,
 				  "par.list" =  par.list,
 				  "Fij.gen"  =  Fij.gen[1:i-1,],
 				  "EQ.freq"  =  Fij.gen[i-1,],
+				  "MaxGen"   =  MaxGen,
 				  "l.A"      =  lambda0_1patch,
 				  "l.a"      =  lambda1_1patch,
 				  "simPoly"  =  simPoly,
@@ -520,16 +518,16 @@ kPatchRecursionFwdSim  <-  function(gen = 5000, k = 5, C = 0, delta =  0, s.vals
 		if(hf == hm & hf == 0.5) {
 			qHat  <-  qHatAdd(C = C, delta = delta, sf = s.vals[p,1], sm = s.vals[p,2])
 			if(qHat <= 0.5)
-				Fijk.init[,,p]    <-  c(0.99,0,0.01)
+				Fijk.init[,,p]    <-  c(0.999,0,0.001)
 			if(qHat >= 0.5)
-				Fijk.init[,,p]    <-  c(0.01,0,0.99)
+				Fijk.init[,,p]    <-  c(0.001,0,0.999)
 		}
 		if(hf == hm & hf == 0.25) {
 			qHat  <-  qHatDomRev(C = C, delta = delta, sf = s.vals[p,1], sm = s.vals[p,2], h = hf)
 			if(qHat <= 0.5)
-				Fijk.init[,,p]    <-  c(0.99,0,0.01)
+				Fijk.init[,,p]    <-  c(0.999,0,0.001)
 			if(qHat >= 0.5)
-				Fijk.init[,,p]    <-  c(0.01,0,0.99)
+				Fijk.init[,,p]    <-  c(0.001,0,0.999)
 		}
 	
 		# Calculate fitness expressions for each patch
@@ -537,9 +535,9 @@ kPatchRecursionFwdSim  <-  function(gen = 5000, k = 5, C = 0, delta =  0, s.vals
 		Wm.patches[p,]  <-  Wm.fit(hm = hm, sm = s.vals[p,2])
 
 		# initialize Fijk.gen with  
-		Fijk.gen[1,1,p]   <-  round(FAA.pr(Fij = Fijk.init[,,p], Wf = Wf.patches[p,], Wm = Wm.patches[p,], C = C, delta = delta, hf = hf, hm = hm), digits=8)
-		Fijk.gen[1,2,p]   <-  round(FAa.pr(Fij = Fijk.init[,,p], Wf = Wf.patches[p,], Wm = Wm.patches[p,], C = C, delta = delta, hf = hf, hm = hm), digits=8)
-		Fijk.gen[1,3,p]   <-  round(Faa.pr(Fij = Fijk.init[,,p], Wf = Wf.patches[p,], Wm = Wm.patches[p,], C = C, delta = delta, hf = hf, hm = hm), digits=8)
+		Fijk.gen[1,1,p]   <-  as.numeric(rounded(FAA.pr(Fij = Fijk.init[,,p], Wf = Wf.patches[p,], Wm = Wm.patches[p,], C = C, delta = delta, hf = hf, hm = hm), precision=12))
+		Fijk.gen[1,2,p]   <-  as.numeric(rounded(FAa.pr(Fij = Fijk.init[,,p], Wf = Wf.patches[p,], Wm = Wm.patches[p,], C = C, delta = delta, hf = hf, hm = hm), precision=12))
+		Fijk.gen[1,3,p]   <-  as.numeric(rounded(Faa.pr(Fij = Fijk.init[,,p], Wf = Wf.patches[p,], Wm = Wm.patches[p,], C = C, delta = delta, hf = hf, hm = hm), precision=12))
 	}
 
 	# Overall genotypic frequencies after migration in generation 1
@@ -553,9 +551,9 @@ kPatchRecursionFwdSim  <-  function(gen = 5000, k = 5, C = 0, delta =  0, s.vals
 	while (i <= gen & any(abs(diffs) >= threshold)) {
 
 		for(p in 1:k) {
-			Fijk.gen[i,1,p]   <-  round(FAA.pr(Fij = Fij.gen[i-1,], Wf = Wf.patches[p,], Wm = Wm.patches[p,], C = C, delta = delta, hf = hf, hm = hm), digits=8)
-			Fijk.gen[i,2,p]   <-  round(FAa.pr(Fij = Fij.gen[i-1,], Wf = Wf.patches[p,], Wm = Wm.patches[p,], C = C, delta = delta, hf = hf, hm = hm), digits=8)
-			Fijk.gen[i,3,p]   <-  round(Faa.pr(Fij = Fij.gen[i-1,], Wf = Wf.patches[p,], Wm = Wm.patches[p,], C = C, delta = delta, hf = hf, hm = hm), digits=8)
+			Fijk.gen[i,1,p]   <-  as.numeric(rounded(FAA.pr(Fij = Fij.gen[i-1,], Wf = Wf.patches[p,], Wm = Wm.patches[p,], C = C, delta = delta, hf = hf, hm = hm), precision=12))
+			Fijk.gen[i,2,p]   <-  as.numeric(rounded(FAa.pr(Fij = Fij.gen[i-1,], Wf = Wf.patches[p,], Wm = Wm.patches[p,], C = C, delta = delta, hf = hf, hm = hm), precision=12))
+			Fijk.gen[i,3,p]   <-  as.numeric(rounded(Faa.pr(Fij = Fij.gen[i-1,], Wf = Wf.patches[p,], Wm = Wm.patches[p,], C = C, delta = delta, hf = hf, hm = hm), precision=12))
 		}
 		Fij.gen[i,]  <-  apply(Fijk.gen[i,,], MARGIN=1, mean)
 		diffs  <-  Fij.gen[i,] - Fij.gen[i-1,]
@@ -567,9 +565,11 @@ kPatchRecursionFwdSim  <-  function(gen = 5000, k = 5, C = 0, delta =  0, s.vals
 		 simPoly  <-  0
 	else simPoly  <-  1
 
-	if (i > gen)
-		MaxGen  <-  TRUE
-	else MaxGen  <-  FALSE
+	if (i > gen) {
+		MaxGen  <-  1
+#		print('Warning: maximum runtime reached. Results may not represent equilibrium frequencies')
+	}
+	else MaxGen  <-  0
 
 	##  Output list
 	par.list  <-  list(
@@ -685,7 +685,9 @@ detSimMultiPatchSgrad  <-  function(n = 10000, gen = 5000, C=0, delta=0, hf=0.5,
 	# Create vector of sMaxes (we assume that we always explore a 
 	# square parameter space (i.e., sMax is the same for males and females))
 	sMaxes  <- c(0.05,seq(from = resolution, to = sMax, by = resolution))
-	
+#	sMaxes  <-  c(0.05,0.2,0.4)
+	nMaxed  <-  matrix(0, nrow=length(sMaxes), ncol=5)
+
 	# Initialize storage structures
 	pSimPoly1  <-  rep(0, length = length(sMaxes))
 	pSimPoly2  <-  rep(0, length = length(sMaxes))
@@ -700,6 +702,7 @@ detSimMultiPatchSgrad  <-  function(n = 10000, gen = 5000, C=0, delta=0, hf=0.5,
 
 	# loop over sMaxes
 	for (i in 1:length(sMaxes)) {
+	print(paste0('Running Deterministic Recursion Simulations for sMax = ',sMaxes[i]))
 
 		# Draw random selection coefficients for up to 5 patches
 		s1  <-  matrix(runif(2*n, max = sMaxes[i]), nrow=n, ncol=2)
@@ -720,6 +723,10 @@ detSimMultiPatchSgrad  <-  function(n = 10000, gen = 5000, C=0, delta=0, hf=0.5,
 		eigPoly5  <-  rep(0, times=n)
 		
 		# Loop over randomly drawn pairs of selection coefficients for female & male function
+		print('sampling sf x sm selection parameter space')
+		pb   <-  txtProgressBar(min=0, max=n, style=3)
+		setTxtProgressBar(pb, 0)
+		maxedOut  <-  matrix(0, nrow=n, ncol=5)
 		for(j in 1:n) {
 
 			s.vals.n  <-  rbind(s1[j,],s2[j,],s3[j,],s4[j,],s5[j,])
@@ -736,6 +743,12 @@ detSimMultiPatchSgrad  <-  function(n = 10000, gen = 5000, C=0, delta=0, hf=0.5,
 			simPoly3[j]  <-  res3$simPoly
 			simPoly4[j]  <-  res4$simPoly
 			simPoly5[j]  <-  res5$simPoly
+
+			maxedOut[j,1]  <-  res1$MaxGen
+			maxedOut[j,2]  <-  res2$MaxGen
+			maxedOut[j,3]  <-  res3$MaxGen
+			maxedOut[j,4]  <-  res4$MaxGen
+			maxedOut[j,5]  <-  res5$MaxGen
 
 			# Determine if polymorphic from eigenvaluse evaluated at boundary equilibria
 			# 1-Patch invasion criteria for boundaries of q = 0 and q = 1
@@ -783,6 +796,8 @@ detSimMultiPatchSgrad  <-  function(n = 10000, gen = 5000, C=0, delta=0, hf=0.5,
 			eigPoly3[j]  <-  sum(1 < lambda0_3patch & 1 < lambda1_3patch)
 			eigPoly4[j]  <-  sum(1 < lambda0_4patch & 1 < lambda1_4patch)
 			eigPoly5[j]  <-  sum(1 < lambda0_5patch & 1 < lambda1_5patch)
+		
+			setTxtProgressBar(pb, j)
 		}
 
 		# record multipatch polymorphism
@@ -797,7 +812,7 @@ detSimMultiPatchSgrad  <-  function(n = 10000, gen = 5000, C=0, delta=0, hf=0.5,
 		pEigPoly4[i]  <-  sum(eigPoly4) / n
 		pEigPoly5[i]  <-  sum(eigPoly5) / n
 
-print(sMaxes[i])
+		nMaxed[i,]  <-  colSums(maxedOut)
 	}
 
 
@@ -813,10 +828,15 @@ print(sMaxes[i])
 						 "pEigPoly2"  =  pEigPoly2,
 						 "pEigPoly3"  =  pEigPoly3,
 						 "pEigPoly4"  =  pEigPoly4,
-						 "pEigPoly5"  =  pEigPoly5
+						 "pEigPoly5"  =  pEigPoly5,
+						 "nMaxed1"    =  nMaxed[,1],
+						 "nMaxed2"    =  nMaxed[,2],
+						 "nMaxed3"    =  nMaxed[,3],
+						 "nMaxed4"    =  nMaxed[,4],
+						 "nMaxed5"    =  nMaxed[,5]
 						 )
 	
 	# Export data
-	filename  <-  paste("./output/data/determSimMultiPatchSgrad", "_C", C, "_delta", delta, "_hf", hf, "_hm", hm, "_sMax", sMax, ".csv", sep="")
+	filename  <-  paste("./output/data/determSimMultiPatchSgrad_wkSel", "_C", C, "_delta", delta, "_hf", hf, "_hm", hm, "_sMax", sMax, ".csv", sep="")
 	write.csv(data, file=filename, row.names = FALSE)
 }

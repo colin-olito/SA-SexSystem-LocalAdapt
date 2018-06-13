@@ -853,7 +853,7 @@ compareSimEig1PatchFig  <-  function(h = c(0.5, 0.25), delta = 0, sMax=1) {
     data8      <-  read.table(filename8, header=TRUE)
 
     # sm values for plotting invasion conditions
-    sm  <-  seq(0,1,by=0.0001)
+    sm  <-  seq(0,sMax,by=0.0001)
 
     # Color Scheme
     COLS  <-  c(transparentColor('seagreen3', opacity=0.2), 
@@ -1508,14 +1508,14 @@ compareEigLinesSimPolyMultiPatchHDelta  <-  function(h, delta, sMax=1) {
     data7      <-  read.csv(filename7, header=TRUE)
     data8      <-  read.csv(filename8, header=TRUE)
 
-    filename1  <-  paste("./output/data/determSimMultiPatchSgrad", "_C", 0,    "_delta", delta[1], "_hf", h[1], "_hm", h[1], "_sMax", sMax, ".csv", sep="")
-    filename2  <-  paste("./output/data/determSimMultiPatchSgrad", "_C", 0.25, "_delta", delta[1], "_hf", h[1], "_hm", h[1], "_sMax", sMax, ".csv", sep="")
-    filename3  <-  paste("./output/data/determSimMultiPatchSgrad", "_C", 0.5,  "_delta", delta[1], "_hf", h[1], "_hm", h[1], "_sMax", sMax, ".csv", sep="")
-    filename4  <-  paste("./output/data/determSimMultiPatchSgrad", "_C", 0.75, "_delta", delta[1], "_hf", h[1], "_hm", h[1], "_sMax", sMax, ".csv", sep="")
-    filename5  <-  paste("./output/data/determSimMultiPatchSgrad", "_C", 0,    "_delta", delta[2], "_hf", h[2], "_hm", h[2], "_sMax", sMax, ".csv", sep="")
-    filename6  <-  paste("./output/data/determSimMultiPatchSgrad", "_C", 0.25, "_delta", delta[2], "_hf", h[2], "_hm", h[2], "_sMax", sMax, ".csv", sep="")
-    filename7  <-  paste("./output/data/determSimMultiPatchSgrad", "_C", 0.5,  "_delta", delta[2], "_hf", h[2], "_hm", h[2], "_sMax", sMax, ".csv", sep="")
-    filename8  <-  paste("./output/data/determSimMultiPatchSgrad", "_C", 0.75, "_delta", delta[2], "_hf", h[2], "_hm", h[2], "_sMax", sMax, ".csv", sep="")
+    filename1  <-  paste("./output/data/determSimMultiPatchSgrad_wkSel", "_C", 0,    "_delta", delta[1], "_hf", h[1], "_hm", h[1], "_sMax", sMax, ".csv", sep="")
+    filename2  <-  paste("./output/data/determSimMultiPatchSgrad_wkSel", "_C", 0.25, "_delta", delta[1], "_hf", h[1], "_hm", h[1], "_sMax", sMax, ".csv", sep="")
+    filename3  <-  paste("./output/data/determSimMultiPatchSgrad_wkSel", "_C", 0.5,  "_delta", delta[1], "_hf", h[1], "_hm", h[1], "_sMax", sMax, ".csv", sep="")
+    filename4  <-  paste("./output/data/determSimMultiPatchSgrad_wkSel", "_C", 0.75, "_delta", delta[1], "_hf", h[1], "_hm", h[1], "_sMax", sMax, ".csv", sep="")
+    filename5  <-  paste("./output/data/determSimMultiPatchSgrad_wkSel", "_C", 0,    "_delta", delta[2], "_hf", h[2], "_hm", h[2], "_sMax", sMax, ".csv", sep="")
+    filename6  <-  paste("./output/data/determSimMultiPatchSgrad_wkSel", "_C", 0.25, "_delta", delta[2], "_hf", h[2], "_hm", h[2], "_sMax", sMax, ".csv", sep="")
+    filename7  <-  paste("./output/data/determSimMultiPatchSgrad_wkSel", "_C", 0.5,  "_delta", delta[2], "_hf", h[2], "_hm", h[2], "_sMax", sMax, ".csv", sep="")
+    filename8  <-  paste("./output/data/determSimMultiPatchSgrad_wkSel", "_C", 0.75, "_delta", delta[2], "_hf", h[2], "_hm", h[2], "_sMax", sMax, ".csv", sep="")
     dat1       <-  read.csv(filename1, header=TRUE)
     dat2       <-  read.csv(filename2, header=TRUE)
     dat3       <-  read.csv(filename3, header=TRUE)
@@ -1526,7 +1526,7 @@ compareEigLinesSimPolyMultiPatchHDelta  <-  function(h, delta, sMax=1) {
     dat8       <-  read.csv(filename8, header=TRUE)
 
     # Color Scheme
-    COLS  <-  c("dodgerblue", "dodgerblue2", "dodgerblue3", "dodgerblue4", "black")
+    COLS  <-  c("grey80", "grey70", "grey60", "grey50", "black")
 
     # Set plot layout
     layout.mat <- matrix(c(1:8), nrow=2, ncol=4, byrow=TRUE)
@@ -1634,24 +1634,26 @@ compareEigLinesSimPolyMultiPatchHDelta  <-  function(h, delta, sMax=1) {
         proportionalLabel( 0.05,  1.1, expression(paste(bold(D))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel( 0.5,  1.3,   expression(paste(italic(C)," = 0.75")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         # Legend
-                legend(
-                    x       =  usr[2]*0.75,
-                    y       =  usr[4],
-                    legend  =  c(
-                                expression(paste("5 Patch")),
-                                expression(paste("4 Patch")),
-                                expression(paste("3 Patch")),
-                                expression(paste("2 Patch")),
-                                expression(paste("1 Patch"))),
-                    col     =  COLS,
-                    lty     =  c(1,1),
-                    lwd     =  2,
-                    cex     =  0.9,
-                    xjust   =  1,
-                    yjust   =  1,
-                    bty     =  'n',
-                    border  =  NA
-            )
+        legend(
+            x       =  usr[2]*0.5,
+            y       =  usr[4],
+            legend  =  c(
+                        expression(paste("5 Patch")),
+                        expression(paste("4 Patch")),
+                        expression(paste("3 Patch")),
+                        expression(paste("2 Patch")),
+                        expression(paste("1 Patch"))),
+            col     =  COLS,
+            lty     =  c(1,1),
+            lwd     =  2,
+#            pch     =  21,
+#            pt.bg   =  COLS,
+            cex     =  0.9,
+            xjust   =  1,
+            yjust   =  1,
+            bty     =  'n',
+            border  =  NA
+        )
 
 
 ## Delta = 1/2
@@ -1703,7 +1705,7 @@ compareEigLinesSimPolyMultiPatchHDelta  <-  function(h, delta, sMax=1) {
         # Plot labels etc.
 #        proportionalLabel( 1.3,  1.3,   expression(paste(italic(h[f])," = ",italic(h[m]), " = 1/2")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel( 0.05,  1.1, expression(paste(bold(F))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(1.25,  -0.4,   expression(paste("Maximum strength of selection: max(",italic(s[f]),", ", italic(s[m]),")")), cex=1.3, adj=c(0.5, 0.5), xpd=NA)        
+        proportionalLabel(1.2,  -0.4,   expression(paste("Maximum strength of selection: max(",italic(s[f]),",",italic(s[m]),")")), cex=1.3, adj=c(0.5, 0.5), xpd=NA)        
 
 ## Panel G: C = 1/2
      plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
