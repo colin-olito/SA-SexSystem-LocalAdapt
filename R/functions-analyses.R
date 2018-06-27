@@ -117,6 +117,153 @@ qHatDomRev  <-  function(C, delta, sf, sm, h) {
 	qHat
 }
 
+
+
+#' Convenience function for calculating covariances for general 
+#' invasion conditions under additive fitness
+#'
+#' @title Calculate covariances for general invasion conditions
+#' @param svals	Matrix of seleciton values for female and male fitness
+#' @export 
+matCov  <-  function(svals) {
+	i    <- length(svals)/2
+	sfs  <-  svals[1:i]
+	sms  <-  svals[(i+1):(2*i)]
+	cov(sfs,sms)
+}
+
+
+#' General sex-specific multipatch invasion conditions based on additive fitness
+#'
+#' @title General lambda for q = 0
+#' @param q      Frequency of a allele (determines which boundary 
+#' 				 to do stability analysis for)
+#' @param k      Number of patches (integer >= 1)
+#' @param C      Population selfing rate
+#' @param sf     matrix of selection coefficients for female sex function across k patches
+#' @param sm     matrix of selection coefficients for male sex function across k patches
+#' @export
+generalAddInv  <-  function(q, k, C, sfs, sms) {
+	
+	if(q != 0 & q != 1) {
+		stop('q must equal 0 or 1')
+	}
+	if(k < 1 | k != ncol(sfs) | k != ncol(sms)) {
+		stop('k must equal ncol(sfs) = ncol(sms)')
+	}
+
+	# storage structures
+	kTot  <-  ncol(sfs)
+	n     <-  nrow(sfs)
+	Wf    <-  array(0, dim=c(n, 3, ncol(sfs)))
+	Wm    <-  array(0, dim=c(n, 3, ncol(sfs)))
+
+	# Calculate fitness through each sex function (additive fitness)
+	for(i in 1:kTot) {
+		x  <-  Wf.fit(hf = 1/2, sf=sfs[,i])[-1]
+		Wf[,1,i]  <-  1
+		Wf[,2,i]  <-  x[1:n]
+		Wf[,3,i]  <-  x[(n+1):(2*n)]
+		x  <-  Wm.fit(hm = 1/2, sm=sms[,i])
+		Wm[,1,i]  <-  x[1:n]
+		Wm[,2,i]  <-  x[(n+1):(2*n)]
+		Wm[,3,i]  <-  1
+	}
+
+	# Calculate selection coefficients
+	sfMat     <-  matrix(0,ncol=kTot, nrow=n)
+	smMat     <-  matrix(0,ncol=kTot, nrow=n)
+	Lambdas   <-  matrix(0,ncol=kTot, nrow=n)
+
+	# Loop over number of patches
+	for(i in 1:kTot) {
+		if(q == 0) {
+			sfMat[,i]  <-  (Wf[,2,i] - Wf[,1,i]) / Wf[,1,i]
+			smMat[,i]  <-  (Wm[,2,i] - Wm[,1,i]) / Wm[,1,i]
+		}
+		if(q == 1) {
+			sfMat[,i]  <-  (Wf[,2,i] - Wf[,3,i]) / Wf[,3,i]
+			smMat[,i]  <-  (Wm[,2,i] - Wm[,3,i]) / Wm[,3,i]
+		}
+	
+		# If there is only one patch
+		if(i == 1) {
+			sfBar        <-  sfMat[,i]
+			smBar        <-  smMat[,i]
+			Lambdas[,i]  <-  ((1 + C)/(2 - C))*sfBar + ((1 - C)/(2 - C))*smBar
+		}
+
+		# For multiple patches
+		if(i > 1) {
+			sfBar  <-  rowMeans(sfMat[,1:i])
+			smBar  <-  rowMeans(smMat[,1:i])
+			sfVar  <-  apply(sfMat[,1:i], MARGIN=1, var)
+			smVar  <-  apply(smMat[,1:i], MARGIN=1, var)
+			CoVar  <-  apply(cbind(sfMat[,1:i],smMat[,1:i]), MARGIN=1, FUN = matCov)
+	
+			Lambdas[,i]  <-  ((1 + C)/(2 - C))*sfBar + ((1 + C)^2/(2 - C)^2)*sfVar +
+							((1 - C)/(2 - C))*smBar + ((1 - C)^2/(2 - C)^2)*smVar +
+							(2*(1 - C^2)/(2 - C)^2)*CoVar
+		}
+	}
+
+	Lambdas[Lambdas > 0]   <-  1
+	Lambdas[Lambdas <= 0]  <-  0
+	Lambdas
+}
+
+
+
+#' SA invasion conditions, optimized for matrix input
+#'
+#' @title General lambda for q = 0
+#' @param q      Frequency of a allele (determines which boundary 
+#' 				 to do stability analysis for)
+#' @param k      Number of patches (integer >= 1)
+#' @param C      Population selfing rate
+#' @param sf     matrix of selection coefficients for female sex function across k patches
+#' @param sm     matrix of selection coefficients for male sex function across k patches
+#' @export
+SAAddInv  <-  function(q, k, C, sfs, sms) {
+	
+	if(q != 0 & q != 1) {
+		stop('q must equal 0 or 1')
+	}
+	if(k < 1 | k != ncol(sfs) | k != ncol(sms)) {
+		stop('k must equal ncol(sfs) = ncol(sms)')
+	}
+
+	# storage structures
+	kTot  <-  ncol(sfs)
+	n     <-  nrow(sfs)
+
+	# Calculate selection coefficients
+	Lambdas        <-  matrix(0,ncol=kTot, nrow=n)
+	kPatchLambdas  <-  matrix(0,ncol=kTot, nrow=n)
+
+	# Loop over number of patches
+	for(i in 1:kTot) {
+		if(q == 0) {
+			Lambdas[,i]        <-  lambda0(C=C, delta=0, hf=0.5, hm=0.5, sf=sfs[,i], sm=sms[,i])
+		}
+		if(q == 1) {
+			Lambdas[,i]        <-  lambda1(C=C, delta=0, hf=0.5, hm=0.5, sf=sfs[,i], sm=sms[,i])
+		}
+		if(i == 1) {
+			kPatchLambdas[,i]  <-  Lambdas[,i]
+		}
+		if(i > 1) {
+			kPatchLambdas[,i]  <-  rowMeans(Lambdas[,1:i])
+		}	
+	}
+	kPatchLambdas[kPatchLambdas <= 1]  <-  0
+	kPatchLambdas[kPatchLambdas > 1]   <-  1
+	kPatchLambdas
+}
+
+
+###############################################################
+###############################################################
 #' Simulation to compare proportion of parameter space where
 #' polymorphism is maintained in the 2-patch model compared
 #' with the 1-patch expectation 
@@ -212,7 +359,7 @@ simMultiPatch  <-  function(n, C, delta, hf, hm, sMax) {
 
 
 
-#' Simulation to icompare proportion of parameter space where
+#' Simulation to compare proportion of parameter space where
 #' polymorphism is maintained in the 2-patch model compared
 #' with the 1-patch expectation across a gradient of selection
 #' coefficients (wrapper function for sim2Patch())
@@ -273,6 +420,115 @@ simMultiPatchSgrad  <-  function(n, C, delta, hf, hm, sMax = 1, resolution = 0.0
 	write.csv(data, file=filename, row.names = FALSE)
 }
 
+
+
+###############################################################
+###############################################################
+#' Simulation to compare proportion of parameter space where
+#' polymorphism is maintained in the 2-patch model compared
+#' with the 1-patch expectation 
+#'
+#' @title 2-Patch SA in hermaphrodites Simulation
+#' @param n      Sample size (number of selection coefficients 
+#' 				 randomly drawn from uniform distribution)
+#' @param C      Population selfing rate
+#' @param delta  Inbreeding depression
+#' @param hf     Dominance coefficient for female sex function. Assume equal across patches.
+#' @param hm     Dominance coefficient for male sex function. Assume equal across patches.
+#' @param sMax   Maximum selection coefficient in Patch 1 (determines range
+#' 				  of selection coefficient parameter space to be explored)
+#' 				  (we assume that we always explore a square parameter space 
+#' 				  (i.e., sMax is the same for males and females, and equal 
+#' 				  across patches))
+#' @export
+simMultiPatchGeneralSA  <-  function(n, C, k, delta = 0, hf = 1/2, hm = 1/2, sMax) {
+
+	# Draw random selection coefficients for up to 5 patches
+	sfMat  <-  matrix(runif(k*n, max = sMax), ncol=k, nrow=n)
+	smMat  <-  matrix(runif(k*n, max = sMax), ncol=k, nrow=n)
+
+	# Perform invasion analysis using general invasion conditions
+	generalInv_q0  <-  generalAddInv(q=0, k=k, C=C, sfs=sfMat, sms=smMat)
+	generalInv_q1  <-  generalAddInv(q=1, k=k, C=C, sfs=sfMat, sms=smMat)
+
+	# Perform invasion analysis using SA invasion conditions
+	SAInv_q0  <-  SAAddInv(q=0, k=k, C=C, sfs=sfMat, sms=smMat)
+	SAInv_q1  <-  SAAddInv(q=1, k=k, C=C, sfs=sfMat, sms=smMat)
+
+	# Calculate proportion of parameter space 
+	# where polymorphism is predicted to be 
+	# maintained by balancing selection
+	polyGen  <-  colSums(generalInv_q0 == 1 & generalInv_q1 == 1)/n
+	polySA   <-  colSums(SAInv_q0 == 1 & SAInv_q1 == 1)/n
+
+	# Save and return results
+	res  <-  list(
+				  "polyGen"  =  polyGen,
+				  "polySA"   =  polySA
+				  )
+	return(res)
+}
+
+
+
+#' Simulation to compare general multi-patch invasion 
+#' conditions with those from the SA model across a 
+#' gradient of selection coefficients (wrapper function for simMultiPatch())
+#'
+#' @title Multi-Patch SA in hermaphrodites 
+#' @param n      Sample size (number of selection coefficients 
+#' 				 randomly drawn from uniform distribution)
+#' @param C      Population selfing rate
+#' @param delta  Inbreeding depression
+#' @param hf     Dominance coefficient for female sex function. Assume equal across patches.
+#' @param hm     Dominance coefficient for male sex function. Assume equal across patches.
+#' @param sMax   Maximum selection coefficient in Patch 1 (determines range
+#' 				  of selection coefficient parameter space to be explored)
+#' 				  (we assume that we always explore a square parameter space 
+#' 				  (i.e., sMax is the same for males and females, and equal 
+#' 				  across patches))
+#' @param resolution resolution for selection coefficient gradient
+#' @export
+simMultiPatchSgradCompareGeneralSAInv  <-  function(n, k, C, delta=0, hf = 1/2, hm = 1/2, 
+													sMax = 1, resolution = 0.01) {
+
+	# Create vector of sMaxes (we assume that we always explore a 
+	# square parameter space (i.e., sMax is the same for males and females))
+	sMaxes  <- seq(from = resolution, to = sMax, by = resolution)
+	
+	# Initialize storage structures
+	PolyGen  <-  matrix(0,ncol=k, nrow=length(sMaxes))
+	PolySA   <-  matrix(0,ncol=k, nrow=length(sMaxes))
+
+	# loop over sMaxes
+	for (i in 1:length(sMaxes)) {
+		res  <-  simMultiPatchGeneralSA(n = n, k=k, C = C, delta = delta, hf = hf, hm = hm, sMax = sMaxes[i]) 
+		PolyGen[i,]  <-  res$polyGen
+		PolySA[i,]   <-  res$polySA
+
+		# Print Progress
+		if(i %% 5 == 0) {
+			print(paste("Progress: ", i," / ", length(sMaxes)))
+		}
+	}
+
+	# make colnames
+	PolyGenNames  <-  c()
+	PolySANames   <-  c()
+	for(i in 1:k) {
+		PolyGenNames[i]  <-  paste0("PolyGen",i)
+		PolySANames[i]   <-  paste0("PolySA",i)
+	}
+	colnames(PolyGen)  <-  PolyGenNames	
+	colnames(PolySA)   <-  PolySANames	
+
+	# Save results as data frame
+	data  <-  data.frame(cbind(sMaxes, PolyGen, PolySA))
+
+	# Export data
+	filename  <-  paste("./output/data/simMultiPatchSgrad_General_SA", "_k", k, "_C", C, "_delta", delta, "_hf", hf, "_hm", hm, "_sMax", sMax, ".csv", sep="")
+	write.csv(data, file=filename, row.names = FALSE)
+}
 
 
 ##################################################################

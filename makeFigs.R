@@ -74,6 +74,14 @@ embed_fonts(figPath(name='compareEigLinesSimMultiPatch.pdf'))
 toPdf(compareEigLinesSimPolyMultiPatchHDelta(h = c(0.5,0.25), delta=c(0.5,0.5)), figPath(name='compareEigLinesSimMultiPatchDelta.pdf'), width=10, height=5)
 embed_fonts(figPath(name='compareEigLinesSimMultiPatchDelta.pdf'))
 
+toPdf(PolyMultiPatchCompareGeneralSA(k = 10,sMax=1), figPath(name='compareGeneralSA-Polymorphism.pdf'), width=7, height=7)
+embed_fonts(figPath(name='compareGeneralSA-Polymorphism.pdf'))
+
+toPdf(PolyMultiPatchCompareGeneralSADiff(sMax=1), figPath(name='compareGeneralSA-PolymorphismDiff.pdf'), width=7, height=7)
+embed_fonts(figPath(name='compareGeneralSA-PolymorphismDiff.pdf'))
+
+
+
 ######################
 # Exploratory Figures
 ######################

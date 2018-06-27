@@ -78,3 +78,32 @@ resolution  <-  0.01
 		simMultiPatchSgrad(n = n, C = 1/2, delta = delta, hf = h, hm = h, sMax=1, resolution = 0.01)
 		# C = 3/4
 		simMultiPatchSgrad(n = n, C = 3/4, delta = delta, hf = h, hm = h, sMax=1, resolution = 0.01)
+
+
+
+
+######################
+##  Run Simulations Comparing General Invasion Conditions
+##  With SA invasion Conditions 
+
+# Set constant parameters for simulations
+n           <-  100000
+sMax        <-  0.5
+resolution  <-  0.025
+
+######################
+##  Run Simulations
+
+# Additive Fitness effects
+	h      <-  1/2
+	# No Inbreeding depression (delta = 0)
+		delta  <-  0
+		
+		# C = 0
+		simMultiPatchSgradCompareGeneralSAInv(n = n, k = 10, C = 0, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution)
+		# C = 1/4
+		simMultiPatchSgradCompareGeneralSAInv(n = n, k = 10, C = 1/4, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution)
+		# C = 1/2
+		simMultiPatchSgradCompareGeneralSAInv(n = n, k = 10, C = 1/2, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution)
+		# C = 3/4
+		simMultiPatchSgradCompareGeneralSAInv(n = n, k = 10, C = 3/4, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution)
