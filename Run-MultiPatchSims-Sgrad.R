@@ -88,7 +88,7 @@ resolution  <-  0.01
 
 # Set constant parameters for simulations
 n           <-  100000
-sMax        <-  0.5
+sMax        <-  1
 resolution  <-  0.025
 
 ######################
@@ -100,10 +100,10 @@ resolution  <-  0.025
 		delta  <-  0
 		
 		# C = 0
-		simMultiPatchSgradCompareGeneralSAInv(n = n, k = 10, C = 0, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution)
+		simMultiPatchSgradCompareGeneralSAInv(n = n, k = 5, C = 0, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution)
 		# C = 1/4
-		simMultiPatchSgradCompareGeneralSAInv(n = n, k = 10, C = 1/4, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution)
+		simMultiPatchSgradCompareGeneralSAInv(n = n, k = 5, C = 1/4, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution)
 		# C = 1/2
-		simMultiPatchSgradCompareGeneralSAInv(n = n, k = 10, C = 1/2, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution)
+		simMultiPatchSgradCompareGeneralSAInv(n = n, k = 5, C = 1/2, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution)
 		# C = 3/4
-		simMultiPatchSgradCompareGeneralSAInv(n = n, k = 10, C = 3/4, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution)
+		simMultiPatchSgradCompareGeneralSAInv(n = n, k = 5, C = 3/4, delta = delta, hf = h, hm = h, sMax = sMax, resolution = resolution)
