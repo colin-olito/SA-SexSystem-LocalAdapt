@@ -190,7 +190,8 @@ generalAddInv  <-  function(q, k, C, sfs, sms) {
 		if(i == 1) {
 			sfBar        <-  sfMat[,i]
 			smBar        <-  smMat[,i]
-			Inv[,i]  <-  ((1 + C)/(2 - C))*sfBar + ((1 - C)/(2 - C))*smBar
+			Inv[,i]  <-  ((1 + C)/(2 - C))*sfBar + 
+						 ((1 - C)/(2 - C))*smBar
 		}
 
 		# For multiple patches
@@ -199,11 +200,10 @@ generalAddInv  <-  function(q, k, C, sfs, sms) {
 			smBar  <-  rowMeans(smMat[,1:i])
 			sfVar  <-  apply(sfMat[,1:i], MARGIN=1, var)
 			smVar  <-  apply(smMat[,1:i], MARGIN=1, var)
-			CoVar  <-  apply(cbind(sfMat[,1:i],smMat[,1:i]), MARGIN=1, FUN = matCov)
+#			CoVar  <-  apply(cbind(sfMat[,1:i],smMat[,1:i]), MARGIN=1, FUN = matCov)
 	
-			Inv[,i]  <-  ((1 + C)/(2 - C))*sfBar + ((1 + C)^2/(2 - C)^2)*sfVar +
-							((1 - C)/(2 - C))*smBar + ((1 - C)^2/(2 - C)^2)*smVar +
-							(2*(1 - C^2)/(2 - C)^2)*CoVar
+			Inv[,i]  <-  ((1 + C)/(2 - C))*sfBar + ((1 + C)/(2 - C))*sfVar + 
+						 ((1 - C)/(2 - C))*smBar + ((1 - C)/(2 - C))*smVar
 		}
 	}
 
@@ -253,7 +253,7 @@ generalAddInvAlt  <-  function(q, k, C, sfs, sms) {
 	# Calculate selection coefficients
 	sfMat     <-  matrix(0,ncol=kTot, nrow=n)
 	smMat     <-  matrix(0,ncol=kTot, nrow=n)
-	Inv   <-  matrix(0,ncol=kTot, nrow=n)
+	Inv       <-  matrix(0,ncol=kTot, nrow=n)
 
 	# Loop over number of patches
 	for(i in 1:kTot) {
@@ -280,7 +280,7 @@ generalAddInvAlt  <-  function(q, k, C, sfs, sms) {
 			smBar  <-  rowMeans(smMat[,1:i])
 			sfVar  <-  apply(sfMat[,1:i], MARGIN=1, var)
 			smVar  <-  apply(smMat[,1:i], MARGIN=1, var)
-			CoVar  <-  apply(cbind(sfMat[,1:i],smMat[,1:i]), MARGIN=1, FUN = matCov)
+#			CoVar  <-  apply(cbind(sfMat[,1:i],smMat[,1:i]), MARGIN=1, FUN = matCov)
 	
 			Inv[,i]  <-  ((1 + C)/(2 - C))*sfBar + 
 						 ((1 - C)/(2 - C))*smBar
@@ -835,7 +835,7 @@ Wm.fit  <-  function(hm, sm){
 kPatchRecursionFwdSim  <-  function(gen = 5000, k = 5, C = 0, delta =  0, s.vals, hm = 0.5, hf = 0.5, threshold = 1e-6, ...) {
 
 	##  Warnings
-	if(any(c(C, delta, s.vals, hm, hf) < 0) | any(c(C, delta, s.vals, hm, hf) > 1))
+	if(any(c(C, delta, hm, hf) < 0) | any(c(C, delta, hm, hf) > 1))
 		stop('The chosen parameter values fall outside of the reasonable bounds')
 
 	if(hf  !=  hm)
@@ -1183,3 +1183,6 @@ detSimMultiPatchSgrad  <-  function(n = 10000, gen = 5000, C=0, delta=0, hf=0.5,
 	filename  <-  paste("./output/data/determSimMultiPatchSgrad_wkSel", "_C", C, "_delta", delta, "_hf", hf, "_hm", hm, "_sMax", sMax, ".csv", sep="")
 	write.csv(data, file=filename, row.names = FALSE)
 }
+
+
+

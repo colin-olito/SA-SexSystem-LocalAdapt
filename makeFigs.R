@@ -65,21 +65,15 @@ embed_fonts(figPath(name='compareSimEig1Patch.pdf'))
 toPdf(compareSimEig1PatchFig(h = c(0.5,0.25), delta=0.5), figPath(name='compareEigSim1PatchDelta.pdf'), width=10, height=5)
 embed_fonts(figPath(name='compareSimEig1PatchDelta.pdf'))
 
-toPdf(compareEigSimPolyMultiPatchHDelta(h = c(0.5,0.25), delta=c(0,0)), figPath(name='compareEigSimMultiPatch.pdf'), width=10, height=5)
-embed_fonts(figPath(name='compareEigSimMultiPatch.pdf'))
-
 toPdf(compareEigLinesSimPolyMultiPatchHDelta(h = c(0.5,0.25), delta=c(0,0)), figPath(name='compareEigLinesSimMultiPatch.pdf'), width=10, height=5)
 embed_fonts(figPath(name='compareEigLinesSimMultiPatch.pdf'))
 
 toPdf(compareEigLinesSimPolyMultiPatchHDelta(h = c(0.5,0.25), delta=c(0.5,0.5)), figPath(name='compareEigLinesSimMultiPatchDelta.pdf'), width=10, height=5)
 embed_fonts(figPath(name='compareEigLinesSimMultiPatchDelta.pdf'))
 
-toPdf(PolyMultiPatchCompareGeneralSA(k = 10,sMax=1), figPath(name='compareGeneralSA-Polymorphism.pdf'), width=7, height=7)
+source('R/functions-figures.R')
+toPdf(PolyMultiPatchCompareGeneralSA(k = 5,sMax=1), figPath(name='compareGeneralSA-Polymorphism.pdf'), width=7, height=7)
 embed_fonts(figPath(name='compareGeneralSA-Polymorphism.pdf'))
-
-toPdf(PolyMultiPatchCompareGeneralSADiff(sMax=1), figPath(name='compareGeneralSA-PolymorphismDiff.pdf'), width=7, height=7)
-embed_fonts(figPath(name='compareGeneralSA-PolymorphismDiff.pdf'))
-
 
 
 ######################

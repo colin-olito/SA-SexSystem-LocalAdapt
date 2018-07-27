@@ -912,7 +912,7 @@ compareSimEig1PatchFig  <-  function(h = c(0.5, 0.25), delta = 0, sMax=1) {
         points(0.02,0.83, pch=21, col=NA, cex=1, bg='dodgerblue2')
         proportionalLabel(0.1, 0.95, substitute(p~" Agree", list(p = pAgree)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         proportionalLabel(0.1, 0.88, substitute(p~" Sim.", list(p = pSim)), cex=0.75, adj=c(0, 0.5), xpd=NA)
-        proportionalLabel(0.1, 0.80, substitute(p~" Eig.", list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.1, 0.80, substitute(p~" Lambda", list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
 
 
 ## Panel B: C = 1/4
@@ -956,7 +956,7 @@ compareSimEig1PatchFig  <-  function(h = c(0.5, 0.25), delta = 0, sMax=1) {
         points(0.02,0.83, pch=21, col=NA, cex=1, bg='dodgerblue2')
         proportionalLabel(0.1, 0.95, substitute(p~" Agree", list(p = pAgree)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         proportionalLabel(0.1, 0.88, substitute(p~" Sim.", list(p = pSim)), cex=0.75, adj=c(0, 0.5), xpd=NA)
-        proportionalLabel(0.1, 0.80, substitute(p~" Eig.", list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.1, 0.80, substitute(p~" Lambda", list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
 
 ## Panel C: C = 1/2
     # Calculate proportions of each outcome
@@ -999,7 +999,7 @@ compareSimEig1PatchFig  <-  function(h = c(0.5, 0.25), delta = 0, sMax=1) {
         points(0.02,0.83, pch=21, col=NA, cex=1, bg='dodgerblue2')
         proportionalLabel(0.1, 0.95, substitute(p~" Agree", list(p = pAgree)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         proportionalLabel(0.1, 0.88, substitute(p~" Sim.", list(p = pSim)), cex=0.75, adj=c(0, 0.5), xpd=NA)
-        proportionalLabel(0.1, 0.80, substitute(p~" Eig.", list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.1, 0.80, substitute(p~" Lambda", list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
 
 ## Panel D: C = 3/4
     # Calculate proportions of each outcome
@@ -1042,7 +1042,7 @@ compareSimEig1PatchFig  <-  function(h = c(0.5, 0.25), delta = 0, sMax=1) {
         points(0.02,0.83, pch=21, col=NA, cex=1, bg='dodgerblue2')
         proportionalLabel(0.1, 0.95, substitute(p~" Agree", list(p = pAgree)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         proportionalLabel(0.1, 0.88, substitute(p~" Sim.", list(p = pSim)), cex=0.75, adj=c(0, 0.5), xpd=NA)
-        proportionalLabel(0.1, 0.80, substitute(p~" Eig.", list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.1, 0.80, substitute(p~" Lambda", list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
 
 
 ## h = 1/4
@@ -1089,7 +1089,7 @@ compareSimEig1PatchFig  <-  function(h = c(0.5, 0.25), delta = 0, sMax=1) {
         points(0.02,0.83, pch=21, col=NA, cex=1, bg='dodgerblue2')
         proportionalLabel(0.1, 0.95, substitute(p~" Agree", list(p = pAgree)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         proportionalLabel(0.1, 0.88, substitute(p~" Sim.", list(p = pSim)), cex=0.75, adj=c(0, 0.5), xpd=NA)
-        proportionalLabel(0.1, 0.80, substitute(p~" Eig.", list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.1, 0.80, substitute(p~" Lambda", list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
 
 ## Panel F: C = 1/4    
     # Calculate proportions of each outcome
@@ -1132,7 +1132,7 @@ compareSimEig1PatchFig  <-  function(h = c(0.5, 0.25), delta = 0, sMax=1) {
         points(0.02,0.83, pch=21, col=NA, cex=1, bg='dodgerblue2')
         proportionalLabel(0.1, 0.95, substitute(p~" Agree", list(p = pAgree)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         proportionalLabel(0.1, 0.88, substitute(p~" Sim.", list(p = pSim)), cex=0.75, adj=c(0, 0.5), xpd=NA)
-        proportionalLabel(0.1, 0.80, substitute(p~" Eig.", list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.1, 0.80, substitute(p~" Lambda", list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
 
 ## Panel G: C = 1/2
     # Calculate proportions of each outcome
@@ -1174,7 +1174,7 @@ compareSimEig1PatchFig  <-  function(h = c(0.5, 0.25), delta = 0, sMax=1) {
         points(0.02,0.83, pch=21, col=NA, cex=1, bg='dodgerblue2')
         proportionalLabel(0.1, 0.95, substitute(p~" Agree", list(p = pAgree)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         proportionalLabel(0.1, 0.88, substitute(p~" Sim.", list(p = pSim)), cex=0.75, adj=c(0, 0.5), xpd=NA)
-        proportionalLabel(0.1, 0.80, substitute(p~" Eig.", list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.1, 0.80, substitute(p~" Lambda", list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
 
 ## Panel H: C = 3/4
     # Calculate proportions of each outcome
@@ -1216,7 +1216,7 @@ compareSimEig1PatchFig  <-  function(h = c(0.5, 0.25), delta = 0, sMax=1) {
         points(0.02,0.83, pch=21, col=NA, cex=1, bg='dodgerblue2')
         proportionalLabel(0.1, 0.95, substitute(p~" Agree", list(p = pAgree)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         proportionalLabel(0.1, 0.88, substitute(p~" Sim.", list(p = pSim)), cex=0.75, adj=c(0, 0.5), xpd=NA)
-        proportionalLabel(0.1, 0.80, substitute(p~" Eig.", list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.1, 0.80, substitute(p~" Lambda", list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
               
 }
 
@@ -1759,43 +1759,61 @@ compareEigLinesSimPolyMultiPatchHDelta  <-  function(h, delta, sMax=1) {
 
 
 # Simple figs for 2-patch Levene model for simultaneous hermaphrodites
-PolyMultiPatchCompareGeneralSA  <-  function(k = 10, sMax=1) {
+PolyMultiPatchCompareGeneralSA  <-  function(k = 5, sMax=1) {
     
     # import data
-    filename1  <-  paste("./output/data/simMultiPatchSgrad_General_SA", "_k", k, "_C", 0,    "_delta", 0, "_hf", 0.5, "_hm", 0.5, "_sMax", sMax, ".csv", sep="")
-    filename2  <-  paste("./output/data/simMultiPatchSgrad_General_SA", "_k", k, "_C", 0.25, "_delta", 0, "_hf", 0.5, "_hm", 0.5, "_sMax", sMax, ".csv", sep="")
-    filename3  <-  paste("./output/data/simMultiPatchSgrad_General_SA", "_k", k, "_C", 0.5,  "_delta", 0, "_hf", 0.5, "_hm", 0.5, "_sMax", sMax, ".csv", sep="")
-    filename4  <-  paste("./output/data/simMultiPatchSgrad_General_SA", "_k", k, "_C", 0.75, "_delta", 0, "_hf", 0.5, "_hm", 0.5, "_sMax", sMax, ".csv", sep="")
+    filename1  <-  paste("./output/data/simMultiPatchSgrad_General_GeneralAlt_SA", "_k", 5, "_C", 0,    "_delta", 0, "_hf", 0.5, "_hm", 0.5, "_sMax", sMax, ".csv", sep="")
+    filename2  <-  paste("./output/data/simMultiPatchSgrad_General_GeneralAlt_SA", "_k", 5, "_C", 0.25, "_delta", 0, "_hf", 0.5, "_hm", 0.5, "_sMax", sMax, ".csv", sep="")
+    filename3  <-  paste("./output/data/simMultiPatchSgrad_General_GeneralAlt_SA", "_k", 5, "_C", 0.5,  "_delta", 0, "_hf", 0.5, "_hm", 0.5, "_sMax", sMax, ".csv", sep="")
+    filename4  <-  paste("./output/data/simMultiPatchSgrad_General_GeneralAlt_SA", "_k", 5, "_C", 0.75, "_delta", 0, "_hf", 0.5, "_hm", 0.5, "_sMax", sMax, ".csv", sep="")
     data1  <-  read.csv(filename1, header=TRUE)
     data2  <-  read.csv(filename2, header=TRUE)
     data3  <-  read.csv(filename3, header=TRUE)
     data4  <-  read.csv(filename4, header=TRUE)
+    filename1  <-  paste("./output/data/determSimMultiPatchSgrad_wkSel", "_C", 0,    "_delta", 0, "_hf", 0.5, "_hm", 0.5, "_sMax", sMax, ".csv", sep="")
+    filename2  <-  paste("./output/data/determSimMultiPatchSgrad_wkSel", "_C", 0.25, "_delta", 0, "_hf", 0.5, "_hm", 0.5, "_sMax", sMax, ".csv", sep="")
+    filename3  <-  paste("./output/data/determSimMultiPatchSgrad_wkSel", "_C", 0.5,  "_delta", 0, "_hf", 0.5, "_hm", 0.5, "_sMax", sMax, ".csv", sep="")
+    filename4  <-  paste("./output/data/determSimMultiPatchSgrad_wkSel", "_C", 0.75, "_delta", 0, "_hf", 0.5, "_hm", 0.5, "_sMax", sMax, ".csv", sep="")
+    dat1       <-  read.csv(filename1, header=TRUE)
+    dat2       <-  read.csv(filename2, header=TRUE)
+    dat3       <-  read.csv(filename3, header=TRUE)
+    dat4       <-  read.csv(filename4, header=TRUE)
 
     # Color Scheme
     COLS  <-  c("grey50", "grey60", "grey70", "grey80", "black")
+#pdf("compareEq3MeanSA.pdf", width=7,height=7)
 
     # Set plot layout
     layout.mat <- matrix(c(1:4), nrow=2, ncol=2, byrow=TRUE)
     layout     <- layout(layout.mat,respect=TRUE)
 
+
 ## Panel A: C = 0
     par(omi=c(0.5, 0.5, 0.5, 0.5), mar = c(4,4,0.5,0.5), bty='o', xaxt='s', yaxt='s')    
-     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, 1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
         box()
         # Plot proportion of parameter space for 1 and 2 patches
-        lines(PolySA5 ~ sMaxes, data=data1, lwd=3, col=COLS[1])
-        lines(PolySA4 ~ sMaxes, data=data1, lwd=3, col=COLS[2])
-        lines(PolySA3 ~ sMaxes, data=data1, lwd=3, col=COLS[3])
-        lines(PolySA2 ~ sMaxes, data=data1, lwd=3, col=COLS[4])
-        lines(PolySA1 ~ sMaxes, data=data1, lwd=3, col=COLS[5])
-        lines(PolyGen5 ~ sMaxes, data=data1, lwd=3, lty=2, col=COLS[1])
-        lines(PolyGen4 ~ sMaxes, data=data1, lwd=3, lty=2, col=COLS[2])
-        lines(PolyGen3 ~ sMaxes, data=data1, lwd=3, lty=2, col=COLS[3])
-        lines(PolyGen2 ~ sMaxes, data=data1, lwd=3, lty=2, col=COLS[4])
-        lines(PolyGen1 ~ sMaxes, data=data1, lwd=3, lty=2, col=COLS[5])
+#        lines(PolyGen5 ~ sMaxes, data=data1, lwd=3, lty=1, col=COLS[1])
+#        lines(PolyGen4 ~ sMaxes, data=data1, lwd=3, lty=1, col=COLS[2])
+#        lines(PolyGen3 ~ sMaxes, data=data1, lwd=3, lty=1, col=COLS[3])
+#        lines(PolyGen2 ~ sMaxes, data=data1, lwd=3, lty=1, col=COLS[4])
+#        lines(PolyGen1 ~ sMaxes, data=data1, lwd=3, lty=1, col=COLS[5])
+
+        lines(PolyGenAlt5 ~ sMaxes, data=data1, lwd=3, lty=3, col=COLS[1])
+        lines(PolyGenAlt4 ~ sMaxes, data=data1, lwd=3, lty=3, col=COLS[2])
+        lines(PolyGenAlt3 ~ sMaxes, data=data1, lwd=3, lty=3, col=COLS[3])
+        lines(PolyGenAlt2 ~ sMaxes, data=data1, lwd=3, lty=3, col=COLS[4])
+        lines(PolyGenAlt1 ~ sMaxes, data=data1, lwd=3, lty=3, col=COLS[5])
+
+        points(pSimPoly5 ~ sMax, data=dat1, pch=21, bg=transparentColor(COLS[1], opacity=0.8))
+        points(pSimPoly4 ~ sMax, data=dat1, pch=21, bg=transparentColor(COLS[2], opacity=0.8))
+        points(pSimPoly3 ~ sMax, data=dat1, pch=21, bg=transparentColor(COLS[3], opacity=0.8))
+        points(pSimPoly2 ~ sMax, data=dat1, pch=21, bg=transparentColor(COLS[4], opacity=0.8))
+        points(pSimPoly1 ~ sMax, data=dat1, pch=21, bg=transparentColor(COLS[5], opacity=0.8))
+
         # axes
         axis(1, las=1, labels=NA)
         axis(2, las=1)
@@ -1804,22 +1822,29 @@ PolyMultiPatchCompareGeneralSA  <-  function(k = 10, sMax=1) {
         proportionalLabel( 0.5,  1.1,   expression(paste(italic(C)," = 0")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
 
 ## Panel B: C = 1/4
-     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, 1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
         box()
         # Plot proportion of parameter space for 1 and 2 patches
-        lines(PolySA5 ~ sMaxes, data=data2, lwd=3, col=COLS[1])
-        lines(PolySA4 ~ sMaxes, data=data2, lwd=3, col=COLS[2])
-        lines(PolySA3 ~ sMaxes, data=data2, lwd=3, col=COLS[3])
-        lines(PolySA2 ~ sMaxes, data=data2, lwd=3, col=COLS[4])
-        lines(PolySA1 ~ sMaxes, data=data2, lwd=3, col=COLS[5])
-        lines(PolyGen5 ~ sMaxes, data=data2, lwd=3, lty=2, col=COLS[1])
-        lines(PolyGen4 ~ sMaxes, data=data2, lwd=3, lty=2, col=COLS[2])
-        lines(PolyGen3 ~ sMaxes, data=data2, lwd=3, lty=2, col=COLS[3])
-        lines(PolyGen2 ~ sMaxes, data=data2, lwd=3, lty=2, col=COLS[4])
-        lines(PolyGen1 ~ sMaxes, data=data2, lwd=3, lty=2, col=COLS[5])
+#        lines(PolyGen5 ~ sMaxes, data=data2, lwd=3, lty=1, col=COLS[1])
+#        lines(PolyGen4 ~ sMaxes, data=data2, lwd=3, lty=1, col=COLS[2])
+#        lines(PolyGen3 ~ sMaxes, data=data2, lwd=3, lty=1, col=COLS[3])
+#        lines(PolyGen2 ~ sMaxes, data=data2, lwd=3, lty=1, col=COLS[4])
+#        lines(PolyGen1 ~ sMaxes, data=data2, lwd=3, lty=1, col=COLS[5])
+
+        lines(PolyGenAlt5 ~ sMaxes, data=data2, lwd=3, lty=3, col=COLS[1])
+        lines(PolyGenAlt4 ~ sMaxes, data=data2, lwd=3, lty=3, col=COLS[2])
+        lines(PolyGenAlt3 ~ sMaxes, data=data2, lwd=3, lty=3, col=COLS[3])
+        lines(PolyGenAlt2 ~ sMaxes, data=data2, lwd=3, lty=3, col=COLS[4])
+        lines(PolyGenAlt1 ~ sMaxes, data=data2, lwd=3, lty=3, col=COLS[5])
+
+        points(pSimPoly5 ~ sMax, data=dat2, pch=21, bg=transparentColor(COLS[1], opacity=0.8))
+        points(pSimPoly4 ~ sMax, data=dat2, pch=21, bg=transparentColor(COLS[2], opacity=0.8))
+        points(pSimPoly3 ~ sMax, data=dat2, pch=21, bg=transparentColor(COLS[3], opacity=0.8))
+        points(pSimPoly2 ~ sMax, data=dat2, pch=21, bg=transparentColor(COLS[4], opacity=0.8))
+        points(pSimPoly1 ~ sMax, data=dat2, pch=21, bg=transparentColor(COLS[5], opacity=0.8))
         # axes
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
@@ -1828,22 +1853,29 @@ PolyMultiPatchCompareGeneralSA  <-  function(k = 10, sMax=1) {
         proportionalLabel( 0.5,  1.1,   expression(paste(italic(C)," = 0.25")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
 
 ## Panel C: C = 1/2
-     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, 1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
         box()
         # Plot proportion of parameter space for 1 and 2 patches
-        lines(PolySA5 ~ sMaxes, data=data3, lwd=3, col=COLS[1])
-        lines(PolySA4 ~ sMaxes, data=data3, lwd=3, col=COLS[2])
-        lines(PolySA3 ~ sMaxes, data=data3, lwd=3, col=COLS[3])
-        lines(PolySA2 ~ sMaxes, data=data3, lwd=3, col=COLS[4])
-        lines(PolySA1 ~ sMaxes, data=data3, lwd=3, col=COLS[5])
-        lines(PolyGen5 ~ sMaxes, data=data3, lwd=3, lty=2, col=COLS[1])
-        lines(PolyGen4 ~ sMaxes, data=data3, lwd=3, lty=2, col=COLS[2])
-        lines(PolyGen3 ~ sMaxes, data=data3, lwd=3, lty=2, col=COLS[3])
-        lines(PolyGen2 ~ sMaxes, data=data3, lwd=3, lty=2, col=COLS[4])
-        lines(PolyGen1 ~ sMaxes, data=data3, lwd=3, lty=2, col=COLS[5])
+#        lines(PolyGen5 ~ sMaxes, data=data3, lwd=3, lty=1, col=COLS[1])
+#        lines(PolyGen4 ~ sMaxes, data=data3, lwd=3, lty=1, col=COLS[2])
+#        lines(PolyGen3 ~ sMaxes, data=data3, lwd=3, lty=1, col=COLS[3])
+#        lines(PolyGen2 ~ sMaxes, data=data3, lwd=3, lty=1, col=COLS[4])
+#        lines(PolyGen1 ~ sMaxes, data=data3, lwd=3, lty=1, col=COLS[5])
+
+        lines(PolyGenAlt5 ~ sMaxes, data=data3, lwd=3, lty=3, col=COLS[1])
+        lines(PolyGenAlt4 ~ sMaxes, data=data3, lwd=3, lty=3, col=COLS[2])
+        lines(PolyGenAlt3 ~ sMaxes, data=data3, lwd=3, lty=3, col=COLS[3])
+        lines(PolyGenAlt2 ~ sMaxes, data=data3, lwd=3, lty=3, col=COLS[4])
+        lines(PolyGenAlt1 ~ sMaxes, data=data3, lwd=3, lty=3, col=COLS[5])
+
+        points(pSimPoly5 ~ sMax, data=dat3, pch=21, bg=transparentColor(COLS[1], opacity=0.8))
+        points(pSimPoly4 ~ sMax, data=dat3, pch=21, bg=transparentColor(COLS[2], opacity=0.8))
+        points(pSimPoly3 ~ sMax, data=dat3, pch=21, bg=transparentColor(COLS[3], opacity=0.8))
+        points(pSimPoly2 ~ sMax, data=dat3, pch=21, bg=transparentColor(COLS[4], opacity=0.8))
+        points(pSimPoly1 ~ sMax, data=dat3, pch=21, bg=transparentColor(COLS[5], opacity=0.8))
         # axes
         axis(1, las=1)
         axis(2, las=1)
@@ -1854,23 +1886,29 @@ PolyMultiPatchCompareGeneralSA  <-  function(k = 10, sMax=1) {
         proportionalLabel(1.2,  -0.3,   expression(paste("Maximum strength of selection: max(",italic(s[f]),", ", italic(s[m]),")")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)        
 
 ## Panel D: C = 3/4
-     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, 1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
         box()
         # Plot proportion of parameter space for 1 and 2 patches
-        lines(PolySA5 ~ sMaxes, data=data4, lwd=3, col=COLS[1])
-        lines(PolySA4 ~ sMaxes, data=data4, lwd=3, col=COLS[2])
-        lines(PolySA3 ~ sMaxes, data=data4, lwd=3, col=COLS[3])
-        lines(PolySA2 ~ sMaxes, data=data4, lwd=3, col=COLS[4])
-        lines(PolySA1 ~ sMaxes, data=data4, lwd=3, col=COLS[5])
-        lines(PolyGen5 ~ sMaxes, data=data4, lwd=3, lty=2, col=COLS[1])
-        lines(PolyGen4 ~ sMaxes, data=data4, lwd=3, lty=2, col=COLS[2])
-        lines(PolyGen3 ~ sMaxes, data=data4, lwd=3, lty=2, col=COLS[3])
-        lines(PolyGen2 ~ sMaxes, data=data4, lwd=3, lty=2, col=COLS[4])
-        lines(PolyGen1 ~ sMaxes, data=data4, lwd=3, lty=2, col=COLS[5])
-        lines(PolyGen1 ~ sMaxes, data=data4, lwd=3, lty=2, col=COLS[5])
+#        lines(PolyGen5 ~ sMaxes, data=data4, lwd=3, lty=1, col=COLS[1])
+#        lines(PolyGen4 ~ sMaxes, data=data4, lwd=3, lty=1, col=COLS[2])
+#        lines(PolyGen3 ~ sMaxes, data=data4, lwd=3, lty=1, col=COLS[3])
+#        lines(PolyGen2 ~ sMaxes, data=data4, lwd=3, lty=1, col=COLS[4])
+#        lines(PolyGen1 ~ sMaxes, data=data4, lwd=3, lty=1, col=COLS[5])
+
+        lines(PolyGenAlt5 ~ sMaxes, data=data4, lwd=3, lty=3, col=COLS[1])
+        lines(PolyGenAlt4 ~ sMaxes, data=data4, lwd=3, lty=3, col=COLS[2])
+        lines(PolyGenAlt3 ~ sMaxes, data=data4, lwd=3, lty=3, col=COLS[3])
+        lines(PolyGenAlt2 ~ sMaxes, data=data4, lwd=3, lty=3, col=COLS[4])
+        lines(PolyGenAlt1 ~ sMaxes, data=data4, lwd=3, lty=3, col=COLS[5])
+
+        points(pSimPoly5 ~ sMax, data=dat4, pch=21, bg=transparentColor(COLS[1], opacity=0.8))
+        points(pSimPoly4 ~ sMax, data=dat4, pch=21, bg=transparentColor(COLS[2], opacity=0.8))
+        points(pSimPoly3 ~ sMax, data=dat4, pch=21, bg=transparentColor(COLS[3], opacity=0.8))
+        points(pSimPoly2 ~ sMax, data=dat4, pch=21, bg=transparentColor(COLS[4], opacity=0.8))
+        points(pSimPoly1 ~ sMax, data=dat4, pch=21, bg=transparentColor(COLS[5], opacity=0.8))
         # axes
         axis(1, las=1)
         axis(2, las=1, labels=NA)
@@ -1889,8 +1927,9 @@ PolyMultiPatchCompareGeneralSA  <-  function(k = 10, sMax=1) {
                                 expression(paste("2 Patch")),
                                 expression(paste("1 Patch"))),
                     col     =  COLS,
-                    lty     =  c(1,1),
-                    lwd     =  c(3,3),
+                    lty     =  3,
+                    lwd     =  3,
+                    seg.len =  3,
                     cex     =  0.9,
                     xjust   =  1,
                     yjust   =  1,
@@ -1899,22 +1938,20 @@ PolyMultiPatchCompareGeneralSA  <-  function(k = 10, sMax=1) {
             )
         # Legend
                 legend(
-                    x       =  usr[2]*0.95,
-                    y       =  usr[4],
+                    x       =  usr[2]*0.47,
+                    y       =  usr[4]*0.64,
                     legend  =  c(
-                                expression(paste("Eq(3)")),
-                                expression(paste("SA Eig."))),
+                                expression(paste("Det. Sim."))),
                     col     =  'black',
-                    lty     =  c(2,1),
-                    lwd     =  c(3,3),
-                    seg.len =  3,
+                    lty     =  c(NA),
+                    lwd     =  c(NA),
+                    pch     =  c(21),
                     cex     =  0.9,
                     xjust   =  1,
                     yjust   =  1,
                     bty     =  'n',
                     border  =  NA
             )
-        
 }
 
 

@@ -39,30 +39,30 @@ source('R/functions-figures.R')
 ##############
 # 1: C = 0
 	# delta = 0
-	Add1  <-  recursionFwdSimLoop(n = 10000, gen = 10000, sRange = c(0,1), C = 0, delta = 0, hf = 0.5, hm = 0.5, threshold = 1e-10)
+	Add1  <-  recursionFwdSimLoop(n = 10000, gen = 200000, sRange = c(0,1), C = 0, delta = 0, hf = 0.5, hm = 0.5, threshold = 1e-10)
 	# delta = 1/2
-	Add2  <-  recursionFwdSimLoop(n = 10000, gen = 10000, sRange = c(0,1), C = 0, delta = 0.5, hf = 0.5, hm = 0.5, threshold = 1e-10)
+	Add2  <-  recursionFwdSimLoop(n = 10000, gen = 200000, sRange = c(0,1), C = 0, delta = 0.5, hf = 0.5, hm = 0.5, threshold = 1e-10)
 
 ##############
 # 2: C = 0.25
 	# delta = 0
-	Add3  <-  recursionFwdSimLoop(n = 10000, gen = 10000, sRange = c(0,1), C = 0.25, delta = 0, hf = 0.5, hm = 0.5, threshold = 1e-10)
+	Add3  <-  recursionFwdSimLoop(n = 10000, gen = 200000, sRange = c(0,1), C = 0.25, delta = 0, hf = 0.5, hm = 0.5, threshold = 1e-10)
 	# delta = 1/2
-	Add4  <-  recursionFwdSimLoop(n = 10000, gen = 10000, sRange = c(0,1), C = 0.25, delta = 0.5, hf = 0.5, hm = 0.5, threshold = 1e-10)
+	Add4  <-  recursionFwdSimLoop(n = 10000, gen = 200000, sRange = c(0,1), C = 0.25, delta = 0.5, hf = 0.5, hm = 0.5, threshold = 1e-10)
 
 ##############
 # 3: C = 0.5
 	# delta = 0
-	Add5  <-  recursionFwdSimLoop(n = 10000, gen = 10000, sRange = c(0,1), C = 0.5, delta = 0, hf = 0.5, hm = 0.5, threshold = 1e-10)
+	Add5  <-  recursionFwdSimLoop(n = 10000, gen = 200000, sRange = c(0,1), C = 0.5, delta = 0, hf = 0.5, hm = 0.5, threshold = 1e-10)
 	# delta = 1/2
-	Add6  <-  recursionFwdSimLoop(n = 10000, gen = 10000, sRange = c(0,1), C = 0.5, delta = 0.5, hf = 0.5, hm = 0.5, threshold = 1e-10)
+	Add6  <-  recursionFwdSimLoop(n = 10000, gen = 200000, sRange = c(0,1), C = 0.5, delta = 0.5, hf = 0.5, hm = 0.5, threshold = 1e-10)
 
 ##############
 # 4: C = 0.75
 	# delta = 0
-	Add7  <-  recursionFwdSimLoop(n = 10000, gen = 10000, sRange = c(0,1), C = 0.75, delta = 0, hf = 0.5, hm = 0.5, threshold = 1e-10)
+	Add7  <-  recursionFwdSimLoop(n = 10000, gen = 200000, sRange = c(0,1), C = 0.75, delta = 0, hf = 0.5, hm = 0.5, threshold = 1e-10)
 	# delta = 1/2
-	Add8  <-  recursionFwdSimLoop(n = 10000, gen = 10000, sRange = c(0,1), C = 0.75, delta = 0.5, hf = 0.5, hm = 0.5, threshold = 1e-10)
+	Add8  <-  recursionFwdSimLoop(n = 10000, gen = 200000, sRange = c(0,1), C = 0.75, delta = 0.5, hf = 0.5, hm = 0.5, threshold = 1e-10)
 
 
 
@@ -72,27 +72,27 @@ source('R/functions-figures.R')
 ##############
 # 1: C = 0
 	# delta = 0
-	DR1  <-  recursionFwdSimLoop(n = 10000, gen = 10000, sRange = c(0,1), C = 0, delta = 0, hf = 0.25, hm = 0.25, threshold = 1e-10)
+	DR1  <-  recursionFwdSimLoop(n = 10000, gen = 200000, sRange = c(0,1), C = 0, delta = 0, hf = 0.25, hm = 0.25, threshold = 1e-10)
 	# delta = 1/2
-	DR2  <-  recursionFwdSimLoop(n = 10000, gen = 10000, sRange = c(0,1), C = 0, delta = 0.5, hf = 0.25, hm = 0.25, threshold = 1e-10)
+	DR2  <-  recursionFwdSimLoop(n = 10000, gen = 200000, sRange = c(0,1), C = 0, delta = 0.5, hf = 0.25, hm = 0.25, threshold = 1e-10)
 
 ##############
 # 2: C = 0.25
 	# delta = 0
-	DR3  <-  recursionFwdSimLoop(n = 10000, gen = 10000, sRange = c(0,1), C = 0.25, delta = 0, hf = 0.25, hm = 0.25, threshold = 1e-10)
+	DR3  <-  recursionFwdSimLoop(n = 10000, gen = 200000, sRange = c(0,1), C = 0.25, delta = 0, hf = 0.25, hm = 0.25, threshold = 1e-10)
 	# delta = 1/2
-	DR4  <-  recursionFwdSimLoop(n = 10000, gen = 10000, sRange = c(0,1), C = 0.25, delta = 0.5, hf = 0.25, hm = 0.25, threshold = 1e-10)
+	DR4  <-  recursionFwdSimLoop(n = 10000, gen = 200000, sRange = c(0,1), C = 0.25, delta = 0.5, hf = 0.25, hm = 0.25, threshold = 1e-10)
 
 ##############
 # 3: C = 0.5
 	# delta = 0
-	DR5  <-  recursionFwdSimLoop(n = 10000, gen = 10000, sRange = c(0,1), C = 0.5, delta = 0, hf = 0.25, hm = 0.25, threshold = 1e-10)
+	DR5  <-  recursionFwdSimLoop(n = 10000, gen = 200000, sRange = c(0,1), C = 0.5, delta = 0, hf = 0.25, hm = 0.25, threshold = 1e-10)
 	# delta = 1/2
-	DR6  <-  recursionFwdSimLoop(n = 10000, gen = 10000, sRange = c(0,1), C = 0.5, delta = 0.5, hf = 0.25, hm = 0.25, threshold = 1e-10)
+	DR6  <-  recursionFwdSimLoop(n = 10000, gen = 200000, sRange = c(0,1), C = 0.5, delta = 0.5, hf = 0.25, hm = 0.25, threshold = 1e-10)
 
 ##############
 # 4: C = 0.75
 	# delta = 0
-	DR7  <-  recursionFwdSimLoop(n = 10000, gen = 10000, sRange = c(0,1), C = 0.75, delta = 0, hf = 0.25, hm = 0.25, threshold = 1e-10)
+	DR7  <-  recursionFwdSimLoop(n = 10000, gen = 200000, sRange = c(0,1), C = 0.75, delta = 0, hf = 0.25, hm = 0.25, threshold = 1e-10)
 	# delta = 1/2
-	DR8  <-  recursionFwdSimLoop(n = 10000, gen = 10000, sRange = c(0,1), C = 0.75, delta = 0.5, hf = 0.25, hm = 0.25, threshold = 1e-10)
+	DR8  <-  recursionFwdSimLoop(n = 10000, gen = 200000, sRange = c(0,1), C = 0.75, delta = 0.5, hf = 0.25, hm = 0.25, threshold = 1e-10)
