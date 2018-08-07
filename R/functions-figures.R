@@ -912,7 +912,7 @@ compareSimEig1PatchFig  <-  function(h = c(0.5, 0.25), delta = 0, sMax=1) {
         points(0.02,0.83, pch=21, col=NA, cex=1, bg='dodgerblue2')
         proportionalLabel(0.1, 0.95, substitute(p~" Agree", list(p = pAgree)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         proportionalLabel(0.1, 0.88, substitute(p~" Sim.", list(p = pSim)), cex=0.75, adj=c(0, 0.5), xpd=NA)
-        proportionalLabel(0.1, 0.80, substitute(p~" Lambda", list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.1, 0.80, substitute(p~lambda, list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
 
 
 ## Panel B: C = 1/4
@@ -956,7 +956,7 @@ compareSimEig1PatchFig  <-  function(h = c(0.5, 0.25), delta = 0, sMax=1) {
         points(0.02,0.83, pch=21, col=NA, cex=1, bg='dodgerblue2')
         proportionalLabel(0.1, 0.95, substitute(p~" Agree", list(p = pAgree)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         proportionalLabel(0.1, 0.88, substitute(p~" Sim.", list(p = pSim)), cex=0.75, adj=c(0, 0.5), xpd=NA)
-        proportionalLabel(0.1, 0.80, substitute(p~" Lambda", list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.1, 0.80, substitute(p~lambda, list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
 
 ## Panel C: C = 1/2
     # Calculate proportions of each outcome
@@ -999,7 +999,7 @@ compareSimEig1PatchFig  <-  function(h = c(0.5, 0.25), delta = 0, sMax=1) {
         points(0.02,0.83, pch=21, col=NA, cex=1, bg='dodgerblue2')
         proportionalLabel(0.1, 0.95, substitute(p~" Agree", list(p = pAgree)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         proportionalLabel(0.1, 0.88, substitute(p~" Sim.", list(p = pSim)), cex=0.75, adj=c(0, 0.5), xpd=NA)
-        proportionalLabel(0.1, 0.80, substitute(p~" Lambda", list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.1, 0.80, substitute(p~lambda, list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
 
 ## Panel D: C = 3/4
     # Calculate proportions of each outcome
@@ -1042,7 +1042,7 @@ compareSimEig1PatchFig  <-  function(h = c(0.5, 0.25), delta = 0, sMax=1) {
         points(0.02,0.83, pch=21, col=NA, cex=1, bg='dodgerblue2')
         proportionalLabel(0.1, 0.95, substitute(p~" Agree", list(p = pAgree)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         proportionalLabel(0.1, 0.88, substitute(p~" Sim.", list(p = pSim)), cex=0.75, adj=c(0, 0.5), xpd=NA)
-        proportionalLabel(0.1, 0.80, substitute(p~" Lambda", list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.1, 0.80, substitute(p~lambda, list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
 
 
 ## h = 1/4
@@ -1089,7 +1089,7 @@ compareSimEig1PatchFig  <-  function(h = c(0.5, 0.25), delta = 0, sMax=1) {
         points(0.02,0.83, pch=21, col=NA, cex=1, bg='dodgerblue2')
         proportionalLabel(0.1, 0.95, substitute(p~" Agree", list(p = pAgree)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         proportionalLabel(0.1, 0.88, substitute(p~" Sim.", list(p = pSim)), cex=0.75, adj=c(0, 0.5), xpd=NA)
-        proportionalLabel(0.1, 0.80, substitute(p~" Lambda", list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.1, 0.80, substitute(p~lambda, list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
 
 ## Panel F: C = 1/4    
     # Calculate proportions of each outcome
@@ -1132,7 +1132,7 @@ compareSimEig1PatchFig  <-  function(h = c(0.5, 0.25), delta = 0, sMax=1) {
         points(0.02,0.83, pch=21, col=NA, cex=1, bg='dodgerblue2')
         proportionalLabel(0.1, 0.95, substitute(p~" Agree", list(p = pAgree)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         proportionalLabel(0.1, 0.88, substitute(p~" Sim.", list(p = pSim)), cex=0.75, adj=c(0, 0.5), xpd=NA)
-        proportionalLabel(0.1, 0.80, substitute(p~" Lambda", list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.1, 0.80, substitute(p~lambda, list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
 
 ## Panel G: C = 1/2
     # Calculate proportions of each outcome
@@ -1174,7 +1174,7 @@ compareSimEig1PatchFig  <-  function(h = c(0.5, 0.25), delta = 0, sMax=1) {
         points(0.02,0.83, pch=21, col=NA, cex=1, bg='dodgerblue2')
         proportionalLabel(0.1, 0.95, substitute(p~" Agree", list(p = pAgree)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         proportionalLabel(0.1, 0.88, substitute(p~" Sim.", list(p = pSim)), cex=0.75, adj=c(0, 0.5), xpd=NA)
-        proportionalLabel(0.1, 0.80, substitute(p~" Lambda", list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.1, 0.80, substitute(p~lambda, list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
 
 ## Panel H: C = 3/4
     # Calculate proportions of each outcome
@@ -1216,7 +1216,7 @@ compareSimEig1PatchFig  <-  function(h = c(0.5, 0.25), delta = 0, sMax=1) {
         points(0.02,0.83, pch=21, col=NA, cex=1, bg='dodgerblue2')
         proportionalLabel(0.1, 0.95, substitute(p~" Agree", list(p = pAgree)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         proportionalLabel(0.1, 0.88, substitute(p~" Sim.", list(p = pSim)), cex=0.75, adj=c(0, 0.5), xpd=NA)
-        proportionalLabel(0.1, 0.80, substitute(p~" Lambda", list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.1, 0.80, substitute(p~lambda, list(p = pEig)), cex=0.75, adj=c(0, 0.5), xpd=NA)
               
 }
 
@@ -1956,124 +1956,781 @@ PolyMultiPatchCompareGeneralSA  <-  function(k = 5, sMax=1) {
 
 
 
-PolyMultiPatchCompareGeneralSADiff  <-  function(sMax=1) {
-    
+
+
+# Simple figs for 2-patch Levene model for simultaneous hermaphrodites
+PolyMultiPatchJointDist  <-  function(k, h, delta, sMax=1) {
+   
     # import data
-    filename1  <-  paste("./output/data/simMultiPatchSgrad_General_SA", "_k", 10, "_C", 0,    "_delta", 0, "_hf", 0.5, "_hm", 0.5, "_sMax", sMax, ".csv", sep="")
-    filename2  <-  paste("./output/data/simMultiPatchSgrad_General_SA", "_k", 10, "_C", 0.25, "_delta", 0, "_hf", 0.5, "_hm", 0.5, "_sMax", sMax, ".csv", sep="")
-    filename3  <-  paste("./output/data/simMultiPatchSgrad_General_SA", "_k", 10, "_C", 0.5,  "_delta", 0, "_hf", 0.5, "_hm", 0.5, "_sMax", sMax, ".csv", sep="")
-    filename4  <-  paste("./output/data/simMultiPatchSgrad_General_SA", "_k", 10, "_C", 0.75, "_delta", 0, "_hf", 0.5, "_hm", 0.5, "_sMax", sMax, ".csv", sep="")
-    data1  <-  read.csv(filename1, header=TRUE)
-    data2  <-  read.csv(filename2, header=TRUE)
-    data3  <-  read.csv(filename3, header=TRUE)
-    data4  <-  read.csv(filename4, header=TRUE)
+    filename1  <-  paste("./output/data/simMultiPatchSgrad_JointDist", "_k", k, "_C", 0,    "_delta", delta, "_hf", h[1], "_hm", h[1], "_sMax", sMax, ".csv", sep="")
+    filename2  <-  paste("./output/data/simMultiPatchSgrad_JointDist", "_k", k, "_C", 0.25, "_delta", delta, "_hf", h[1], "_hm", h[1], "_sMax", sMax, ".csv", sep="")
+    filename3  <-  paste("./output/data/simMultiPatchSgrad_JointDist", "_k", k, "_C", 0.5,  "_delta", delta, "_hf", h[1], "_hm", h[1], "_sMax", sMax, ".csv", sep="")
+    filename4  <-  paste("./output/data/simMultiPatchSgrad_JointDist", "_k", k, "_C", 0.75, "_delta", delta, "_hf", h[1], "_hm", h[1], "_sMax", sMax, ".csv", sep="")
+    data1      <-  read.csv(filename1, header=TRUE)
+    data2      <-  read.csv(filename2, header=TRUE)
+    data3      <-  read.csv(filename3, header=TRUE)
+    data4      <-  read.csv(filename4, header=TRUE)
+
+    Covs  <-  unique(data1$Covs)
 
     # Color Scheme
-    COLS  <-  c("grey50", "grey60", "grey70", "grey80", "black")
+    COLS  <-  c("grey80", "grey70", "grey60", "grey50", "black")
 
     # Set plot layout
-    layout.mat <- matrix(c(1:4), nrow=2, ncol=2, byrow=TRUE)
+    layout.mat <- matrix(c(1:36), nrow=9, ncol=4, byrow=TRUE)
     layout     <- layout(layout.mat,respect=TRUE)
 
+###########################
+## Row 1: Cov(sf,sm) = -0.8
 ## Panel A: C = 0
-    par(omi=c(0.5, 0.5, 0.5, 0.5), mar = c(4,4,0.5,0.5), bty='o', xaxt='s', yaxt='s')    
-     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, 1), ylim = c(0,0.2), ylab='', xlab='', cex.lab=1.2)
+dat1  <-  data1[data1$Covs == Covs[9],]
+dat2  <-  data2[data2$Covs == Covs[9],]
+dat3  <-  data3[data3$Covs == Covs[9],]
+dat4  <-  data4[data4$Covs == Covs[9],]
+    par(omi=c(1, 1, 1, 1), mar = c(2.5,2.5,1,0.5), bty='o', xaxt='s', yaxt='s')    
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
         box()
         # Plot proportion of parameter space for 1 and 2 patches
-        lines((PolyGen5 - PolySA5) ~ sMaxes, data=data1, lwd=3, col=COLS[1])
-        lines((PolyGen4 - PolySA4) ~ sMaxes, data=data1, lwd=3, col=COLS[2])
-        lines((PolyGen3 - PolySA3) ~ sMaxes, data=data1, lwd=3, col=COLS[3])
-        lines((PolyGen2 - PolySA2) ~ sMaxes, data=data1, lwd=3, col=COLS[4])
-        lines((PolyGen1 - PolySA1) ~ sMaxes, data=data1, lwd=3, col=COLS[5])
-        #lines((PolyGen10 - PolySA10) ~ sMaxes, data=data1, lwd=3, col=COLS[5])
+        lines(PolySA5 ~ sMaxes, data=dat1, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat1, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat1, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat1, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat1, lwd=2, col=COLS[5])
         # axes
         axis(1, las=1, labels=NA)
         axis(2, las=1)
         # Plot labels etc.
-        proportionalLabel( 0.05,  1.075, expression(paste(bold(A))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel( 0.5,  1.1,   expression(paste(italic(C)," = 0")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(A1))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(  0.5,  1.3, expression(paste(italic(C)," = 0")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel( -0.8,  0.5, expression(paste(italic(Cov(s[f],s[m]))," = ",0.8)), cex=1.3, adj=c(0.5, 0.5), xpd=NA,srt=90)
+
 
 ## Panel B: C = 1/4
-     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, 1), ylim = c(0,0.2), ylab='', xlab='', cex.lab=1.2)
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
         box()
         # Plot proportion of parameter space for 1 and 2 patches
-        lines((PolyGen5 - PolySA5) ~ sMaxes, data=data2, lwd=3, col=COLS[1])
-        lines((PolyGen4 - PolySA4) ~ sMaxes, data=data2, lwd=3, col=COLS[2])
-        lines((PolyGen3 - PolySA3) ~ sMaxes, data=data2, lwd=3, col=COLS[3])
-        lines((PolyGen2 - PolySA2) ~ sMaxes, data=data2, lwd=3, col=COLS[4])
-        lines((PolyGen1 - PolySA1) ~ sMaxes, data=data2, lwd=3, col=COLS[5])
-#        lines((PolyGen10 - PolySA10) ~ sMaxes, data=data2, lwd=3, col=COLS[5])
+        lines(PolySA5 ~ sMaxes, data=dat2, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat2, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat2, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat2, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat2, lwd=2, col=COLS[5])
         # axes
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
         # Plot labels etc.
-        proportionalLabel( 0.05,  1.075, expression(paste(bold(B))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel( 0.5,  1.1,   expression(paste(italic(C)," = 0.25")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(A2))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel( 0.5,  1.3,   expression(paste(italic(C)," = 0.25")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
 
 ## Panel C: C = 1/2
-     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, 1), ylim = c(0,0.2), ylab='', xlab='', cex.lab=1.2)
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
         box()
         # Plot proportion of parameter space for 1 and 2 patches
-        lines((PolyGen5 - PolySA5) ~ sMaxes, data=data3, lwd=3, col=COLS[1])
-        lines((PolyGen4 - PolySA4) ~ sMaxes, data=data3, lwd=3, col=COLS[2])
-        lines((PolyGen3 - PolySA3) ~ sMaxes, data=data3, lwd=3, col=COLS[3])
-        lines((PolyGen2 - PolySA2) ~ sMaxes, data=data3, lwd=3, col=COLS[4])
-        lines((PolyGen1 - PolySA1) ~ sMaxes, data=data3, lwd=3, col=COLS[5])
-#        lines((PolyGen10 - PolySA10) ~ sMaxes, data=data3, lwd=3, col=COLS[5])
+        lines(PolySA5 ~ sMaxes, data=dat3, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat3, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat3, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat3, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat3, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(A3))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel( 0.5,  1.3,   expression(paste(italic(C)," = 0.5")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+
+## Panel D: C = 3/4
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat4, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat4, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat4, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat4, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat4, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(A4))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel( 0.5,  1.3,   expression(paste(italic(C)," = 0.75")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        # Legend
+        legend(
+            x       =  usr[2]*0.75,
+            y       =  usr[4],
+            legend  =  c(
+                        expression(paste("5 Patch")),
+                        expression(paste("4 Patch")),
+                        expression(paste("3 Patch")),
+                        expression(paste("2 Patch")),
+                        expression(paste("1 Patch"))),
+            col     =  COLS,
+            lty     =  c(1,1),
+            lwd     =  2,
+#            pch     =  21,
+#            pt.bg   =  COLS,
+            cex     =  0.9,
+            xjust   =  1,
+            yjust   =  1,
+            bty     =  'n',
+            border  =  NA
+        )
+
+
+###########################
+## Row 2: Cov(sf,sm) = -0.6
+## Panel E: C = 0
+dat1  <-  data1[data1$Covs == Covs[8],]
+dat2  <-  data2[data2$Covs == Covs[8],]
+dat3  <-  data3[data3$Covs == Covs[8],]
+dat4  <-  data4[data4$Covs == Covs[8],]
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat1, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat1, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat1, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat1, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat1, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(B1))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel( -0.8,  0.5, expression(paste(italic(Cov(s[f],s[m]))," = ",0.6)), cex=1.3, adj=c(0.5, 0.5), xpd=NA,srt=90)
+
+## Panel F: C = 1/4
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat2, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat2, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat2, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat2, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat2, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(B2))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+## Panel G: C = 1/2
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat3, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat3, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat3, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat3, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat3, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(B3))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+## Panel H: C = 3/4
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat4, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat4, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat4, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat4, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat4, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(B4))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+
+###########################
+## Row 3: Cov(sf,sm) = -0.4
+## Panel I: C = 0
+dat1  <-  data1[data1$Covs == Covs[7],]
+dat2  <-  data2[data2$Covs == Covs[7],]
+dat3  <-  data3[data3$Covs == Covs[7],]
+dat4  <-  data4[data4$Covs == Covs[7],]
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat1, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat1, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat1, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat1, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat1, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(C1))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel( -0.8,  0.5, expression(paste(italic(Cov(s[f],s[m]))," = ",0.4)), cex=1.3, adj=c(0.5, 0.5), xpd=NA,srt=90)
+
+## Panel J: C = 1/4
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat2, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat2, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat2, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat2, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat2, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(C2))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+## Panel K: C = 1/2
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat3, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat3, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat3, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat3, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat3, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(C3))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+## Panel H: C = 3/4
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat4, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat4, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat4, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat4, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat4, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(C4))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+
+
+###########################
+## Row 4: Cov(sf,sm) = -0.2
+## Panel I: C = 0
+dat1  <-  data1[data1$Covs == Covs[6],]
+dat2  <-  data2[data2$Covs == Covs[6],]
+dat3  <-  data3[data3$Covs == Covs[6],]
+dat4  <-  data4[data4$Covs == Covs[6],]
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat1, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat1, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat1, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat1, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat1, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(D1))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel( -0.8,  0.5, expression(paste(italic(Cov(s[f],s[m]))," = ", 0.2)), cex=1.3, adj=c(0.5, 0.5), xpd=NA,srt=90)
+
+## Panel J: C = 1/4
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat2, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat2, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat2, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat2, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat2, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(D2))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+## Panel K: C = 1/2
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat3, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat3, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat3, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat3, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat3, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(D3))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+## Panel H: C = 3/4
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat4, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat4, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat4, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat4, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat4, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(D4))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+                            
+
+###########################
+## Row 5: Cov(sf,sm) = 0
+## Panel I: C = 0
+dat1  <-  data1[data1$Covs == Covs[5],]
+dat2  <-  data2[data2$Covs == Covs[5],]
+dat3  <-  data3[data3$Covs == Covs[5],]
+dat4  <-  data4[data4$Covs == Covs[5],]
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat1, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat1, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat1, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat1, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat1, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(E1))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(-0.5,  0.5,   expression(paste("Proportion parameter space")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)        
+        proportionalLabel( -0.8,  0.5, expression(paste(bold(Cov(s[f],s[m]))," = ", 0)), cex=1.3, adj=c(0.5, 0.5), xpd=NA,srt=90)
+
+## Panel J: C = 1/4
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat2, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat2, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat2, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat2, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat2, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(E2))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+## Panel K: C = 1/2
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat3, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat3, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat3, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat3, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat3, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(E3))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+## Panel H: C = 3/4
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat4, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat4, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat4, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat4, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat4, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(E4))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+                            
+
+
+###########################
+## Row 6: Cov(sf,sm) = 0.2
+## Panel I: C = 0
+dat1  <-  data1[data1$Covs == Covs[4],]
+dat2  <-  data2[data2$Covs == Covs[4],]
+dat3  <-  data3[data3$Covs == Covs[4],]
+dat4  <-  data4[data4$Covs == Covs[4],]
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat1, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat1, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat1, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat1, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat1, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(F1))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+#        proportionalLabel(-0.4,  1.2,   expression(paste("Proportion parameter space")), cex=1.3, adj=c(0.5, 0.5), xpd=NA, srt=90)        
+        proportionalLabel( -0.8,  0.5, expression(paste(italic(Cov(s[f],s[m]))," = ", -0.2)), cex=1.3, adj=c(0.5, 0.5), xpd=NA,srt=90)
+
+## Panel J: C = 1/4
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat2, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat2, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat2, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat2, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat2, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+#        proportionalLabel( 1.3,  1.3,   expression(paste(italic(h[f])," = ",italic(h[m]), " = 1/2")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(F2))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+## Panel K: C = 1/2
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat3, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat3, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat3, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat3, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat3, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(F3))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+## Panel H: C = 3/4
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat4, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat4, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat4, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat4, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat4, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(F4))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+
+###########################
+## Row 7: Cov(sf,sm) = 0.4
+## Panel I: C = 0
+dat1  <-  data1[data1$Covs == Covs[3],]
+dat2  <-  data2[data2$Covs == Covs[3],]
+dat3  <-  data3[data3$Covs == Covs[3],]
+dat4  <-  data4[data4$Covs == Covs[3],]
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat1, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat1, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat1, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat1, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat1, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(G1))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel( -0.8,  0.5, expression(paste(italic(Cov(s[f],s[m]))," = ", -0.4)), cex=1.3, adj=c(0.5, 0.5), xpd=NA,srt=90)
+
+## Panel J: C = 1/4
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat2, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat2, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat2, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat2, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat2, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(G2))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+## Panel K: C = 1/2
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat3, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat3, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat3, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat3, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat3, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(G3))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+## Panel H: C = 3/4
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat4, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat4, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat4, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat4, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat4, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(G4))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+
+###########################
+## Row 8: Cov(sf,sm) = 0.6
+## Panel I: C = 0
+dat1  <-  data1[data1$Covs == Covs[2],]
+dat2  <-  data2[data2$Covs == Covs[2],]
+dat3  <-  data3[data3$Covs == Covs[2],]
+dat4  <-  data4[data4$Covs == Covs[2],]
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat1, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat1, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat1, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat1, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat1, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(H1))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel( -0.8,  0.5, expression(paste(italic(Cov(s[f],s[m]))," = ", -0.6)), cex=1.3, adj=c(0.5, 0.5), xpd=NA,srt=90)
+
+## Panel J: C = 1/4
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat2, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat2, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat2, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat2, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat2, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(H2))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+## Panel K: C = 1/2
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat3, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat3, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat3, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat3, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat3, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(H3))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+## Panel H: C = 3/4
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat4, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat4, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat4, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat4, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat4, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1, labels=NA)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(H4))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+
+###########################
+## Row 9: Cov(sf,sm) = 0.8
+## Panel I: C = 0
+dat1  <-  data1[data1$Covs == Covs[1],]
+dat2  <-  data2[data2$Covs == Covs[1],]
+dat3  <-  data3[data3$Covs == Covs[1],]
+dat4  <-  data4[data4$Covs == Covs[1],]
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat1, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat1, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat1, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat1, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat1, lwd=2, col=COLS[5])
         # axes
         axis(1, las=1)
         axis(2, las=1)
         # Plot labels etc.
-        proportionalLabel( 0.05,  1.075, expression(paste(bold(C))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel( 0.5,  1.1,   expression(paste(italic(C)," = 0.5")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(-0.3,  1.2,   expression(paste(Delta~Proportion~polymorphic~parameter~space)), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)        
-        proportionalLabel(1.2,  -0.3,   expression(paste("Maximum strength of selection: max(",italic(s[f]),", ", italic(s[m]),")")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)        
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(I1))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+#        proportionalLabel(-0.4,  1.2,   expression(paste("Proportion parameter space")), cex=1.3, adj=c(0.5, 0.5), xpd=NA, srt=90)        
+        proportionalLabel( -0.8,  0.5, expression(paste(italic(Cov(s[f],s[m]))," = ",-0.8)), cex=1.3, adj=c(0.5, 0.5), xpd=NA,srt=90)
 
-## Panel D: C = 3/4
-     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, 1), ylim = c(0,0.2), ylab='', xlab='', cex.lab=1.2)
+## Panel J: C = 1/4
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
         box()
         # Plot proportion of parameter space for 1 and 2 patches
-        lines((PolyGen5 - PolySA5) ~ sMaxes, data=data4, lwd=3, col=COLS[1])
-        lines((PolyGen4 - PolySA4) ~ sMaxes, data=data4, lwd=3, col=COLS[2])
-        lines((PolyGen3 - PolySA3) ~ sMaxes, data=data4, lwd=3, col=COLS[3])
-        lines((PolyGen2 - PolySA2) ~ sMaxes, data=data4, lwd=3, col=COLS[4])
-        lines((PolyGen1 - PolySA1) ~ sMaxes, data=data4, lwd=3, col=COLS[5])
-#        lines((PolyGen10 - PolySA10) ~ sMaxes, data=data4, lwd=3, col=COLS[5])
+        lines(PolySA5 ~ sMaxes, data=dat2, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat2, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat2, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat2, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat2, lwd=2, col=COLS[5])
         # axes
         axis(1, las=1)
         axis(2, las=1, labels=NA)
         # Plot labels etc.
-        proportionalLabel( 0.05,  1.075, expression(paste(bold(D))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel( 0.5,  1.1,   expression(paste(italic(C)," = 0.75")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
-        # Legend
-                legend(
-                    x       =  usr[2]*0.425,
-                    y       =  usr[4],
-                    legend  =  c(
-                                expression(paste("5 Patch")),
-                                expression(paste("4 Patch")),
-                                expression(paste("3 Patch")),
-                                expression(paste("2 Patch")),
-                                expression(paste("1 Patch"))),
-                    col     =  COLS,
-                    lty     =  c(1,1),
-                    lwd     =  c(3,3),
-                    cex     =  0.9,
-                    xjust   =  1,
-                    yjust   =  1,
-                    bty     =  'n',
-                    border  =  NA
-            )
+#        proportionalLabel( 1.3,  1.3,   expression(paste(italic(h[f])," = ",italic(h[m]), " = 1/2")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(I2))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(1.2,  -0.5,   expression(paste("Maximum strength of selection: max(",italic(s[f]),",",italic(s[m]),")")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)        
+
+## Panel K: C = 1/2
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat3, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat3, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat3, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat3, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat3, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(I3))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+## Panel H: C = 3/4
+     plot(NA, axes=FALSE, type='n', main='',xlim = c(0, sMax), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot proportion of parameter space for 1 and 2 patches
+        lines(PolySA5 ~ sMaxes, data=dat4, lwd=2, col=COLS[1])
+        lines(PolySA4 ~ sMaxes, data=dat4, lwd=2, col=COLS[2])
+        lines(PolySA3 ~ sMaxes, data=dat4, lwd=2, col=COLS[3])
+        lines(PolySA2 ~ sMaxes, data=dat4, lwd=2, col=COLS[4])
+        lines(PolySA1 ~ sMaxes, data=dat4, lwd=2, col=COLS[5])
+        # axes
+        axis(1, las=1)
+        axis(2, las=1, labels=NA)
+        # Plot labels etc.
+        proportionalLabel( 0.05,  1.1, expression(paste(bold(I4))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 }
