@@ -15,7 +15,7 @@ This article is part of the theme issue ‘Linking local adaptation with the evo
 
 ## Citing information
 
-Citing information for the resulting paper will be provided when it is made [available through the publisher](SA-SexSystem-LocalAdapt). You can also contact me directly if you would like a reprint. 
+Citing information for the resulting paper will be provided when it is made [available through the publisher](http://rstb.royalsocietypublishing.org/content/373/1757). You can also contact me directly if you would like a reprint. 
 
 
 ## Contact & bug reporting
