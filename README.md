@@ -15,9 +15,9 @@ This article is part of the theme issue ‘Linking local adaptation with the evo
 
 ## Citing information
 
-Citing information for the resulting paper will be provided when it is made [available through the publisher](http://XXXXX). You can also contact me directly if you would like a reprint. 
+Citing information for the resulting paper will be provided when it is made [available through the publisher](SA-SexSystem-LocalAdapt). You can also contact me directly if you would like a reprint. 
 
 
 ## Contact & bug reporting
 
-Please report any bugs, problems, or issues by opening an issue on the XvAutosomeInversions github [issues page](https://github.com/colin-olito/SA-SexSystem-LocalAdapt/issues). If you would like to report a bug/issue, and do not have a github account (and don't want to get one), please send a brief email detailing the problem you encountered to colin.olito at monash dot edu.
+Please report any bugs, problems, or issues by opening an issue on the SA-SexSystem-LocalAdapt github [issues page](https://github.com/colin-olito/SA-SexSystem-LocalAdapt/issues). If you would like to report a bug/issue, and do not have a github account (and don't want to get one), please send a brief email detailing the problem you encountered to colin.olito at monash dot edu.
